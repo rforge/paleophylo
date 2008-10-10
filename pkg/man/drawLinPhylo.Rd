@@ -8,7 +8,7 @@ drawLinPhylo(pP,
 	addTimeLines = "classic", tmScl = gradstein04, 
 	whatTime = c("epoch","stage"), l2r=FALSE, arrowHeads=FALSE,
 	nmLim=2, clCd = rep(1, length(pP$nm)), 
-	certS = rep(NA, length(pP$nm)), certE = rep(NA, length(pP$nm)), 
+	gapS = rep(NA, length(pP$nm)), gapE = rep(NA, length(pP$nm)), 
 	cexText = 0.5, cexTime = 0.5, cexLab=0.5,
 	lwdLin = 2, hlty=3)
 }
@@ -26,8 +26,8 @@ drawLinPhylo(pP,
  \item{nmLim}{OPTIONAL: a number of million years that serves as the limit for when the name of the period/epoch/stage/etc... should be printed in the 'classic' time axis.  Defaults to 2.}
 
   \item{clCd}{OPTIONAL: a vector with color codes for each species lineage.  If the length of clCd is not the same as the number of species lineages, then this will be repeated as outlined in \code{\link{par}}.  Type colors() to see the full range.  Defaults to black.}
-  \item{certS}{OPTIONAL: start point of uncertainty in lineage persistence.  Defaults to none.  Use with ....}
-  \item{certE}{OPTIONAL: end point of uncertainty in lineage persistence.  Defaults to none.  For an example of these two arguments, see example 3 below.}
+  \item{gapS}{OPTIONAL: start point of uncertainty in lineage persistence.  Defaults to none.  Use with ....}
+  \item{gapE}{OPTIONAL: end point of uncertainty in lineage persistence.  Defaults to none.  For an example of these two arguments, see example 3 below.}
   \item{cexText}{OPTIONAL: change the text size of time labels.  See \code{\link{par}}.}
   \item{cexTime}{OTIONAL: change the text size of time numbers.  See \code{\link{par}}.}
   \item{cexLab}{OTIONAL: change the text size of species lineage names.  See \code{\link{par}}.}
@@ -67,12 +67,12 @@ drawLinPhylo (p93,addTimeLine="tube",cexText=3,cexTime=0.8)
 ##suppose (FOR ILLUSTRATION ONLY) that uncertainty exists surrounding lineage "91".
 ##let this begin 2 years after its origination & ...
 ##... persist until 4 years before its disapperance/extinction.
-certS <- certE <- rep(NA,length(p93$nm))
+gapS <- gapE <- rep(NA,length(p93$nm))
 clCd <- rep("black",length(p93$nm))
-certS[which(p93$nm == "91")] <- 2
-certE[which(p93$nm == "91")] <- 4
+gapS[which(p93$nm == "91")] <- 2
+gapE[which(p93$nm == "91")] <- 4
 clCd[which(p93$nm == "91")] <- "grey80"
-drawLinPhylo (p93,certS=certS,certE=certE,clCd=clCd,cexTime=0.8)
+drawLinPhylo (p93,gapS=gapS,gapE=gapE,clCd=clCd,cexTime=0.8)
 
 ##example 6: with species arranged on the x-axis according ...
 ## .... to some random trait data from a unifrom distribution.
