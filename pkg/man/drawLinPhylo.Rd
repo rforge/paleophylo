@@ -14,7 +14,7 @@ drawLinPhylo(pP,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}).}
+  \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}). }
   \item{addTimeLines}{OPTIONAL: add a time axis to the plot.  Three options are accepted: 
   	"none" (plots no time axis); 
   	"classic" (default, plots a set of rectangular boxes with labels on the left-hand side of the cladogram);

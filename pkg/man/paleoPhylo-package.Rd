@@ -19,7 +19,7 @@ LazyLoad: \tab yes\cr
 }
 }
 \author{
-Thomas H.G. Ezard
+Thomas H.G. Ezard 
 
 Maintainer: Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}
 }
