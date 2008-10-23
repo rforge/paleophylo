@@ -28,6 +28,7 @@ An object of class 'paleoPhylo', which is a list containing the vectors defined 
 }
 
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
+\references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
 
 \seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawLinPhylo}}}
 

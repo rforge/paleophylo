@@ -43,7 +43,7 @@ Currently, any USER READ-IN TIME SCALE MUST HAVE a column called "MA", which con
 }
 \value{
 The function opens a graphics window and plots the lineage phylogeny (see \code{\link{as.paleoPhylo}} for details).  It does not return a list, since all the information is contained within input data.}
-\references{\url{www.imperial.ac.uk/research/apurvis/paleoPhylo/}}
+\references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
 \seealso{\code{\link{as.paleoPhylo}}, \code{\link{gradstein04}}, \code{\link{pearson93}}, \code{\link{berggren95}}}
 \examples{

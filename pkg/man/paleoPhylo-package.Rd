@@ -23,7 +23,7 @@ Thomas H.G. Ezard
 
 Maintainer: Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}
 }
-\references{\url{www.imperial.ac.uk/research/apurvis/paleoPhylo/}}
+\references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
 \keyword{ package }
 \seealso{
 	\code{\link[ape:ape-package]{ape}}, \code{\link{pearson93}}, \code{\link{buildApe}}, \code{\link{createBifurcate}}, \code{\link{drawLinPhylo}}, \code{\link{ape2paleoPhylo}}
