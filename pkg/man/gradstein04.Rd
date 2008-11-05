@@ -22,6 +22,8 @@ Full details on derivation of the time scale are given in the references below. 
 "Subdivisions of the global geologic record are formally defined by their lower boundary. Each unit of the Phanerozoic (~542 Ma to Present) and the base of Ediacaran are defined by a basal Global Standard Section and Point (GSSP), whereas Precambrian units are formally subdivided by absolute age (Global Standard Stratigraphic Age, GSSA). Details of each GSSP are posted on the ICS website \url{www.stratigraphy.org}.
 
 Numerical ages of the unit boundaries in the Phanerozoic are subject to revision. Some stages within the Cambrian will be formally named upon international agreement on their GSSP limits. Most sub-Series boundaries (e.g., Middle and Upper Aptian) are not formally defined."
+
+Versions of R older than 2.8 on Windows contain a bug (this data-frame is erroneously titled gst).  Either substitute gradstein04 in examples for gst, or update to the latest release.
 }
 \source{
 Gradstein F.M., Ogg J.G., Smith A.G. 2004 A Geologic Time Scale 2004. Cambridge University Press, Cambridge, UK.
