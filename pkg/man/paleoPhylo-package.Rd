@@ -30,9 +30,9 @@ Maintainer: Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}
 }
 \examples{
 data(pearson93)
-data(gradstein04)
+data(berggren95)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
-drawLinPhylo(p93, addTimeLine="tube")
+drawLinPhylo(p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="t")
 
 apeTree <- buildApe(createBifurcate(p93))
 apeTree

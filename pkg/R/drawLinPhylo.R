@@ -1,140 +1,1 @@
-drawLinPhylo <- function(pP,addTimeLines="classic",tmScl=gradstein04,whatTime=c("epoch","stage"),l2r=FALSE,arrowHeads=FALSE,nmLim=2,
-			clCd=rep(1,length(pP$nm)),gapS=rep(NA,length(pP$nm)),gapE=rep(NA,length(pP$nm)),cexText=0.5,cexTime=0.5,cexLab=0.5,lwdLin=2,hlty=3) 
-	{
-	if(class(pP)!="paleoPhylo") stop(" object is not of class 'paleoPhylo'")
-		{
-		tmScl <- tmScl[tmScl$MA<=max(pP$st),]
-		startPoint <- which(tmScl$MA==tmScl$MA[(which(tmScl$MA >= min(pP$en))[1])])
-		if(startPoint>1) {startPoint<-startPoint-1}
-		tmScl <- tmScl[startPoint:dim(tmScl)[1],]
-		tmScl$prntName <- c(1,abs(diff(tmScl$MA))>2 - 1)
-		
-		if(addTimeLines=="classic") 
-			{
-			sz <- ifelse(length(pP$nm) > 100, 0.1, 0.25)
-			ifelse(l2r==FALSE,fig.mat<-matrix(c(0,sz,sz,1,0,0,1,1),nrow=2),fig.mat<-matrix(c(0,0,1,1,0,sz,sz,1),nrow=2))
-			split.screen(fig.mat)
-			screen(1)
-			par(mar=c(0.1,0.1,0.1,0.1),srt=90)
-			if (l2r==FALSE) {plot(seq(0,1,length.out=length(pP$st)),-pP$st,type='n',axes=FALSE,xlab="",ylab="",ylim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}
-			if (l2r==TRUE)  {plot(-pP$st,seq(0,1,length.out=length(pP$st)),type='n',axes=FALSE,xlab="",ylab="",xlim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}
-			xx <- seq(0,0.7,length.out=(length(whatTime)+1))
-			for (i in 1:length(whatTime))
-				{
-				ii <- which(colnames(tmScl)==whatTime[i])
-				st <- c(sort(tapply(tmScl$MA,as.character(tmScl[,ii]),max))[-length(unique(as.character(tmScl[,ii])))])
-				en <- sort(tapply(tmScl$MA,as.character(tmScl[,ii]),max))[-1]
-
-				if(length(intersect(en,min(tmScl$MA))) == 0)
-					{
-					en <- c(sort(tapply(tmScl$MA,as.character(tmScl[,ii]),max))[1],en)
-					st <- c(sort(tapply(tmScl$MA,as.character(tmScl[,ii]),min))[1],st)
-					}
-				if (l2r==FALSE)
-					{
-					rect(xx[i],-st,xx[i+1],-en)
-					text((xx[i]+xx[i+1])/2,y=-c((st+en)/2),names(en),col=(abs(st-en)>nmLim),cex=cexText)
-					segments(xx[i],-st,xx[i+1],-st,lwd=2)
-					}
-				if (l2r==TRUE)
-					{
-					par(srt=0)
-					rect(-st,xx[i],-en,xx[i+1])	
-					text(-c((st+en)/2),y=(xx[i]+xx[i+1])/2,names(en),col=(abs(st-en)>nmLim),cex=cexText)
-					segments(-st,xx[i],-st,xx[i+1],lwd=2)
-					}
-				}
-			par(srt=0)
-			if (l2r==FALSE) {text(0.97,-tmScl$MA,tmScl$MA,adj=1,cex=cexTime)} else {text(-tmScl$MA,0.97,tmScl$MA,adj=0.5,cex=cexTime)}
-
-			thk <- (!duplicated(tmScl[,which(colnames(tmScl)==whatTime[1])])[-1]) + 1
-			screen(2,FALSE)
-			par(mar=c(0.1,0.1,0.1,0.1))
-			if (l2r==FALSE) {plot(seq(0,1,length.out=length(pP$st)),-pP$st,type='n',axes=FALSE,xlab="",ylab="",ylim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}
-			if (l2r==TRUE)  {plot(-pP$st,seq(0,1,length.out=length(pP$st)),type='n',axes=FALSE,xlab="",ylab="",xlim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}
-			if (l2r==FALSE) {abline(h=-tmScl$MA,col="slategray4",lwd=thk)} else {abline(v=-tmScl$MA,col="slategray4",lwd=thk)}
-			}
-
-		if(addTimeLines=="tube") 
-			{
-			if (length(whatTime)!=2) stop("if addTimeLines=='tube' then whatTime currently must have 2 levels.")
-			if (l2r==FALSE) {par(mar=c(0,2,0,0),srt=0)} else {par(mar=c(2,0,0,0))}
-			if (l2r==FALSE) {plot(seq(0,1,length.out=length(pP$st)),-pP$st,type='n',axes=FALSE,xlab="",ylab="",ylim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}
-			if (l2r==TRUE)  {plot(-pP$st,seq(0,1,length.out=length(pP$st)),type='n',axes=FALSE,xlab="",ylab="",xlim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}
-	
-			mtext(round(tmScl$MA[tmScl$prntName==1],1),side=(l2r==FALSE) + 1,at=-(tmScl$MA[tmScl$prntName==1]),col=1,padj=1,cex=cexTime,line=-0.5 - l2r)
-			mtext("Age [ma]",side=(l2r==FALSE) + 1,cex=1.5,padj=1,outer=TRUE,line=-1 - 2*l2r)
-              
-              splits <- paste(tmScl[,which(colnames(tmScl)==whatTime[1])],tmScl[,which(colnames(tmScl)==whatTime[2])])
-              boundaries <- c(sort(tapply(tmScl$MA,splits,max)))
-			st <- boundaries[1:(length(boundaries) - 1)]
- 	 		en <- boundaries[2:length(boundaries)]	
-	txt <- unlist(strsplit(unique(splits), " "))
-			if (l2r==FALSE)
-				{
-				rect(0,-st,1,-en,col=c("white","gray75"),border=c("white","gray75"))
-				arrows(0,-max(pP$st),0,-min(pP$en),length=0)
-				text(0.49,y=-(st+en)/2,txt[seq(1,length(txt),2)][-1],col=c("gray75","white"),cex=cexText,adj=c(1,0.5))
-				text(0.51,y=-(st+en)/2,txt[seq(2,length(txt),2)][-1],col=c("gray75","white"),cex=cexText,adj=c(0,0.5))
-				}
-			if (l2r==TRUE)
-				{
-				par(srt=270)
-				rect(-st,0,-en,1,col=c("white","gray75"),border=c("white","gray75"))
-				arrows(-max(pP$st),0,-min(pP$en),0,length=0)
-				text(-(st+en)/2,y=0.51,txt[seq(1,length(txt),2)][-1],col=c("gray75","white"),cex=cexText,adj=c(1,0.5))
-				text(-(st+en)/2,y=0.49,txt[seq(2,length(txt),2)][-1],col=c("gray75","white"),cex=cexText,adj=c(0,0.5))
-				}					
-			}
-	
-		par(srt=90)
-		if(addTimeLines=="none") 
-			{
-			par(mar=c(0,0,0,0))
-			if (l2r==FALSE) {plot(seq(0,1,length.out=length(pP$st)),-pP$st,type='n',axes=FALSE,xlab="",ylab="",ylim=range(-max(pP$st),-extendrange(c(pP$st,pP$en),f=0.1)[1]))}
-			if (l2r==TRUE)  {plot(-pP$st,seq(0,1,length.out=length(pP$st)),type='n',axes=FALSE,xlab="",ylab="",xlim=range(-max(pP$st),-extendrange(c(pP$st,pP$en),f=0.1)[1]))}
-			}
-				
-		if (l2r==FALSE) {x0s <- x1s <- pP$xx; y0s <- (-pP$st); y1s <- (-pP$en)} else {y0s <- y1s <- pP$xx; x0s <- (-pP$st); x1s <- (-pP$en)}
-		tips <- 0+(pP$en==min(pP$en))*15
-		for(ii in 1:length(pP$st))
-			{		
-			if(is.na(gapS[ii]) == TRUE)
-				{arrows(x0s[ii], y0s[ii], x1s[ii], y1s[ii], col= clCd[ii],length=tips[ii]*0.005*arrowHeads,angle=tips[ii],lwd=lwdLin)}
-			if(is.na(gapS[ii]) == FALSE)
-				{
-				if (l2r==FALSE)
-					{
-					arrows(x0s[ii], y0s[ii], x1s[ii], (y0s+gapS)[ii], col= 1, length=0,lwd=lwdLin)
-					arrows(x0s[ii], (y0s+gapS)[ii], x1s[ii], (y1s-gapE)[ii], col= clCd[ii],length=0,lwd=lwdLin,lty=2)
-					arrows(x0s[ii], (y1s-gapE)[ii], x1s[ii], y1s[ii], col= 1, length=tips[ii]*0.005*arrowHeads,angle=tips[ii],lwd=lwdLin)
-					}
-				if (l2r==TRUE)
-					{
-					arrows(x0s[ii], y0s[ii], (x0s+gapS)[ii], y0s[ii], col= 1, length=0,lwd=lwdLin)
-					arrows((x0s+gapS)[ii], y0s[ii], (x1s-gapE)[ii], y1s[ii], col= clCd[ii],length=0,lwd=lwdLin,lty=2)
-					arrows((x1s-gapE)[ii], y1s[ii], x1s[ii], y1s[ii], col= 1, length=tips[ii]*0.005*arrowHeads,angle=tips[ii],lwd=lwdLin)
-					}
-				}
-			}
-		par(srt=90*(l2r==FALSE))
-		if (l2r==TRUE) {x0s <- x1s}
-		text(x=x0s,y=y1s,pP$label,adj=0,font=3,cex=cexLab)
-		
-		x0s <-c()  ;  y0s <- c()  ;  x1s <-c()  ; cls <- c()
-		prnts <- as.character(unique(pP$pn[is.na(pP$pn)==FALSE]))
-		for (i in 1:length(prnts))
-			{
-			offsprng <- which(pP$pn == prnts[i])
-			for (j in 1:length(offsprng)) 
-				{
-				x0s <- c(x0s, pP$xx[which(pP$nm == prnts[i])])
-				x1s <- c(x1s, pP$xx[offsprng[j]])
-				y0s <- c(y0s, pP$st[offsprng[j]])
-				CLS <- ifelse(clCd[which(pP$nm == prnts[i])]==clCd[offsprng[j]], clCd[which(pP$nm == prnts[i])], clCd[which(pP$nm == prnts[i])])
-				cls <- c(cls, CLS)
-				}
-			}
-		if (l2r==FALSE) {segments(x0s,-y0s,x1s,-y0s,col=cls,lwd=lwdLin*0.75,lty=hlty)} else {segments(-y0s,x0s,-y0s,x1s,col=cls,lwd=lwdLin*0.75,lty=hlty)}
-		if (addTimeLines=="classic") {close.screen(all=TRUE)}}
-	}
+drawLinPhylo <- function (pP, uSR=NULL, addTimeLine = "none", tmScl,     whatTime = c("epoch", "age"), l2r = FALSE, nmLim = 2, clCd=1, cexText = 0.5, cexTime = 0.5,     cexLab = 0.5, lwdLin = 2, hlty = 3) {    if (class(pP) != "paleoPhylo") stop(" object is not of class 'paleoPhylo'")    {		if(addTimeLine=="classic" | addTimeLine=="c" | addTimeLine=="tube" | addTimeLine=="t") 			{			tmScl <- tmScl[tmScl$MA<=max(pP$st),]			startPoint <- which(tmScl$MA==tmScl$MA[(which(tmScl$MA >= min(pP$en))[1])])			if(startPoint>1) {startPoint<-startPoint-1}			tmScl <- tmScl[startPoint:dim(tmScl)[1],]			tmScl$prntName <- c(1,abs(diff(tmScl$MA))>2 - 1)			}					if(addTimeLine=="classic" | addTimeLine=="c") 			{			sz <- exp(-(length(pP$nm)+35)/50)+0.1			ifelse(l2r==FALSE,fig.mat<-matrix(c(0,sz,sz,1,0,0,1,1),nrow=2),fig.mat<-matrix(c(0,0,1,1,0,sz,sz,1),nrow=2))			split.screen(fig.mat)			screen(1)			par(mar=c(0.1,0.1,0.1,0.1),srt=90)			if (l2r==FALSE) {plot(seq(0,1,length.out=length(pP$st)),-pP$st,type='n',axes=FALSE,xlab="",ylab="",ylim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}			if (l2r==TRUE)  {plot(-pP$st,seq(0,1,length.out=length(pP$st)),type='n',axes=FALSE,xlab="",ylab="",xlim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}			xx <- seq(0,0.7,length.out=(length(whatTime)+1))			for (i in 1:length(whatTime))				{				ii <- which(colnames(tmScl)==whatTime[i])				st <- c(sort(tapply(tmScl$MA,as.character(tmScl[,ii]),max))[-length(unique(as.character(tmScl[,ii])))])				en <- sort(tapply(tmScl$MA,as.character(tmScl[,ii]),max))[-1]				if(length(intersect(en,min(tmScl$MA))) == 0)					{					en <- c(sort(tapply(tmScl$MA,as.character(tmScl[,ii]),max))[1],en)					st <- c(sort(tapply(tmScl$MA,as.character(tmScl[,ii]),min))[1],st)					}				if (l2r==FALSE)					{					allShort <- sum(nchar(as.character(tmScl[,ii]))<5)!=length(tmScl[,ii])					#print(allShort)					par(srt=90*allShort)					rect(xx[i],-st,xx[i+1],-en)					text((xx[i]+xx[i+1])/2,y=-c((st+en)/2),names(en),col=(abs(st-en)>nmLim),cex=cexText)					segments(xx[i],-st,xx[i+1],-st,lwd=2)					}				if (l2r==TRUE)					{					allShort <- sum(nchar(as.character(tmScl[,ii]))<5)!=length(tmScl[,ii])					par(srt=90-90*allShort)					rect(-st,xx[i],-en,xx[i+1])						text(-c((st+en)/2),y=(xx[i]+xx[i+1])/2,names(en),col=(abs(st-en)>nmLim),cex=cexText)					segments(-st,xx[i],-st,xx[i+1],lwd=2)					}				}			par(srt=0)			if (l2r==FALSE) {text(0.97,-tmScl$MA,tmScl$MA,adj=1,cex=cexTime)} else {text(-tmScl$MA,0.97,tmScl$MA,adj=0.5,cex=cexTime)}			thk <- (!duplicated(tmScl[,which(colnames(tmScl)==whatTime[1])])[-1]) + 1			screen(2,FALSE)			par(mar=c(0.1,0.1,0.1,0.1))			if (l2r==FALSE) {plot(seq(0,1,length.out=length(pP$st)),-pP$st,type='n',axes=FALSE,xlab="",ylab="",ylim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}			if (l2r==TRUE)  {plot(-pP$st,seq(0,1,length.out=length(pP$st)),type='n',axes=FALSE,xlab="",ylab="",xlim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}			if (l2r==FALSE) {abline(h=-tmScl$MA,col="slategray4",lwd=thk)} else {abline(v=-tmScl$MA,col="slategray4",lwd=thk)}			}		if(addTimeLine=="tube" | addTimeLine=="t") 			{			if (length(whatTime)!=2) stop("if addTimeLine=='tube' then whatTime currently must have 2 levels.")			if (l2r==FALSE) {par(mar=c(0,2,0,0),srt=0)} else {par(mar=c(2,0,0,0))}			if (l2r==FALSE) {plot(seq(0,1,length.out=length(pP$st)),-pP$st,type='n',axes=FALSE,xlab="",ylab="",ylim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}			if (l2r==TRUE)  {plot(-pP$st,seq(0,1,length.out=length(pP$st)),type='n',axes=FALSE,xlab="",ylab="",xlim=range(-max(pP$st,tmScl$MA),-extendrange(c(pP$st,pP$en,tmScl$MA),f=0.1)[1]))}				mtext(round(tmScl$MA[tmScl$prntName==1],1),side=(l2r==FALSE) + 1,at=-(tmScl$MA[tmScl$prntName==1]),col=1,padj=1,cex=cexTime,line=.5*l2r)			mtext("Age [ma]",side=(l2r==FALSE) + 1,cex=1.5,padj=1,outer=FALSE,line=l2r+1.5)			splits <- paste(tmScl[,which(colnames(tmScl)==whatTime[1])],tmScl[,which(colnames(tmScl)==whatTime[2])])			boundaries <- c(min(pP$en),sort(tapply(tmScl$MA,splits,max)))			st <- boundaries[1:(length(boundaries) - 1)] 	 		en <- boundaries[2:length(boundaries)]				if (l2r==FALSE)				{				rect(0,-st,1,-en,col=c("white","gray75"),border=c("white","gray75"))				arrows(0,-max(pP$st),0,-min(pP$en),length=0)				text(0.49,y=-(st+en)/2,tmScl[,which(colnames(tmScl)==whatTime[1])],col=c("gray75","white"),cex=cexText,adj=c(1,0.5))				text(0.51,y=-(st+en)/2,tmScl[,which(colnames(tmScl)==whatTime[2])],col=c("gray75","white"),cex=cexText,adj=c(0,0.5))				}			if (l2r==TRUE)				{				par(srt=270)				rect(-st,0,-en,1,col=c("white","gray75"),border=c("white","gray75"))				arrows(-max(pP$st),0,-min(pP$en),0,length=0)				text(-(st+en)/2,y=0.51,tmScl[,which(colnames(tmScl)==whatTime[1])],col=c("gray75","white"),cex=cexText,adj=c(1,0.5))				text(-(st+en)/2,y=0.49,tmScl[,which(colnames(tmScl)==whatTime[2])],col=c("gray75","white"),cex=cexText,adj=c(0,0.5))				}								}			par(srt=90)     	uSR <- incStratUnc(uSR,pP, lwdLin=lwdLin)          	if(addTimeLine=="simple" | addTimeLine=="none" | addTimeLine=="s" | addTimeLine=="n")     		{	     	par(mar = c(0, 2, 0, 0))    	    if (l2r == FALSE) {plot(pP$xx, -pP$st, type = "n", axes = FALSE, xlab = "", ylab = "",        		ylim = range(-max(pP$st), -extendrange(c(pP$st, pP$en), f = 0.1)[1]), xlim=extendrange(pP$xx, f=0.1))}    	    if (l2r == TRUE) { plot(-pP$st, pP$xx, type = "n", axes = FALSE, xlab = "", ylab = "",        		xlim = range(-max(pP$st), -extendrange(c(pP$st, pP$en), f = 0.1)[1]), ylim=extendrange(pP$xx, f=0.1))}			if(addTimeLine=="simple" | addTimeLine=="s") 				{ arrows(extendrange(pP$xx, f=0.1)[1],min(-pP$st),extendrange(pP$xx, f=0.1)[1],-min(pP$en), lwd=lwdLin)				mtext("Time",side=2,outer=FALSE,line=-.5,cex=cexText)}			}			 	tips <- 0 + (pP$en == min(pP$en)) * 15 		for (n in 1:length(pP$nm))			{			mm <- sapply(uSR$types,length)			for (m in 1:mm[n])				{				lwdI <- as.numeric(uSR$styles[[uSR$types[[n]][m]]][1])				clrI <- uSR$styles[[uSR$types[[n]][m]]][2]				ltyI <- as.numeric(uSR$styles[[uSR$types[[n]][m]]][3])					if(l2r==FALSE) {arrows(pP$xx[n],-uSR$dates[[n]][m],pP$xx[n],-uSR$dates[[n]][m+1],col=clrI,lwd=lwdI,lty=ltyI,length=0)}				if(l2r==TRUE)  {arrows(-uSR$dates[[n]][m],pP$xx[n],-uSR$dates[[n]][m+1],pP$xx[n],col=clrI,lwd=lwdI,lty=ltyI,length=0)}				}			}			par(srt = 90 * (l2r == FALSE))		x0s <-  y0s <- x1s <- cls <- c()		prnts <- as.character(unique(pP$pn[is.na(pP$pn) == FALSE]))        for (i in 1:length(prnts))        	{            offsprng <- which(pP$pn == prnts[i])            for (j in 1:length(offsprng))             	{                x0s <- c(x0s, pP$xx[which(pP$nm == prnts[i])])                x1s <- c(x1s, pP$xx[offsprng[j]])                y0s <- c(y0s, pP$st[offsprng[j]])                hclO <- uSR$styles[[length(uSR$types[[i]])]][2]                cls <- c(cls, hclO)            	}        	}        if (l2r == FALSE)         	{            segments(x0s, -y0s, x1s, -y0s, col = cls, lwd = lwdLin * 0.75, lty = hlty)  	 		text(x = pP$xx, y = -pP$en, pP$label, adj = 0, font = 3, cex = cexLab)           }    	if (l2r == TRUE)         	{            segments(-y0s, x0s, -y0s, x1s, col = cls, lwd = lwdLin * 0.75, lty = hlty)  	 		text(x = -pP$en, y = pP$xx, pP$label, adj = 0, font = 3, cex = cexLab)           }                 	if (addTimeLine == "classic" | addTimeLine == "c") {close.screen(all = TRUE)}		} 	} 	

@@ -41,7 +41,7 @@ brdOrd
 
 ##generate a plot using drawLinPhylo
 data(gradstein04)
-drawLinPhylo(brdOrd,l2r=TRUE,nmLim=1)
+drawLinPhylo(brdOrd,l2r=TRUE)
 
 }
 
