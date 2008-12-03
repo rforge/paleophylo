@@ -1,7 +1,1 @@
- as.paleoPhylo <- function (nm,pn,st,en,xx=NA,label=nm) 
-	{
-	pP <- list(nm=as.character(nm),pn=as.character(pn),st=st,en=en,xx=xx,label=as.character(label))
-	class(pP) <- "paleoPhylo"
-	ifelse (is.na(xx), pP$xx<-merge(data.frame(nm=pP$nm),getXloc(pP)[,c(1,6)],by.x="nm",by.y="nm",sort=FALSE)[,2],  pP$xx<-(xx - min(xx))/max(xx - min(xx)))
-	return(pP)
-	}
+as.paleoPhylo <- function (nm, pn, st, en, xx = NA, label = nm) {	dat<- data.frame(nm,pn,st,en,xx=NA,label)[rev(order(st)),]   	pP <- list(nm = as.character(dat$nm), pn = as.character(dat$pn),         st = dat$st, en = dat$en, xx = dat$xx, label = as.character(dat$label))    class(pP) <- "paleoPhylo"    ifelse(is.na(xx), pP$xx <- merge(data.frame(nm = pP$nm),         getXloc(pP)[, c(1, 6)], by.x = "nm", by.y = "nm", sort = FALSE)[,         2], pP$xx <- (xx - min(xx))/max(xx - min(xx)))    return(pP)}
