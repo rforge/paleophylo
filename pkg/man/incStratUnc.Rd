@@ -31,8 +31,7 @@ Wagner 1995
 
 \examples{
 eg1 <- data.frame(nm=paste("id",1:8,sep=""), pn=c("id6","id7","id7","id5","id8",NA,"id8","id6"), st=c(3.1,2,2,1,3,3.2,3,3.1), en=c(0,1.1,0.8,0,0,3.1,2,3), label=c(LETTERS[1:5],"","",""))
-eg1 <- eg1[rev(order(eg1$st)),]
-eg1$label <- c("","","E","","D","A","B","C")
+
 pP <- as.paleoPhylo(eg1$nm,eg1$pn,eg1$st,eg1$en,label=eg1$label)
 
 par(mfrow=c(2,1))
