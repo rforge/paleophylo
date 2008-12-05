@@ -22,6 +22,8 @@ If uSR is NULL, then a default list is created for pP.  The default styles are..
 \value{
 A list containing:}
 
+\note{cannot expand ranges beyond deaths for confidence intervals yet.}
+
 \references{
 Wagner 1995
 }
