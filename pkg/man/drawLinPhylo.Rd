@@ -9,7 +9,7 @@ drawLinPhylo(pP,
 	addTimeLine = "none", tmScl, 
 	whatTime = c("epoch","age"), l2r=FALSE,
 	nmLim=2, cexText = 0.5, cexTime = 0.5, cexLab=0.5,
-	lwdLin = 2, hlty=NULL)
+	lwdLin = 2, hlty=NULL, barLen=0)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -30,6 +30,7 @@ drawLinPhylo(pP,
   \item{cexLab}{OPTIONAL: change the text size of species lineage names.  See \code{\link{par}}.}
   \item{lwdLin}{OPTIONAL: change the line thickness.  See \code{\link{par}}.}
   \item{hlty}{OPTIONAL: change the horizontal line type if not otherwise specified using \code{\link{incStratUnc}}.  Takes values for lty in \code{\link{par}}.}
+ \item{barLen}{The length of the horizontal bars if confidence intervals are being drawn using \code{\link{incStratUnc}}.}
 }
 \details{
 In essence, all this does is generate a blank window and put some lines on top.  As such, its use is not restricted to 'paleoPhylo' objects.  It can be used in conjunction with fully bifurcating trees (\code{\link{ape2paleoPhylo}} can convert an object of class 'phylo' to class 'paleoPhylo' using  \code{\link{as.paleoPhylo}}) to add time axes in multiple forms to plots, and in conjunction with the pdf graphics device (see \code{\link{pdf}}) to output high-quality figures in pdf format (other graphics formats are available; see links from the pdf page).

@@ -5,13 +5,15 @@
 \description{
 ...}
 \usage{
-incStratUnc(uSR=NULL, pP, lwdLin=2)
+incStratUnc(uSR=NULL, pP, lwdLin=2, clCd=1:length(pP$nm), ltyLin=1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{uSR}{A list (see below).  Defaults to NULL.}
   \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}). }
-  \item{lwdLin}{defaults to 2; base line thickness.}
+  \item{lwdLin}{defaults to 2; base line thickness (is recycled).}
+  \item{clCd}{defaults to black; base color (is recycled).}
+  \item{ltyLin}{defaults to 1; base line type (is recycled).}
 }
 \details{
 If a non-null list is passed to \code{incStratUnc}, this function checks its suitability.  Specifically, are all types and dates congruent and are all types and styles congruent?
@@ -21,8 +23,6 @@ If uSR is NULL, then a default list is created for pP.  The default styles are..
 
 \value{
 A list containing:}
-
-\note{cannot expand ranges beyond deaths for confidence intervals yet.}
 
 \references{
 Wagner 1995
