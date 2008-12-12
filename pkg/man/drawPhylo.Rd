@@ -1,10 +1,10 @@
-\name{drawLinPhylo}
-\alias{drawLinPhylo}
+\name{drawPhylo}
+\alias{drawPhylo}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Plot a lineage phylogeny.}
-\description{Generates a cladogram that can distinguishe between budding and bifurcating speciations.  Further details on the distinction can be found in \code{\link{as.paleoPhylo}}.  Additional arguments enable clipping of time axes in variable formats and from different geological scales to the main plot.}
+\description{Generates a cladogram that can distinguish between budding and bifurcating speciations.  Hypothetical relationships and stratigraphic uncertainty can be incorporated using \code{\link{incStratUnc}}.  Further details on the distinction can be found in \code{\link{as.paleoPhylo}}.  Additional arguments enable clipping of time axes in variable formats and from different geological scales to the main plot.}
 \usage{
-drawLinPhylo(pP, 
+drawPhylo(pP, 
 	uSR = NULL,
 	addTimeLine = "none", tmScl, 
 	whatTime = c("epoch","age"), l2r=FALSE,
@@ -43,30 +43,31 @@ Currently, any USER READ-IN TIME SCALE MUST HAVE a column called "MA", which con
 The function opens a graphics window and plots the lineage phylogeny (see \code{\link{as.paleoPhylo}} for details).  It does not return a list, since all the information is contained within input data.}
 \references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
-\seealso{\code{\link{as.paleoPhylo}}, \code{\link{gradstein04}}, \code{\link{pearson93}}, \code{\link{berggren95}}}
+\seealso{\code{\link{as.paleoPhylo}}, \code{\link{gradstein04}}, \code{\link{pearson93}}, \code{\link{berggren95}}, \code{\link{incStratUnc}}}
 \examples{
 data(pearson93)
 data(berggren95)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 
 ##example 1: without a time axis.
-drawLinPhylo (p93)
+drawPhylo (p93)
 
 ##example 2: with a "classic" time axis.
-drawLinPhylo (p93, tmScl=berggren95, addTimeLine="classic")
+drawPhylo (p93, tmScl=berggren95, addTimeLine="classic")
 
 ##example 3: with a "tube" time axis.
-drawLinPhylo (p93, tmScl=berggren95, addTimeLine="tube",cexText=3,cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, addTimeLine="tube",cexText=3,cexTime=0.8)
 
 ##example 4: with a "tube" time axis and different species' names.
-drawLinPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",cexText=3,cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",cexText=3,cexTime=0.8)
 
 #example 5: with species arranged on the x-axis according ...
 ## .... to some random trait data from a unifrom distribution.
-##Also change the time-axis scale using whatTime.
+##Also change the time-axis scale using whatTime
+##don't include latin names by leaving the "label" argument free.
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End,
 	 xx=runif(length(Code),-1,1)))
-drawLinPhylo (p93, tmScl=berggren95, addTimeLine="c", cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, addTimeLine="c", cexTime=0.8)
 }
-\keyword{utilities}{drawLinPhylo}
+\keyword{utilities}{drawPhylo}
 

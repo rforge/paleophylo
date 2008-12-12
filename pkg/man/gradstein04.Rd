@@ -36,7 +36,7 @@ Gradstein F.M. and Ogg J.G. Geologic Time Scale 2004: Why, how and where next!
 \url{www.stratigraphy.org/scale04.pdf}
 }
 
-\seealso{\code{\link{drawLinPhylo}}}
+\seealso{\code{\link{drawPhylo}}}
 
 \examples{
 data(gradstein04)

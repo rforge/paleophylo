@@ -15,14 +15,15 @@ as.paleoPhylo(nm, pn, st, en, xx=NA, label=nm, grp=NA)
   \item{pn}{A unique identifying ID code for the ancestor of each species lineage.  Only the root is currently permitted "NA".}
   \item{st}{The date of first appearance for each species lineage.}
   \item{en}{The date of last appearance for each species lineage.}
-  \item{xx}{An OPTIONAL vector of some morphological trait, for use in plotting (see \code{\link{drawLinPhylo}}).  Defaults to NA, which is overwritten using \code{getXloc}.}
-  \item{label}{An OPTIONAL vector of labels, for use in annotating plots (see \code{\link{drawLinPhylo}}).  Defaults to the values given for nm.}
+  \item{xx}{An OPTIONAL vector of some morphological trait, for use in plotting (see \code{\link{drawPhylo}}).  Defaults to NA, which is overwritten using \code{getXloc}.}
+  \item{label}{An OPTIONAL vector of labels, for use in annotating plots (see \code{\link{drawPhylo}}).  Defaults to the values given for nm.}
+  \item{grp}{An OPTIONAL vector of groups, should different (morpho)groups wish to be denoted differently (see \code{\link{as.paleoPhylo}}).}
   \item{grp}{An OPTIONAL vector of groups, should different (morpho)groups wish to be denoted differently (see \code{\link{as.paleoPhylo}}).}
 }
 \details{
-Provided to ease use for various data formats.  Other functions in the package work with this class to do the interesting and/or useful bits.  For example: convert to a fully bifurcating tree (see \code{\link{createBifurcate}}) of class 'phylo' (see \code{as.phylo} or \code{write.tree} in  the \code{ape} package) or plot lineage cladograms (see \code{getXloc} and \code{\link{drawLinPhylo}}).	
+Provided to ease use for various data formats.  Other functions in the package work with this class to do the interesting and/or useful bits.  For example: convert to a fully bifurcating tree (see \code{\link{createBifurcate}}) of class 'phylo' (see \code{as.phylo} or \code{write.tree} in  the \code{ape} package) or plot lineage cladograms (see \code{getXloc} and \code{\link{drawPhylo}}).	
  
-\code{getXloc} iteratively *walks* through the lineage phylogeny from root to tip.  It allocates positions along the x-axis for each species lineage such that when plotted (see \code{\link{drawLinPhylo}}), they are evenly spaced.  If \code{xx} is not assigned, then \code{getXloc} is called.  Alternatively, any continuous morphological trait (a mixture of positive and negative values can be accomodated) can be used.
+\code{getXloc} iteratively *walks* through the lineage phylogeny from root to tip.  It allocates positions along the x-axis for each species lineage such that when plotted (see \code{\link{drawPhylo}}), they are evenly spaced.  If \code{xx} is not assigned, then \code{getXloc} is called.  Alternatively, any continuous morphological trait (a mixture of positive and negative values can be accomodated) can be used.
 
 A lineage phylogeny differs from a *normal* phylogeny in that speciation events can do not necessarily result in the termination of the ancestral lineage....
 }
@@ -37,13 +38,13 @@ The paleoPhylo homepage: \url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}
 }
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
 
-\seealso{\code{\link{pearson93}}, \code{\link{createBifurcate}}, \code{\link{drawLinPhylo}}, \code{\link{ape2paleoPhylo}}}
+\seealso{\code{\link{pearson93}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}}
 
 \examples{
 data(pearson93)
-##not-defining xx leads to evenly-spaced positions along the x-axis in drawLinPhylo
+##not-defining xx leads to evenly-spaced positions along the x-axis in drawPhylo
 data(pearson93)
-##not-defining xx leads to evenly-spaced positions along the x-axis in drawLinPhylo
+##not-defining xx leads to evenly-spaced positions along the x-axis in drawPhylo
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 p93
 

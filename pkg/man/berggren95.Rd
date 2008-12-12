@@ -25,7 +25,7 @@
   \url{www.chronos.org/}
   }
   
-\seealso{\code{\link{gradstein04}}}
+\seealso{\code{\link{gradstein04}}, \code{\link{drawPhylo}}}
 
 \examples{
 data(berggren95)

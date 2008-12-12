@@ -18,7 +18,7 @@ buildApe(pP)
 
 \code{buildApe} converts this into an object of class 'phylo' for use in \code{ape} (e.g. \code{\link[ape]{read.tree}} or \code{\link[ape]{plot.phylo}}), i.e. assigning of node labels and branch lengths, edge matrix and root definitions. The root is usually the first row of the data frame and needs to be unique.
 
-\code{createBifurcate} and \code{buildApe} are kept separate to enable less manipulation before plotting fully bifurcating trees with arguments in \code{\link{drawLinPhylo}}.  
+\code{createBifurcate} and \code{buildApe} are kept separate to enable less manipulation before plotting fully bifurcating trees with arguments in \code{\link{drawPhylo}}.  
 }
 \value{
 An object of class 'paleoPhylo'; see \code{\link{as.paleoPhylo}}}

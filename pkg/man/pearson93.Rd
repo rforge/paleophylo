@@ -16,7 +16,7 @@
 }
 
 \source{Pearson, P. N. 1993 A lineage phylogeny for the Paleogene planktonic foraminifera. Micropaleontology 39, 193-222.}
-\seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawLinPhylo}}}
+\seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawPhylo}}}
 \examples{
 data(pearson93)
 str(pearson93)

@@ -26,13 +26,21 @@ Maintainer: Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}
 \references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
 \keyword{ package }
 \seealso{
+<<<<<<< .mine
+	\code{\link[ape:ape-package]{ape}}, \code{\link{pearson93}}, \code{\link{buildApe}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}, \code{\link{incStratUnc}}
+=======
 	\code{\link[ape:ape-package]{ape}}, \code{\link{pearson93}}, \code{\link{buildApe}}, \code{\link{createBifurcate}}, \code{\link{drawLinPhylo}}, \code{\link{ape2paleoPhylo}}, \code{\link{incStratUnc}}
+>>>>>>> .r23
 }
 \examples{
 data(pearson93)
 data(berggren95)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
+<<<<<<< .mine
+drawPhylo(p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="t")
+=======
 drawLinPhylo(p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="t")
+>>>>>>> .r23
 
 apeTree <- buildApe(createBifurcate(p93))
 apeTree

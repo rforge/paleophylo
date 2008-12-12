@@ -16,7 +16,7 @@ ape2paleoPhylo(phy,retainNodeLabels,nC)
  }
   
 \details{
-The principal use is to enable plotting with \code{\link{drawLinPhylo}} and its array of axis formats. 
+The principal use is to enable plotting with \code{\link{drawPhylo}} and its array of axis formats. 
 
 If tip.labels are included, then they are exported as \code{labels} in \code{paleoPhylo}.  Non-tip labels are assumed to be the node label.  Future revisions will provide the option to change this
 
@@ -30,7 +30,7 @@ An object of class 'paleoPhylo', which is a list containing the vectors defined 
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
 \references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
 
-\seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawLinPhylo}}}
+\seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawPhylo}}}
 
 \examples{
 ##load bird order data from ape
@@ -39,9 +39,13 @@ bird.orders
 brdOrd <- ape2paleoPhylo(bird.orders)
 brdOrd
 
-##generate a plot using drawLinPhylo
+##generate a plot using drawPhylo
 data(gradstein04)
+<<<<<<< .mine
+drawPhylo(brdOrd,l2r=TRUE)
+=======
 drawLinPhylo(brdOrd,l2r=TRUE)
+>>>>>>> .r23
 
 }
 
