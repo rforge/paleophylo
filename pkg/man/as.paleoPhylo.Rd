@@ -18,7 +18,7 @@ as.paleoPhylo(nm, pn, st, en, xx=NA, label=nm, grp=NA)
   \item{xx}{An OPTIONAL vector of some morphological trait, for use in plotting (see \code{\link{drawPhylo}}).  Defaults to NA, which is overwritten using \code{getXloc}.}
   \item{label}{An OPTIONAL vector of labels, for use in annotating plots (see \code{\link{drawPhylo}}).  Defaults to the values given for nm.}
   \item{grp}{An OPTIONAL vector of groups, should different (morpho)groups wish to be denoted differently (see \code{\link{as.paleoPhylo}}).}
-  \item{grp}{An OPTIONAL vector of groups, should different (morpho)groups wish to be denoted differently (see \code{\link{as.paleoPhylo}}).}
+  }
 }
 \details{
 Provided to ease use for various data formats.  Other functions in the package work with this class to do the interesting and/or useful bits.  For example: convert to a fully bifurcating tree (see \code{\link{createBifurcate}}) of class 'phylo' (see \code{as.phylo} or \code{write.tree} in  the \code{ape} package) or plot lineage cladograms (see \code{getXloc} and \code{\link{drawPhylo}}).	

@@ -41,11 +41,7 @@ brdOrd
 
 ##generate a plot using drawPhylo
 data(gradstein04)
-<<<<<<< .mine
 drawPhylo(brdOrd,l2r=TRUE)
-=======
-drawLinPhylo(brdOrd,l2r=TRUE)
->>>>>>> .r23
 
 }
 

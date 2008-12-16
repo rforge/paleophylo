@@ -2,7 +2,7 @@
 \alias{drawPhylo}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Plot a lineage phylogeny.}
-\description{Generates a cladogram that can distinguish between budding and bifurcating speciations.  Hypothetical relationships and stratigraphic uncertainty can be incorporated using \code{\link{incStratUnc}}.  Further details on the distinction can be found in \code{\link{as.paleoPhylo}}.  Additional arguments enable clipping of time axes in variable formats and from different geological scales to the main plot.}
+\description{Generates a cladogram that can distinguish between budding and bifurcating speciations.  Hypothetical relationships and stratigraphic uncertainty can be incorporated using \code{\link{stratUnc}}.  Further details on the distinction can be found in \code{\link{as.paleoPhylo}}.  Additional arguments enable clipping of time axes in variable formats and from different geological scales to the main plot.}
 \usage{
 drawPhylo(pP, 
 	uSR = NULL,
@@ -14,7 +14,7 @@ drawPhylo(pP,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}). }
-  \item{uSR}{A list generated through \code{\link{incStratUnc}} to incorporate stratigraphic uncertainty.  Defaults to NULL. }
+  \item{uSR}{A list generated through \code{\link{stratUnc}} to incorporate stratigraphic uncertainty.  Defaults to NULL. }
   \item{addTimeLine}{OPTIONAL: add a time axis to the plot.  Four options (or only their first letter) are accepted: 
   	"none" (plots no time axis); 
   	"classic" (default, plots a set of rectangular boxes with labels on the left-hand side of the cladogram);
@@ -29,8 +29,8 @@ drawPhylo(pP,
   \item{cexTime}{OPTIONAL: change the text size of time numbers.  See \code{\link{par}}.}
   \item{cexLab}{OPTIONAL: change the text size of species lineage names.  See \code{\link{par}}.}
   \item{lwdLin}{OPTIONAL: change the line thickness.  See \code{\link{par}}.}
-  \item{hlty}{OPTIONAL: change the horizontal line type if not otherwise specified using \code{\link{incStratUnc}}.  Takes values for lty in \code{\link{par}}.}
- \item{barLen}{The length of the horizontal bars if confidence intervals are being drawn using \code{\link{incStratUnc}}.}
+  \item{hlty}{OPTIONAL: change the horizontal line type if not otherwise specified using \code{\link{stratUnc}}.  Takes values for lty in \code{\link{par}}.}
+ \item{barLen}{The length of the horizontal bars if confidence intervals are being drawn using \code{\link{stratUnc}}.}
 }
 \details{
 In essence, all this does is generate a blank window and put some lines on top.  As such, its use is not restricted to 'paleoPhylo' objects.  It can be used in conjunction with fully bifurcating trees (\code{\link{ape2paleoPhylo}} can convert an object of class 'phylo' to class 'paleoPhylo' using  \code{\link{as.paleoPhylo}}) to add time axes in multiple forms to plots, and in conjunction with the pdf graphics device (see \code{\link{pdf}}) to output high-quality figures in pdf format (other graphics formats are available; see links from the pdf page).
@@ -43,7 +43,7 @@ Currently, any USER READ-IN TIME SCALE MUST HAVE a column called "MA", which con
 The function opens a graphics window and plots the lineage phylogeny (see \code{\link{as.paleoPhylo}} for details).  It does not return a list, since all the information is contained within input data.}
 \references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
-\seealso{\code{\link{as.paleoPhylo}}, \code{\link{gradstein04}}, \code{\link{pearson93}}, \code{\link{berggren95}}, \code{\link{incStratUnc}}}
+\seealso{\code{\link{as.paleoPhylo}}, \code{\link{gradstein04}}, \code{\link{pearson93}}, \code{\link{berggren95}}, \code{\link{stratUnc}}}
 \examples{
 data(pearson93)
 data(berggren95)

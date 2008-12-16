@@ -1,4 +1,4 @@
-incStratUnc <- function (uSR = NULL, pP, lwdLin = 2, clCd=1:length(pP$nm), ltyLin=1)	{   	styles <- list(certain = c(lwdLin, "black", 1), lazarus = c(lwdLin, "grey60", 1), extension = c(lwdLin, "black", 2), CI = c(lwdLin * 0.4, "black", 1), point=c(lwdLin * 4, "black", 1))
+stratUnc <- function (uSR = NULL, pP, lwdLin = 2, clCd=1:length(pP$nm), ltyLin=1)	{   	styles <- list(certain = c(lwdLin, "black", 1), lazarus = c(lwdLin, "grey60", 1), extension = c(lwdLin, "black", 2), CI = c(lwdLin * 0.4, "black", 1), point=c(lwdLin * 4, "black", 1))
    	dts <- vector("list", length(pP$nm))
   	for (i in 1:length(pP$st)) {dts[[i]] <- c(pP$st[i], pP$en[i]) }
     usr <- list(id = as.list(pP$nm), dates = dts, types = as.list(rep(1, length(pP$nm))), styles = styles)
