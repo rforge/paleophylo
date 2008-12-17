@@ -19,8 +19,6 @@ ape2paleoPhylo(phy,retainNodeLabels,nC)
 \details{
 The principal use is to enable plotting with \code{\link{drawPhylo}} and its array of axis formats.
 
-
-
 If tip.labels are included, then they are exported as \code{labels} in \code{paleoPhylo}.  Non-tip labels are assumed to be the node label.  Future revisions will provide the option to change this.
 
 Objects of class \code{phylo} are defined using edge matrices (see \code{\link[ape]{read.tree}}); \code{\link{paleoPhylo}} objects require a unique root that gave rise to the focal clade.  The unique root is assumed to have geologically infinitessimal duration, such that it is not visible on plots.  Future releases will incorporate analytical tools; at this stage additional functionality will be introduced to adapt this.
