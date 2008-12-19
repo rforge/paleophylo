@@ -40,10 +40,10 @@ data(bird.orders)
 bird.orders
 brdOrd <- ape2paleoPhylo(bird.orders)
 brdOrd
-
+ 
 ##generate a plot using drawPhylo
 data(gradstein04)
 drawPhylo(brdOrd,l2r=TRUE)
-
+ 
 }
 
