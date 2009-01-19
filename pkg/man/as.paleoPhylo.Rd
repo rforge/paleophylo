@@ -4,7 +4,7 @@
 
 \title{The 'paleoPhylo' class.}
 \description{
-A class to contain the core information on a lineage phylogeny.
+A class to contain core information on a lineage phylogeny.
 }
 \usage{
 as.paleoPhylo(nm, pn, st, en, xx=NA, label=nm, grp=NA)
