@@ -21,7 +21,7 @@ buildApe(pP)
 \code{createBifurcate} and \code{buildApe} are kept separate to enable less manipulation before plotting fully bifurcating trees with arguments in \code{\link{drawPhylo}}.  
 }
 \value{
-An object of class 'paleoPhylo'; see \code{\link{as.paleoPhylo}}}
+An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}).}
 \references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
 \seealso{\code{\link{as.paleoPhylo}}}
