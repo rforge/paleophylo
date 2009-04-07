@@ -15,12 +15,9 @@
     \item{\code{MA}}{Estimated boundary age for the associated interval.}
  }
 }
-\details{
-  ...
-  }
+
 \source{
 	Berggren, W.A., Kent, D.V., Swisher III, C.C. & Aubry, M.-P., 1995.	A Revised Cenozoic Geochronology and Chronostratigraphy, in Berggren, W.A., Kent, D.V., Swisher III, C.C., Aubry, M.-P. & Hardenbol, J., (eds), Geochronology, Time Scales and Global Stratigraphic Correlation: SEPM (Society for Sedimentary Geology), Special Publication No. 54, p. 129-212.
-  
   
   \url{www.chronos.org/}
   }
