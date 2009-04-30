@@ -6,7 +6,7 @@
 Takes the information contained within objects of class \code{phylo} and converts using \code{\link{as.paleoPhylo}}.
 }
 \usage{
-ape2paleoPhylo(phy,retainNodeLabels,nC)
+ape2paleoPhylo(phy,retainNodeLabels=TRUE,nC=5)
 }
 %- maybe also 'usage' for other objects documented here.
 
@@ -17,7 +17,7 @@ ape2paleoPhylo(phy,retainNodeLabels,nC)
 }
   
 \details{
-The principal use is to enable plotting with \code{\link{drawPhylo}} and its array of axis formats.
+The principal current use is to enable plotting with \code{\link{drawPhylo}} and its array of axis formats.
 
 If tip.labels are included, then they are exported as \code{labels} in \code{paleoPhylo}.  Non-tip labels are assumed to be the node label.  Future revisions will provide the option to change this.
 
