@@ -1,12 +1,12 @@
 \name{paleoPhylo-package}
 \alias{paleoPhylo-package}
 \alias{paleoPhylo}
-\keyword{package}{paleoPhylo}
+\keyword{package}
 
 \docType{package}
 \title{Biodiversity Analyses in a Paleontological and Phylogenetic Context}
 \description{
-paleoPhylo contains a suite of functions to analyze how speciation, extinction & character change contribute to biodiversity as well as tools to display these relationships graphically.  The functions are designed to inform realistic models of clade evolution; examples are drawn from data on planktonic foraminifera or generated randomly.  The package is STILL IN DEVELOPMENT.  It will be added to in due course.
+paleoPhylo contains a suite of functions to analyze how speciation, extinction & character change contribute to biodiversity as well as tools to display these relationships graphically.  The functions are designed to inform realistic models of clade evolution; examples are drawn from data on planktonic foraminifera or generated randomly.  The package is still in development.  It will be added to in due course.
 }
 \details{
 \tabular{ll}{
