@@ -39,10 +39,14 @@
 		clade$endNode[clade$tip==1]<-clade$descCode[clade$tip==1]
 		edge<-matrix(as.numeric(as.factor(c(clade$startNode,clade$endNode))),ncol=2)
 		
+		clade$edge2 <- edge[,2]
+		tL <- data.frame(tL=as.character(clade$descName[clade$tip==1]),ed=clade$edge2[clade$tip==1])
+		tL <- as.character(tL[order(tL$ed),1])
+
 		clade$nodeLabel<-edge[,1]
 		if (sum(with(clade,tapply(nodeLabel,nodeLabel,length))!=2) !=0) {warning("bifuracting walk through has failed to yield a completely bifurcating tree")}
 	    
-		mft <- list(edge = edge, tip.label = as.character(clade$descName[clade$tip==1]), Nnode = length(unique(clade$IDcode)),
+		mft <- list(edge = edge, tip.label = tL, Nnode = length(unique(clade$IDcode)),
 				edge.length=clade$duration, node.label = c(pn,as.character(clade$descName[clade$tip==0])))
 		class(mft) <- "phylo"	
 		return(mft)
