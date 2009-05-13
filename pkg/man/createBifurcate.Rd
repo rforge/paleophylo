@@ -37,5 +37,4 @@ plot(reorder(apeTree))
 ##write apeTree using the Newick (aka New Hampshire) format.
 write.tree(apeTree)
 }
-\keyword{utilities}{createBifurcate}
 

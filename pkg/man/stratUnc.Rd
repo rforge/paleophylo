@@ -26,9 +26,9 @@ Any number of uncertainties can be appended within a lineage, although point occ
 \value{
 A list containing:
 \item{ids}{Another list of unique ID codes per lineage.}
-\item{dates} {A list of vectors per lineage for the timings of divisions between the different uncertainty types.}
-\item{types} {A list of vectors per lineage for the types.  Has length == length(dates)[[x]]-1 for lineage x.}
-\item{styles} {The style types, which are vectors per type containg default line thickness (can be adapted in \code{\link{drawPhylo}}, color and line type.  See \code{\link{par}}.}
+\item{dates}{A list of vectors per lineage for the timings of divisions between the different uncertainty types.}
+\item{types}{A list of vectors per lineage for the types.  Has length == length(dates)[[x]]-1 for lineage x.}
+\item{styles}{The style types, which are vectors per type containg default line thickness (can be adapted in \code{\link{drawPhylo}}, color and line type.  See \code{\link{par}}.}
 }
 
 \references{
@@ -65,5 +65,6 @@ drawPhylo(pP,cexLab=1.5, addTimeLine="s", cexText=1.5,hlty=3)
 unc <- data.frame(id=c("id1","id1","id3","id4","id4","id2","id2"),st=c(3.1,1,2,1.1,0.1,2,1.7),en=c(2,0,1.1,0.9,0,1.1,1.7),type=c(2,2,3,4,4,2,5))
 uSR <- stratUnc(unc,pP)
 drawPhylo(pP,uSR,cexLab=1.5, addTimeLine="s", cexText=1.5,hlty=3)
+
 }
 

@@ -69,5 +69,4 @@ p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End,
 	 xx=runif(length(Code),-1,1)))
 drawPhylo (p93, tmScl=berggren95, addTimeLine="c", cexTime=0.8)
 }
-\keyword{utilities}{drawPhylo}
 
