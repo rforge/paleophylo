@@ -22,8 +22,11 @@ buildApe(pP)
 }
 \value{
 An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}).}
+
 \references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
+
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
+
 \seealso{\code{\link{as.paleoPhylo}}}
 \examples{
 data(pearson93)
@@ -36,5 +39,7 @@ apeTree
 plot(reorder(apeTree))
 ##write apeTree using the Newick (aka New Hampshire) format.
 write.tree(apeTree)
+
 }
+
 

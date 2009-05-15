@@ -46,8 +46,8 @@
 		clade$nodeLabel<-edge[,1]
 		if (sum(with(clade,tapply(nodeLabel,nodeLabel,length))!=2) !=0) {warning("bifuracting walk through has failed to yield a completely bifurcating tree")}
 	    
-		mft <- list(edge = edge, tip.label = tL, Nnode = length(unique(clade$IDcode)),
-				edge.length=clade$duration, node.label = c(pn,as.character(clade$descName[clade$tip==0])))
+		mft <- list(edge = edge, tip.label = tL, Nnode = length(unique(clade$IDcode)), node.label = c(pn,as.character(clade$descName[clade$tip==0])),
+				edge.length=clade$duration)
 		class(mft) <- "phylo"	
 		return(mft)
 		}
