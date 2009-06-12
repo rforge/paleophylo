@@ -16,6 +16,8 @@ buildApe(pP)
 \details{
 \code{createBifurcate} works by *walking* through the lineage phylogeny until a speciation event occurs.  If the speciation event is a budding-type (where the ancestor lineage persists simultaneously with the descendant), then \code{createBifurcate} splits the ancestor such that the speciation is a bifurcating-type (new, but , unique IDs are generated).  This process is repeated iteratively until extant (or most recently deceased) tips have been dealt with.  The goal is to enable easy conversion to class 'phylo' for use with \code{\link[ape]{read.tree}} formats.
 
+This does not work for phylogenies with polytomies since the fully-birfurcating version would require resolution of said polytomy.
+
 \code{buildApe} converts this into an object of class 'phylo' for use in \code{ape} (e.g. \code{\link[ape]{read.tree}} or \code{\link[ape]{plot.phylo}}), i.e. assigning of node labels and branch lengths, edge matrix and root definitions. The root is usually the first row of the data frame and needs to be unique.
 
 \code{createBifurcate} and \code{buildApe} are kept separate to enable less manipulation before plotting fully bifurcating trees with arguments in \code{\link{drawPhylo}}.  
