@@ -15,9 +15,9 @@ as.paleoPhylo(nm, pn, st, en, xx=NA, label=nm, grp=NA)
   \item{pn}{A unique identifying ID code for the ancestor of each species lineage.  Only the root is currently permitted "NA".}
   \item{st}{The date of first appearance for each species lineage.}
   \item{en}{The date of last appearance for each species lineage.}
-  \item{xx}{An OPTIONAL vector of some morphological trait, for use in plotting (see \code{\link{drawPhylo}}).  Defaults to NA, which is overwritten using \code{getXloc}.}
-  \item{label}{An OPTIONAL vector of labels, for use in annotating plots (see \code{\link{drawPhylo}}).  Defaults to the values given for nm.}
-  \item{grp}{An OPTIONAL vector of groups, should different (morpho)groups wish to be denoted differently (see \code{\link{as.paleoPhylo}}).}
+  \item{xx}{An optional vector of some morphological trait, for use in plotting (see \code{\link{drawPhylo}}).  Defaults to NA, which is overwritten using \code{getXloc}.}
+  \item{label}{An optional vector of labels, for use in annotating plots (see \code{\link{drawPhylo}}).  Defaults to the values given for nm.}
+  \item{grp}{An optional vector of groups, should different (morpho)groups wish to be denoted differently (see \code{\link{as.paleoPhylo}}).}
 }
 \details{
 Provided to ease use for various data formats.  Other functions in the package work with this class to do the interesting and/or useful bits.  For example: convert to a fully bifurcating tree (see \code{\link{createBifurcate}}) of class 'phylo' (see \code{as.phylo} or \code{write.tree} in  the \code{ape} package) or plot lineage cladograms (see \code{getXloc} and \code{\link{drawPhylo}}).	
@@ -40,8 +40,6 @@ The paleoPhylo homepage: \url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}
 \seealso{\code{\link{pearson93}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}}
 
 \examples{
-data(pearson93)
-##not-defining xx leads to evenly-spaced positions along the x-axis in drawPhylo
 data(pearson93)
 ##not-defining xx leads to evenly-spaced positions along the x-axis in drawPhylo
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
