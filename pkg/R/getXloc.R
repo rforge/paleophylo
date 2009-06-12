@@ -53,8 +53,8 @@ function (pP)
 				if (length(pos)==1)  {ifelse(evnt==0 , pos <- seq(0,1,1) , pos <- c(0.5,0,1))}
 				if (evnt==1 & length(focInd)==3 & length(sortPos)==1) {pos <- c(0.5,0,1,0.25)}
 				if (evnt==1 & length(focInd)==4 & length(sortPos)==1) {pos <- c(0.5,0,1,0.25,0.75)}
-				if (evnt==1 & length(focInd)>4 & length(sortPos)==1) stop ("Cannot handle polytomies of order > 4 immediately post root.")
-				if (length(pos)!=length(ids)) stop ("pos does not equal length of ids")
+				if (evnt==1 & length(focInd)>4 & length(sortPos)==1) stop ("Cannot yet handle polytomies of order > 4 immediately post root.")
+				if (length(pos)!=length(ids)) stop (paste("There is not a position for all individuals.\n The problem is something to with",focInd))
 				}
 			}
 
