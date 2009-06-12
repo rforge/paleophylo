@@ -10,8 +10,9 @@ function (pP)
 			splName<-paste(substr(prnt$nm,1,nchar(as.character(prnt$nm))-1),LETTERS[ltCd],sep=""))
 		sp1 <- data.frame(nm=as.character(prnt$nm),pn=as.character(prnt$pn),st=prnt$st,en=off$st,cd=prnt$cd,label=prnt$label)
 		sp2 <- data.frame(nm=splName,pn=sp1$nm,st=off$st,en=prnt$en,cd=nxtCd,label=prnt$label)
-		sp3 <- data.frame(nm=off$nm,pn=sp1$nm,st=off$st,en=off$en,cd=off$cd,label=prnt$label)
+		sp3 <- data.frame(nm=off$nm,pn=sp1$nm,st=off$st,en=off$en,cd=off$cd,label=off$label)
 		spL <- data.frame(rbind(sp1,sp2,sp3))
+		return(spL)
 		}
 	
 	if(class(pP)!="paleoPhylo") stop("object is not of class 'paleoPhylo'")
