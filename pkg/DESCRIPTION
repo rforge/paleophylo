@@ -1,8 +1,8 @@
 Package: paleoPhylo
 Type: Package
 Title: Biodiversity Analyses in a Paleontological and Phylogenetic Context
-Version: 1.0-29
-Date: 2008-12-12
+Version: 1.0-30
+Date: 2009-06-12
 Author: Thomas Ezard
 Maintainer: Thomas Ezard <thomas.ezard@imperial.ac.uk>
 Description: Contains a suite of functions to analyze how speciation, extinction & character change contribute to biodiversity and display these relationships graphically.  The functions are designed to inform realistic models of clade evolution; examples are drawn from data on planktonic foraminifera or generated randomly.  The package will be added to in due course.  It currently consists of graphical tools to plot paleobiological phylogenies incorporating stratigraphic uncertainty.

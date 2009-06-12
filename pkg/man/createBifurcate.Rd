@@ -7,11 +7,12 @@
 \description{createBifurcate and buildApe take a 'paleoPhylo' object and convert it to its fully bifurcating equivalent (i.e. all ancestors terminate if they speciate).  createBifurcate converts the lineage phylogeny into one that only features bifurcating speciations.  buildApe does the conversion to ape.}
 \usage{
 createBifurcate(pP)
-buildApe(pP)
+buildApe(pP, label=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}).}
+  \item{label}{Should the tip and node labels be labels (\code{TRUE}) or ID codes (\code{FALSE}).}
 }
 \details{
 \code{createBifurcate} works by *walking* through the lineage phylogeny until a speciation event occurs.  If the speciation event is a budding-type (where the ancestor lineage persists simultaneously with the descendant), then \code{createBifurcate} splits the ancestor such that the speciation is a bifurcating-type (new, but , unique IDs are generated).  This process is repeated iteratively until extant (or most recently deceased) tips have been dealt with.  The goal is to enable easy conversion to class 'phylo' for use with \code{\link[ape]{read.tree}} formats.
