@@ -6,10 +6,10 @@
 \usage{
 drawPhylo(pP, 
 	uSR = NULL,
-	addTimeLine = "none", tmScl, 
-	whatTime = c("epoch","age"), l2r=FALSE,
-	nmLim=2, cexText = 0.5, cexTime = 0.5, cexLab=0.5,
-	lwdLin = 2, hlty=NULL, barLen=0, whSpc=0)
+	addTimeLine = "none", tmScl, whatTime,
+	l2r=FALSE, nmLim=2, 
+	cexText = 0.5, cexTime = 0.5, cexLab=0.5,
+	lwdLin = 2, hlty=NULL, barLen=0, whSpc=0.05)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -54,10 +54,10 @@ p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 drawPhylo (p93)
 
 ##example 2: with a "classic" time axis.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="classic")
+drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"))
 
 ##example 3: with a "tube" time axis.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="tube",cexText=3,cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="tube",cexText=3,cexTime=0.8)
 
 ##example 4: with a "tube" time axis and different species' names.
 drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",cexText=3,cexTime=0.8)
@@ -68,6 +68,6 @@ drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",
 ##don't include latin names by leaving the "label" argument free.
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End,
 	 xx=runif(length(Code),-1,1)))
-drawPhylo (p93, tmScl=berggren95, addTimeLine="c", cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="c", cexTime=0.8, cexText=1)
 }
 
