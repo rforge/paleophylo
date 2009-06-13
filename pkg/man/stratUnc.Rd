@@ -68,8 +68,8 @@ drawPhylo(pP,uSR,cexLab=1.5, addTimeLine="s", cexText=1.5,hlty=3, l2r=TRUE)
 
 ##example 3; add the classic time axis to the uncertainty plot
 ##note the need to change nmLim to see anything!
-dev.off()
-drawPhylo(pP,cexLab=1.5, addTimeLine="cl", cexText=1.5, cexTime=1, hlty=3, tmScl=berggren95, whatTime=c("epoch"), whSpc=0.1, nmLim=0.02)
+data(gradstein04)
+drawPhylo(pP,cexLab=1.5, addTimeLine="cl", cexText=1.5, cexTime=1, hlty=3, tmScl=gradstein04, whatTime=c("epoch"), whSpc=0.1, nmLim=0.02)
 
 }
 

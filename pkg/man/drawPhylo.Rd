@@ -7,8 +7,7 @@
 drawPhylo(pP, 
 	uSR = NULL,
 	addTimeLine = "none", tmScl, whatTime,
-	l2r=FALSE, nmLim=2, 
-	cexText = 0.5, cexTime = 0.5, cexLab=0.5,
+	l2r=FALSE, nmLim=2, cexText = 0.5, cexTime = 0.5, cexLab=0.5,
 	lwdLin = 2, hlty=NULL, barLen=0, whSpc=0.05)
 }
 %- maybe also 'usage' for other objects documented here.
