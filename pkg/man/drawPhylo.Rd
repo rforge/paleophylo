@@ -53,13 +53,13 @@ p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 drawPhylo (p93)
 
 ##example 2: with a "classic" time axis.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"))
+drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"),cexTime=0.8)
 
 ##example 3: with a "tube" time axis.
-drawPhylo (p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="tube",cexText=3,cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="tube",cexText=2,cexTime=0.8)
 
 ##example 4: with a "tube" time axis and different species' names.
-drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",cexText=3,cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",cexText=2,cexTime=0.8)
 
 #example 5: with species arranged on the x-axis according ...
 ## .... to some random trait data from a unifrom distribution.
