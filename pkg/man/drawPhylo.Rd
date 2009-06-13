@@ -15,28 +15,28 @@ drawPhylo(pP,
 \arguments{
   \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}). }
   \item{uSR}{A list generated through \code{\link{stratUnc}} to incorporate stratigraphic uncertainty.  Defaults to NULL. }
-  \item{addTimeLine}{OPTIONAL: add a time axis to the plot.  Four options (or only their first letter) are accepted: 
+  \item{addTimeLine}{Add a time axis to the plot.  Four options (or only their first letter) are accepted: 
   	"none" (plots no time axis); 
   	"classic" (default, plots a set of rectangular boxes with labels on the left-hand side of the cladogram);
   	"tube" (plots grey and white rectangles underneath the cladogram, as London tube maps plot travelcard zones);
   	"simple" (plots an arrow in the direction of the time axis)}
-  \item{tmScl}{OPTIONAL: some time scale for the time axis.  The "Gradstein 2004" (see \code{\link{gradstein04}}) and "Berggren 1995" (see \code{\link{berggren95}}) Geologic Time Scales are included, but this argument can take *any* user-read in data frame (see details below).  Required if addTimeLine is either classic or tube.}
-  \item{whatTime}{OPTIONAL: a vector of column names to be plotted in the time axis on the plot.  Defaults to 'epoch' and 'age', as used in \code{\link{berggren95}}.}
-  \item{l2r}{OPTIONAL: should the time axis run from left to right or top to bottom?  Defaults to FALSE, i.e. top to bottom.}
- \item{nmLim}{OPTIONAL: a number of million years that serves as the limit for when the name of the period/epoch/stage/etc... should be printed in the 'classic' time axis.  Defaults to 2.}
+  \item{tmScl}{A time scale for the time axis.  The "Gradstein 2004" (see \code{\link{gradstein04}}) and "Berggren 1995" (see \code{\link{berggren95}}) Geologic Time Scales are included, but this argument can take *any* user-read in data frame (see details below).  Required if addTimeLine is either classic or tube.}
+  \item{whatTime}{A vector of column names to be plotted in the time axis on the plot.  Defaults to 'epoch' and 'age', as used in \code{\link{berggren95}}.}
+  \item{l2r}{Should the time axis run from left to right or top to bottom?  Defaults to FALSE, i.e. top to bottom.}
+ \item{nmLim}{A number of million years that serves as the limit for when the name of the period/epoch/stage/etc... should be printed in the 'classic' time axis.  Defaults to 2.}
 
-  \item{cexText}{OPTIONAL: change the text size of time labels.  See \code{\link{par}}.}
-  \item{cexTime}{OPTIONAL: change the text size of time numbers.  See \code{\link{par}}.}
-  \item{cexLab}{OPTIONAL: change the text size of species lineage names.  See \code{\link{par}}.}
-  \item{lwdLin}{OPTIONAL: change the line thickness.  See \code{\link{par}}.}
-  \item{hlty}{OPTIONAL: change the horizontal line type if not otherwise specified using \code{\link{stratUnc}}.  Takes values for lty in \code{\link{par}}.}
+  \item{cexText}{Change the text size of time labels.  See \code{\link{par}}.}
+  \item{cexTime}{Change the text size of time numbers.  See \code{\link{par}}.}
+  \item{cexLab}{Change the text size of species lineage names.  See \code{\link{par}}.}
+  \item{lwdLin}{Change the line thickness.  See \code{\link{par}}.}
+  \item{hlty}{Change the horizontal line type if not otherwise specified using \code{\link{stratUnc}}.  Takes values for lty in \code{\link{par}}.}
  \item{barLen}{The length of the horizontal bars if confidence intervals are being drawn using \code{\link{stratUnc}}.}
- \item{whSpc}{Controls the amount of white space around the phlyogram.  Increasing values of \code{whSpc} will yield more white space, which may be useful when formatting smaller phylograms.}
+ \item{whSpc}{Controls the amount of white space around the phlyogram.  Increasing values of \code{whSpc} will yield more white space, which may be useful when formatting smaller phylograms or if the tip labels are particularly long.}
 }
 \details{
 In essence, all this does is generate a blank window and put some lines on top.  As such, its use is not restricted to 'paleoPhylo' objects.  It can be used in conjunction with fully bifurcating trees (\code{\link{ape2paleoPhylo}} can convert an object of class 'phylo' to class 'paleoPhylo' using  \code{\link{as.paleoPhylo}}) to add time axes in multiple forms to plots, and in conjunction with the pdf graphics device (see \code{\link{pdf}}) to output high-quality figures in pdf format (other graphics formats are available; see links from the pdf page).
 
-Currently, any USER READ-IN TIME SCALE MUST HAVE a column called "MA", which contains age estimates for each period/epoch/stage/etc....  See  and copy \code{\link{gradstein04}} or \code{\link{berggren95}} for ways of *ensuring* your data frame will read in correctly.
+Currently, any user read-in time scale MUST have a column called "MA", which contains age estimates for each period/epoch/stage/etc....  See \code{\link{gradstein04}} or \code{\link{berggren95}} for ways of *ensuring* your data frame will read in correctly.
 
 \code{addTimeLines=="classic"} uses \code{\link{split.screen}}.  The left-hand portion containing the axis has two fixed widths depending on the number of species lineages to be drawn.  In due course, its width will become fully dynamic.
 }

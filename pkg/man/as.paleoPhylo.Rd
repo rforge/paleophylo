@@ -24,7 +24,7 @@ Provided to ease use for various data formats.  Other functions in the package w
  
 \code{getXloc} iteratively *walks* through the lineage phylogeny from root to tip.  It allocates positions along the x-axis for each species lineage such that when plotted (see \code{\link{drawPhylo}}), they are evenly spaced.  If \code{xx} is not assigned, then \code{getXloc} is called.  Alternatively, any continuous morphological trait (a mixture of positive and negative values can be accomodated) can be used.
 
-A lineage phylogeny differs from a *normal* phylogeny in that speciation events can do not necessarily result in the termination of the ancestral lineage....
+A lineage phylogeny differs from a *normal* phylogeny in that speciation events can do not necessarily result in the termination of the ancestral lineage (see e.g., Pearson 1993).
 }
 
 \value{
