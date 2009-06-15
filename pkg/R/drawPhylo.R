@@ -7,7 +7,8 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
 					}				
 				dL <-length(st)
 				if(dumpLast) {st <- st[-dL] ; en <- en[-dL] ; lb <- lb[-dL]}
-								vis <- (abs(st - en) > nmLim)		    	par(srt = 90 - (l2r*90))				if (l2r == FALSE)					{					rect(xv[i], -st, xv[i + 1], -en)					text((xv[i] + xv[i + 1])/2, y=-c((st + en)/2), lb, col=vis, cex=cexText, adj=c(0.5,0.5))					segments(xv[i], -st, xv[i + 1], -st, lwd=lwdLin)					}				if (l2r == TRUE)					{					rect(-st, xv[i], -en, xv[i + 1])					text(-c((st + en)/2), y=(xv[i] + xv[i + 1])/2, lb, col=vis, cex=cexText, adj=c(0.5,0.5))					segments(-st, xv[i], -st, xv[i + 1], lwd=lwdLin)					}				}
+				if(length(cexText)<length(whatTime)) cexText <- rep(cexText, length(whatTime)/length(cexText))
+								vis <- (abs(st - en) > nmLim)		    	par(srt = 90 - (l2r*90))				if (l2r == FALSE)					{					rect(xv[i], -st, xv[i + 1], -en)					text((xv[i] + xv[i + 1])/2, y=-c((st + en)/2), lb, col=vis, cex=cexText[i], adj=c(0.5,0.5))					segments(xv[i], -st, xv[i + 1], -st, lwd=lwdLin)					}				if (l2r == TRUE)					{					rect(-st, xv[i], -en, xv[i + 1])					text(-c((st + en)/2), y=(xv[i] + xv[i + 1])/2, lb, col=vis, cex=cexText[i], adj=c(0.5,0.5))					segments(-st, xv[i], -st, xv[i + 1], lwd=lwdLin)					}				}
 			tmAxs <- unique(c(st,en))    		vis <- c(1, 0 + (abs(diff(0-tmAxs)) > nmLim))
     		if (l2r) text(-tmAxs, 0.99, abs(tmAxs), cex=cexTime, col=vis) else text(0.99, -tmAxs, abs(tmAxs), cex=cexTime, col=vis)		    screen(2, FALSE)    		par(mar = rep(0.2, 4))    		plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)    		thk <- rep(1,length(tmAxs))
     		##if more than one time box is to be drawn, split based on previous two

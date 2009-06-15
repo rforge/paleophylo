@@ -24,7 +24,7 @@ drawPhylo(pP,
   \item{l2r}{Should the time axis run from left to right or top to bottom?  Defaults to FALSE, i.e. top to bottom.}
  \item{nmLim}{A number of million years that serves as the limit for when the name of the period/epoch/stage/etc... should be printed in the 'classic' time axis.  Defaults to 2.}
 
-  \item{cexText}{Change the text size of time labels.  See \code{\link{par}}.}
+  \item{cexText}{Change the text size of time labels.  See \code{\link{par}}. Can be a vector for different text sizes for each time classification (see example 2a below).}
   \item{cexTime}{Change the text size of time numbers.  See \code{\link{par}}.}
   \item{cexLab}{Change the text size of species lineage names.  See \code{\link{par}}.}
   \item{lwdLin}{Change the line thickness.  See \code{\link{par}}.}
@@ -57,6 +57,11 @@ drawPhylo (p93)
 ##example 2: with a "classic" time axis.
 drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"),
 	cexTime=0.8, dumpLast=TRUE)
+
+##example 2a: a fully bifucating version with different text sizes for time
+p93cb <- createBifurcate(p93)
+drawPhylo(p93cb, tmScl=berggren95, addTimeLine="c", whatTime=c("period","epoch","age"), 
+	l2r=TRUE, cexTime=0.7, cexText=c(2,1.5,0.6), dumpLast=TRUE)
 
 ##example 3: with a "tube" time axis.
 drawPhylo (p93, tmScl=berggren95, addTimeLine="tube", whatTime=c("epoch","age"),
