@@ -43,7 +43,16 @@ brdOrd
  
 ##generate a plot using drawPhylo
 data(gradstein04)
-drawPhylo(brdOrd,l2r=TRUE)
- 
+drawPhylo(brdOrd, tmScl=gradstein04, whatTime=c("period","epoch","stage"), addTimeLine="c",
+	l2r=TRUE, nmLim=1)
+
+##that's no use though, since all the names are too long for each box
+##how do I shorten those names to, say, three letters long?
+##this generates a new column in gradstein04 that contains the relevant shorthand
+gradstein04$shStg <- substr(gradstein04$stage,1,3)
+str(gradstein04)
+drawPhylo(brdOrd, tmScl=gradstein04, whatTime=c("period","epoch","shStg"), addTimeLine="c",
+	l2r=TRUE, nmLim=1, cexTime=0.7, cexText=1)
+
 }
 

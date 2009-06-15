@@ -30,7 +30,7 @@ drawPhylo(pP,
   \item{lwdLin}{Change the line thickness.  See \code{\link{par}}.}
   \item{hlty}{Change the horizontal line type if not otherwise specified using \code{\link{stratUnc}}.  Takes values for lty in \code{\link{par}}.}
  \item{barLen}{The length of the horizontal bars if confidence intervals are being drawn using \code{\link{stratUnc}}.}
- \item{whSpc}{Controls the amount of white space around the phlyogram.  Increasing values of \code{whSpc} will yield more white space, which may be useful when formatting smaller phylograms or if the tip labels are particularly long.}
+ \item{whSpc}{Controls the amount of white space around the phlyogram.  Increasing values of \code{whSpc} will yield more white space, which may be useful when formatting smaller phylograms or if the tip labels are particularly long. It works using the \code{f} in \code{\link{extendrange}}.  Note that \code{mar()} in \code{\link{extendrange}} is not supported.}
 }
 \details{
 In essence, all this does is generate a blank window and put some lines on top.  As such, its use is not restricted to 'paleoPhylo' objects.  It can be used in conjunction with fully bifurcating trees (\code{\link{ape2paleoPhylo}} can convert an object of class 'phylo' to class 'paleoPhylo' using  \code{\link{as.paleoPhylo}}) to add time axes in multiple forms to plots, and in conjunction with the pdf graphics device (see \code{\link{pdf}}) to output high-quality figures in pdf format (other graphics formats are available; see links from the pdf page).
