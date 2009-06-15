@@ -10,13 +10,18 @@
     \item{\code{Name}}{Names of the 33 species lineages within the focal clade.}
     \item{\code{Code}}{Unique ID codes for the 33 species.}
     \item{\code{Start}}{Date of first apperance of each species lineage.}
-    \item{\code{End}}{Date of last apperance of each species lineage.}
+    \item{\code{End}}{Date of last apperance of each species lineage. Dates of lineages that persist until the end of the Oligocene have been adjusted in line with Berggren et al. (1995, see  \code{\link{berggren95}}) and Pearson et al. (2006).}
     \item{\code{Parent}}{Name of ancestor for each species lineage.}
   }
 }
 
-\source{Pearson, P. N. 1993 A lineage phylogeny for the Paleogene planktonic foraminifera. Micropaleontology 39, 193-222.}
-\seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawPhylo}}}
+\source{
+Pearson, P. N. 1993 A lineage phylogeny for the Paleogene planktonic foraminifera. Micropaleontology 39, 193-222.
+
+Pearson, P. N., R. K. Olsson, B. T. Huber, C. Hemleben, and W. A. Berggren. 2006. Atlas of Eocene Planktonic Foraminifera. Cushman Foundation for Foraminiferal Research.
+}
+
+\seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawPhylo}}, \code{\link{berggren95}}}
 \examples{
 data(pearson93)
 str(pearson93)
