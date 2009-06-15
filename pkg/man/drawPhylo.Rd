@@ -8,7 +8,7 @@ drawPhylo(pP,
 	uSR = NULL,
 	addTimeLine = "none", tmScl, whatTime,
 	l2r=FALSE, nmLim=2, cexText = 0.5, cexTime = 0.5, cexLab=0.5,
-	lwdLin = 2, hlty=NULL, barLen=0, whSpc=0.05)
+	lwdLin = 2, hlty=NULL, barLen=0, whSpc=0.05, dumpLast=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,7 +18,7 @@ drawPhylo(pP,
   	"none" (plots no time axis); 
   	"classic" (default, plots a set of rectangular boxes with labels on the left-hand side of the cladogram);
   	"tube" (plots grey and white rectangles underneath the cladogram, as London tube maps plot travelcard zones);
-  	"simple" (plots an arrow in the direction of the time axis)}
+  	"arrow" (plots an arrow in the direction of the time axis)}
   \item{tmScl}{A time scale for the time axis.  The "Gradstein 2004" (see \code{\link{gradstein04}}) and "Berggren 1995" (see \code{\link{berggren95}}) Geologic Time Scales are included, but this argument can take *any* user-read in data frame (see details below).  Required if addTimeLine is either classic or tube.}
   \item{whatTime}{A vector of column names to be plotted in the time axis on the plot.  Defaults to 'epoch' and 'age', as used in \code{\link{berggren95}}.}
   \item{l2r}{Should the time axis run from left to right or top to bottom?  Defaults to FALSE, i.e. top to bottom.}
@@ -31,6 +31,8 @@ drawPhylo(pP,
   \item{hlty}{Change the horizontal line type if not otherwise specified using \code{\link{stratUnc}}.  Takes values for lty in \code{\link{par}}.}
  \item{barLen}{The length of the horizontal bars if confidence intervals are being drawn using \code{\link{stratUnc}}.}
  \item{whSpc}{Controls the amount of white space around the phlyogram.  Increasing values of \code{whSpc} will yield more white space, which may be useful when formatting smaller phylograms or if the tip labels are particularly long. It works using the \code{f} in \code{\link{extendrange}}.  Note that \code{mar()} in \code{\link{extendrange}} is not supported.}
+  \item{dumpLast}{If \code{addTimeLine=="classic" or "tube"} then should the oldest time box be drawn? Removing it might be desired if, eg., an ancestor is shown from an earlier time period but only just which would mean "messy" unclosed time boxes.}
+
 }
 \details{
 In essence, all this does is generate a blank window and put some lines on top.  As such, its use is not restricted to 'paleoPhylo' objects.  It can be used in conjunction with fully bifurcating trees (\code{\link{ape2paleoPhylo}} can convert an object of class 'phylo' to class 'paleoPhylo' using  \code{\link{as.paleoPhylo}}) to add time axes in multiple forms to plots, and in conjunction with the pdf graphics device (see \code{\link{pdf}}) to output high-quality figures in pdf format (other graphics formats are available; see links from the pdf page).
@@ -53,10 +55,10 @@ p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 drawPhylo (p93)
 
 ##example 2: with a "classic" time axis.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"),cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"),cexTime=0.8, dumpLast=TRUE)
 
 ##example 3: with a "tube" time axis.
-drawPhylo (p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="tube",cexText=2,cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="tube",cexText=2,cexTime=0.8, dumpLast=TRUE)
 ##> that's rubbish though, since "Upper" is no use to anyone
 ##true, so define a new variable called epch, have a look into the data...
 berggren95$epch <- berggren95$epoch
@@ -64,11 +66,11 @@ berggren95[20:25,]
 ##...change that offending "Upper" to "Cretaceous"....
 berggren95$epch[22] <- "Cretaceous"
 ##and then plot the thing again
-drawPhylo (p93, tmScl=berggren95, whatTime=c("epch","age"), addTimeLine="tube",cexText=2,cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, whatTime=c("epch","age"), addTimeLine="tube",cexText=2,cexTime=0.8, dumpLast=TRUE)
 
 
 ##example 4: with a "tube" time axis and different species' names.
-drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",cexText=3,cexTime=0.8)
+drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",cexText=3,cexTime=0.8, dumpLast=TRUE)
 
 #example 5: with species arranged on the x-axis according ...
 ## .... to some random trait data from a unifrom distribution.
