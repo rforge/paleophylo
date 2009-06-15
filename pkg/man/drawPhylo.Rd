@@ -55,10 +55,12 @@ p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 drawPhylo (p93)
 
 ##example 2: with a "classic" time axis.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"),cexTime=0.8, dumpLast=TRUE)
+drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"),
+	cexTime=0.8, dumpLast=TRUE)
 
 ##example 3: with a "tube" time axis.
-drawPhylo (p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="tube",cexText=2,cexTime=0.8, dumpLast=TRUE)
+drawPhylo (p93, tmScl=berggren95, addTimeLine="tube", whatTime=c("epoch","age"),
+	cexText=2,cexTime=0.8, dumpLast=TRUE)
 ##> that's rubbish though, since "Upper" is no use to anyone
 ##true, so define a new variable called epch, have a look into the data...
 berggren95$epch <- berggren95$epoch
@@ -66,11 +68,13 @@ berggren95[20:25,]
 ##...change that offending "Upper" to "Cretaceous"....
 berggren95$epch[22] <- "Cretaceous"
 ##and then plot the thing again
-drawPhylo (p93, tmScl=berggren95, whatTime=c("epch","age"), addTimeLine="tube",cexText=2,cexTime=0.8, dumpLast=TRUE)
+drawPhylo (p93, tmScl=berggren95, addTimeLine="tube", whatTime=c("epch","age"),
+	cexText=2,cexTime=0.8, dumpLast=TRUE)
 
 
 ##example 4: with a "tube" time axis and different species' names.
-drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",cexText=3,cexTime=0.8, dumpLast=TRUE)
+drawPhylo (p93, tmScl=berggren95, addTimeLine="t", whatTime=c("period","epoch"),
+	cexText=3,cexTime=0.8, dumpLast=TRUE)
 
 #example 5: with species arranged on the x-axis according ...
 ## .... to some random trait data from a unifrom distribution.
@@ -78,6 +82,7 @@ drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="t",
 ##don't include latin names by leaving the "label" argument free.
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End,
 	 xx=runif(length(Code),-1,1)))
-drawPhylo (p93, tmScl=berggren95, whatTime=c("period","epoch"), addTimeLine="c", cexTime=0.8, cexText=1)
+drawPhylo (p93, tmScl=berggren95, addTimeLine="c", whatTime=c("period","epoch"),
+	cexTime=0.8, cexText=1)
 }
 
