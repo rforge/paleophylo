@@ -37,12 +37,12 @@ data(berggren95)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 drawPhylo(p93, tmScl=berggren95, whatTime=c("epoch","age"), addTimeLine="t")
 
-##convert the lineage phylogeny with budding and bifurcating speciation events to
-##  the ape format with only bifurcating speciations.
+##convert the lineage phylogeny with budding and bifurcating speciation 
+##	events to class "phylo" format with only bifurcating speciations.
 apeTree <- buildApe(createBifurcate(p93))
 apeTree
 
-##figure 2 in Ezard & Purvis (in press); incorporating stratigraphic uncertainty
+##fig. 2 in Ezard & Purvis (2009); incorporating stratigraphic uncertainty
 eg1 <- data.frame(nm=paste("id",1:8,sep=""),
 	pn=c("id6","id7","id7","id5","id8",NA,"id8","id6"),
 	st=c(3.1,2,2,1,3,3.2,3,3.1),en=c(0,1.1,0.8,0,0,3.1,2,3),

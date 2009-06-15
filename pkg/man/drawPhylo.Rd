@@ -83,6 +83,6 @@ drawPhylo (p93, tmScl=berggren95, addTimeLine="t", whatTime=c("period","epoch"),
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End,
 	 xx=runif(length(Code),-1,1)))
 drawPhylo (p93, tmScl=berggren95, addTimeLine="c", whatTime=c("period","epoch"),
-	cexTime=0.8, cexText=1)
+		cexTime=0.8, cexText=1)
 }
 
