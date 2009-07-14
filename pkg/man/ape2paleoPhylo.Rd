@@ -40,6 +40,9 @@ data(bird.orders)
 bird.orders
 brdOrd <- ape2paleoPhylo(bird.orders)
 brdOrd
+##but that includes uninformative node labels, how do I change that?
+brdOrd <- ape2paleoPhylo(bird.orders, nC=3)
+brdOrd
  
 ##generate a plot using drawPhylo
 data(gradstein04)
