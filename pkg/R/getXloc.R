@@ -26,7 +26,10 @@ function (pP)
 				if (length(singleEvent[,1])== 1) {evnt <- 0}
 				focInd 	<- as.character(singleEvent$nm)
 
-				parentPos <- pos[ids==parents[i]]
+ pntLoc <- which(ids==parents[i])
+ parentPos <- pos[pntLoc]
+                
+				#parentPos <- pos[ids==parents[i]]
 				ids <- c(ids,focInd)
 				sortPos <- sort(pos)
 	
