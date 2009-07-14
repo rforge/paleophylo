@@ -1,4 +1,4 @@
-ape2paleoPhylo <- function(phy,retainNodeLabels=TRUE,nC=5)
+ape2paleoPhylo <- function(phy,retainNodeLabels=TRUE,nC=0)
 	{
 	if(class(phy)!="phylo") stop("object is not of class 'phylo'")
 		{
@@ -6,7 +6,7 @@ ape2paleoPhylo <- function(phy,retainNodeLabels=TRUE,nC=5)
 			{
 			nm <- phy$edge[,2]
 			cd <- sapply(1:dim(phy$edge)[1], function(i) ifelse(!is.na(phy$tip.label[phy$edge[i,2]]), phy$tip.label[phy$edge[i,2]], phy$edge[i,2]))
-			cd[nchar(cd)<nC] <- ""
+			cd[nchar(cd)>nC] <- ""
 			pn <- phy$edge[,1]
 			en <- rep(NA,length(nm))
 			for (k in 1:length(nm))

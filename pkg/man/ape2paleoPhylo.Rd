@@ -6,14 +6,14 @@
 Takes the information contained within objects of class \code{phylo} and converts using \code{\link{as.paleoPhylo}}.
 }
 \usage{
-ape2paleoPhylo(phy,retainNodeLabels=TRUE,nC=5)
+ape2paleoPhylo(phy,retainNodeLabels=TRUE,nC=0)
 }
 %- maybe also 'usage' for other objects documented here.
 
 \arguments{
   \item{phy}{An object of class phylo.}
   \item{retainNodeLabels}{If FALSE, then \code{\link{nchar}} is used to replace node labels with blank names.  Defaults to TRUE.}
-  \item{nC}{number of characters to retain.}
+  \item{nC}{The boundary of number of characters in tip.labels to retain. Defaults to 0, which means that whole tip labels are retained. Setting \code{nC} to 5 would mean that any label longer than 5 characters would be stripped.}
 }
   
 \details{
