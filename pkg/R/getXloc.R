@@ -23,11 +23,13 @@ getXloc <- function (pP)
 
         focInd <- as.character(singleEvent$nm)
         pntLoc <- which(ids == parents[i])
+        
         if(time!=minTime)
           {
           fcPrnt <- as.character(unique(singleEvent$pn))
           fcSist <- as.character(unique(singleEvent$nm))
-          if(length(pntLoc) == 0) stop(paste("There is a lack of congruence in the tree around",focInd,"\nHave a look at the ancestor",fcPrnt,"but also the sister species",fcSist[1],"and",fcSist[2],"\n"))
+          if(length(pntLoc) == 0 & length(pos)==1)
+            stop(paste("There is a lack of congruence in the tree around",focInd,"\nHave a look at the ancestor",fcPrnt,"but also the sister species",fcSist[1],"and",fcSist[2],"\n"))
           }
            
         parentPos <- pos[pntLoc]

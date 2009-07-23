@@ -1,5 +1,4 @@
-`createBifurcate` <-
-function (pP) 
+`createBifurcate` <- function (pP) 
 	{
 	mergeSplit <- function (dt, spL) 	{dt <- dt[dt$cd != spL$cd[1],]  ;  dt <- dt[dt$cd != spL$cd[3],]  ;  dt <- rbind(dt,spL)}
 
