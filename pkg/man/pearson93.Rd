@@ -10,7 +10,7 @@
     \item{\code{Name}}{Names of the 33 species lineages within the focal clade.}
     \item{\code{Code}}{Unique ID codes for the 33 species.}
     \item{\code{Start}}{Date of first apperance of each species lineage.}
-    \item{\code{End}}{Date of last apperance of each species lineage. Dates of lineages that persist until the end of the Oligocene have been adjusted in line with Berggren et al. (1995, see  \code{\link{berggren95}}) and Pearson et al. (2006).}
+    \item{\code{End}}{Date of last apperance of each species lineage.}
     \item{\code{Parent}}{Name of ancestor for each species lineage.}
   }
 }

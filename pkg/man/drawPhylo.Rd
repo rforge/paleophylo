@@ -55,39 +55,24 @@ p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 drawPhylo (p93)
 
 ##example 2: with a "classic" time axis.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","age"),
-	cexTime=0.8, dumpLast=TRUE)
-
-##example 2a: a fully bifucating version with different text sizes for time
+drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","zone"),
+	l2r=TRUE, dumpLast=TRUE, cexText=c(1, 0.5), srtText=c(0,90), nmLim=0.3)
+	
+##example 3: a fully bifucating version with different text sizes for time
 p93cb <- createBifurcate(p93)
-drawPhylo(p93cb, tmScl=berggren95, addTimeLine="c", whatTime=c("period","epoch","age"), 
-	l2r=TRUE, cexTime=0.7, cexText=c(2,1.5,0.6), dumpLast=TRUE)
-
-##example 3: with a "tube" time axis.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="tube", whatTime=c("epoch","age"),
-	cexText=2,cexTime=0.8, dumpLast=TRUE)
-##> that's rubbish though, since "Upper" is no use to anyone
-##true, so define a new variable called epch, have a look into the data...
-berggren95$epch <- berggren95$epoch
-berggren95[20:25,]
-##...change that offending "Upper" to "Cretaceous"....
-berggren95$epch[22] <- "Cretaceous"
-##and then plot the thing again
-drawPhylo (p93, tmScl=berggren95, addTimeLine="tube", whatTime=c("epch","age"),
-	cexText=2,cexTime=0.8, dumpLast=TRUE)
-
-
-##example 4: with a "tube" time axis and different species' names.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="t", whatTime=c("period","epoch"),
-	cexText=3,cexTime=0.8, dumpLast=TRUE)
-
-#example 5: with species arranged on the x-axis according ...
+drawPhylo (p93cb, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","zone"),
+	dumpLast=TRUE, cexText=c(1, 0.5), nmLim=0.3, srtText=c(0,-90))
+	
+#example 4: with species arranged on the x-axis according ...
 ## .... to some random trait data from a unifrom distribution.
-##Also change the time-axis scale using whatTime
 ##don't include latin names by leaving the "label" argument free.
-p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End,
+p93rnd <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End,
 	 xx=runif(length(Code),-1,1)))
-drawPhylo (p93, tmScl=berggren95, addTimeLine="c", whatTime=c("period","epoch"),
-		cexTime=0.8, cexText=1)
+drawPhylo (p93rnd, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch"),
+	l2r=TRUE, cexTime=0.8, dumpLast=TRUE, cexText=1, nmLim=0.3)
+	
+##THERE ARE MORE EXAMPLES IN  ape2paleoPhylo
+
+
 }
 
