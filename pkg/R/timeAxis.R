@@ -6,8 +6,6 @@ function (tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexT
   if(l2r) xLm <- extendrange(-tmScl$MA, f=whSpc) else xLm <- range(0,1)
   if(l2r) yLm <- range(0,1) else yLm <- extendrange(-tmScl$MA, f=whSpc)
   prntName <- c(1, 0+(abs(diff(tmScl$MA))>nmLim))
-  par(mar = rep(0.2, 4))
-  plot(0:1,0:1,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
    
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   #*#*#draw time options, CLASSIC
