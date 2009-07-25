@@ -86,6 +86,9 @@ function (tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexT
       {
       if (length(whatTime) != 2) stop("if addTimeLine=='tube' then whatTime currently must have 2 levels.")
       
+      par(mar = rep(0.2, 4))
+      plot(0:1,0:1,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
+	  
       col1 <- which(colnames(tmScl) ==  whatTime[1])
       col2 <- which(colnames(tmScl) ==  whatTime[2])
       splits <- paste(tmScl[, col1], tmScl[, col2], sep="  ")
