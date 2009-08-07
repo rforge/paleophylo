@@ -35,7 +35,8 @@ timeAxis(tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexTe
 
 \section{Warning }{need to use \code{close.screen()} after the plot if \code{addTimeLine="classic"} as \code{\link{split.screen}} is used to partition up the device.}
 
-\references{\url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}}
+\references{Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
+
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
 \seealso{\code{\link{drawPhylo}}, \code{\link{split.screen}}\code{\link{pearson93}}}
 

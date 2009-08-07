@@ -23,9 +23,9 @@ Thomas H.G. Ezard.  It would be really nice if you'd be kind enough to cite the 
 
 Maintainer: Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}
 }
-\references{
-Ezard, T.H.G. & Purvis, A. 2009. paleoPhylo: Free Software to Draw Paleobiological Phylogenies.  Paleobiology, in press.
-}
+
+\references{Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
+
 \keyword{ package }
 \seealso{
 	\code{\link[ape:ape-package]{ape}}, \code{\link{pearson93}}, \code{\link{buildApe}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}, \code{\link{stratUnc}}

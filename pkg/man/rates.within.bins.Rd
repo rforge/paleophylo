@@ -1,0 +1,52 @@
+\name{rates.within.bins}
+\Rdversion{1.1}
+\alias{rates.within.bins}
+%- Also NEED an '\alias' for EACH other topic documented here.
+\title{
+Calculate per-lineage origination and extinction rates within a set of bins
+}
+\description{
+Takes any object of class \code{paleoPhylo} and computes per-lineage origination and extinction rates within the set of bins specified by the user.  Lineages persisting to the specified end are not considered to have gone extinct. Events taking place exactly on bin boundaries are taken to occur in the later bin.
+}
+\usage{
+rates.within.bins(pP, begin = max(pP$st), end = min(pP$en), bin.length = 1)
+}
+%- maybe also 'usage' for other objects documented here.
+\arguments{
+  \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}).}
+  \item{begin}{Start date for binning; defaults to start of the \code{\link{as.paleoPhylo}} object.}
+  \item{end}{End date for binning;  defaults to end of the \code{\link{as.paleoPhylo}} object.}
+  \item{bin.length}{The length of bin; defaults to 1.}
+}
+\details{
+Can be used to calculate time-series of rates for correlation analysis, etc. The function identifies lineages that do something at or after the start of the bin, but before the end of the bin, meaning that lineages surviving to the specified end time are not viewed as having gone extinct)
+}
+\value{
+rwb is a data.frame, containing the following columns:
+  \item{bin.start}{The start date of the bin.}
+  \item{N.at.start}{Number of lineages present at the start of the bin.}
+  \item{branch.length}{.}
+  \item{originations}{The number of originations in the bin.}
+  \item{extinctions}{The number of extinctions in the bin.}
+  \item{lambda}{Speciation rate across the bin.}
+  \item{mu}{Extinction rate across the bin.}
+  }
+
+\references{Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
+
+\author{Andy Purvis \email{a.purvis@imperial.ac.uk}}
+%% ~Make other sections like Warning with \section{Warning }{....} ~
+
+\seealso{\code{\link{as.paleoPhylo}}, \code{\link{pearson93}}}
+
+\examples{
+data(pearson93)
+p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
+
+p93RWB <- rates.within.bins(p93)
+with(p93RWB, plot(-bin.start, lambda, col=4, lwd=2, type='l',xlab="Start of bin (ma)", ylab="lambda (blue) and mu (red)", axes=FALSE))
+with(p93RWB, lines(-bin.start, mu, col=2, lwd=2))
+axis(1, at=seq(-65,-25,10), label=abs(seq(-65,-25,10)))
+axis(2, at=seq(0,0.75,.25))
+
+}

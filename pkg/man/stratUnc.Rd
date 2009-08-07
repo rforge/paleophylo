@@ -32,7 +32,7 @@ A list containing:
 }
 
 \references{
-Ezard, T.H.G. & Purvis, A. 2009. paleoPhylo: Free Software to Draw Paleobiological Phylogenies.  Paleobiology, in press.
+Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.
 
 To calculate confidence intervals on lineage duration, see (for example):
 

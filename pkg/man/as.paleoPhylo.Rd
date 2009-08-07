@@ -32,9 +32,8 @@ An object of class 'paleoPhylo', which is a list containing the five vectors def
 
 \references{
 Pearson, P. N. 1993 A lineage phylogeny for the Paleogene planktonic foraminifera. Micropaleontology 39, 193-222.
-
-The paleoPhylo homepage: \url{www.bio.ic.ac.uk/research/apurvis/paleoPhylo.htm}
 }
+
 \author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
 
 \seealso{\code{\link{pearson93}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}}
