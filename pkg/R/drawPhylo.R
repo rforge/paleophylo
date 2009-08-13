@@ -26,15 +26,13 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
 	  }
 	  
 	#*#*#the plot!
-    par(mar = rep(0.2, 4))
-    plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
+#plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
    
      #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
     #*#*#draw time options
      #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 	if(length(grep("c",addTimeLine))>0)
 	{
-	  dev.off()
 	  ##an arbitrary equation to divide space between timescale and phylogeny
 	  sz <- exp(-(length(pP$nm) + 45)/50) + 0.1
 	  if(l2r) fig.mat <- matrix(c(0,0,1,1,0,sz,sz,1), nrow=2) else fig.mat <- matrix(c(0,sz,sz,1,0,0,1,1), nrow=2)
@@ -106,6 +104,8 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
 
     if(length(grep("ar",addTimeLine))>0)
       {
+      par(mar = rep(0.2, 4))
+      plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
       if(l2r==TRUE)  arrows(xx[2],(yLm[1]+yy[1])/2,xx[1],(yLm[1]+yy[1])/2,lwd=lwdLin)
       if(l2r==FALSE) arrows((xLm[1]+xx[1])/2,yy[2],(xLm[1]+xx[1])/2,yy[1],lwd=lwdLin)
       mtext("Time", 2-l2r, line=-1, cex=cexText)
@@ -114,6 +114,8 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
     if(length(grep("t",addTimeLine))>0)
       {
       if (length(whatTime) != 2) stop("if addTimeLine=='tube' then whatTime currently must have 2 levels.")
+      par(mar = rep(0.2, 4))
+      plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
       
       col1 <- which(colnames(tmScl) ==  whatTime[1])
       col2 <- which(colnames(tmScl) ==  whatTime[2])
@@ -140,9 +142,15 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
         text(-(st + en)/2, y=0.49, nms2, col=rev(cls), cex=cexText, adj=c(0, 0.5))
         }
       tmLab <- -tmScl$MA[prntName == 1]
-      mtext(abs(tmLab), side =2-l2r, at=tmLab, cex=cexTime, line=-1)
+      if(dumpLast) tmLab <- tmLab[-length(tmLab)]
+      mtext(abs(tmLab), side =2-l2r, at=tmLab, cex=cexTime, line=-2, las=0+(!l2r))
+      #axis(1, at=tmLab, label=abs(tmLab), outer=TRUE, line=-whSpc*100, col="white",  col.ticks="white", cex=cexTime, las=0+(!l2r))
     }
     
+    if(length(grep("n",addTimeLine))>0){
+    	    par(mar = rep(0.2, 4))
+    	plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
+    }
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
     #*#*#draw the phylogeny itself
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*

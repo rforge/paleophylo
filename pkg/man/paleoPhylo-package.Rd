@@ -13,7 +13,7 @@ paleoPhylo contains a suite of functions to analyze how speciation, extinction &
 Package: \tab paleoPhylo\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
-Date: \tab 2009-06-15\cr
+Date: \tab 2009-08-12\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -55,6 +55,6 @@ unc <- data.frame(id=c("id1","id1","id3","id4","id4","id2","id2"),
 	en=c(2,0,1.1,0.9,0,1.1,1.7),
 	type=c(2,2,3,4,4,2,5))
 uSR <- stratUnc(unc,pP)
-drawPhylo(pP,uSR,cexLab=1.5, addTimeLine="s", cexText=1.5,hlty=3)
+drawPhylo(pP,uSR,cexLab=1.5, addTimeLine="ar", cexText=1.5,hlty=3)
 
 }
