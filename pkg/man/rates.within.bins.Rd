@@ -24,7 +24,7 @@ Can be used to calculate time-series of rates for correlation analysis, etc. The
 \value{
 rwb is a data.frame, containing the following columns:
   \item{bin.start}{The start date of the bin.}
-  \item{N.at.start}{Number of lineages present at the start of the bin.}
+  \item{N.at.start}{Number of extant lineages present at the start of the bin.}
   \item{branch.length}{.}
   \item{originations}{The number of originations in the bin.}
   \item{extinctions}{The number of extinctions in the bin.}
@@ -43,10 +43,11 @@ rwb is a data.frame, containing the following columns:
 data(pearson93)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 
-p93RWB <- rates.within.bins(p93)
-with(p93RWB, plot(-bin.start, lambda, col=4, lwd=2, type='l',xlab="Start of bin (ma)", ylab="lambda (blue) and mu (red)", axes=FALSE))
+p93RWB <- rates.within.bins(p93, bin.length=5)
+with(p93RWB, plot(-bin.start, lambda, col=4, lwd=2, type='l',
+  xlab="Start of bin (ma)", ylab="Rate", axes=FALSE))
 with(p93RWB, lines(-bin.start, mu, col=2, lwd=2))
-axis(1, at=seq(-65,-25,10), label=abs(seq(-65,-25,10)))
-axis(2, at=seq(0,0.75,.25))
+axis(1, at=seq(-65,-25,5), label=abs(seq(-65,-25,5)))
+axis(2, at=seq(0,0.25,.05))
 
 }

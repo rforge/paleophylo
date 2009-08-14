@@ -40,10 +40,14 @@ Enables an event-based protocol to be implemented, through iterative application
 data(pearson93)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 par(mfrow=c(2,2))
-plot(prune.to.date(p93, 54.3)$phylo.tree, cex=0.5,main = "Default")
-plot(prune.to.date(p93, 54.3, let.speciate=TRUE)$phylo.tree, cex=0.5,main="Let speciate")
-plot(prune.to.date(p93, 54.3, let.die=TRUE)$phylo.tree, cex=0.5,main = "Let die")
-plot(prune.to.date(p93, 54.3, let.speciate = TRUE, let.die=TRUE)$phylo.tree, cex=0.5,main = "Live and let die")
+plot(prune.to.date(p93, 54.3)$phylo.tree,
+   cex=0.5,main = "Default")
+plot(prune.to.date(p93, 54.3, let.speciate=TRUE)$phylo.tree,
+   cex=0.5, main="Let speciate")
+plot(prune.to.date(p93, 54.3, let.die=TRUE)$phylo.tree,
+  cex=0.5,main = "Let die")
+plot(prune.to.date(p93, 54.3, let.speciate = TRUE, let.die=TRUE)$phylo.tree,
+  cex=0.5,main = "Live and let die")
 par(mfrow=c(1,1))
 
 }

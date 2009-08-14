@@ -9,14 +9,9 @@ function(pP, date, let.speciate=FALSE, let.die=FALSE){
 	if (class(pP) !="paleoPhylo")
 		stop("Object passed to prune.to.date is not of class paleoPhylo!")
 	
-	df <- with(pP, data.frame(nm, pn, st, en, xx, label, grp))
-	
+	dF <- with(pP, data.frame(nm, pn, st, en, xx, label, grp))
 	#Get rid of lineages that started too late
-	if (let.speciate){
-		pruned<-subset(df, st >= date)
-	} else {
-		pruned <- subset(df, st > date)
-	}
+	if (let.speciate) pruned <- dF[dF$st>=date,]  else  pruned <- dF[dF$st>date,]
 
 	if (length(pruned$nm) == 0){
 		warning(paste("No lineages at time", date))
@@ -28,17 +23,14 @@ function(pP, date, let.speciate=FALSE, let.die=FALSE){
 		return(NULL)
 	}
 
-	lis <- with(pruned, as.paleoPhylo(nm, pn, st, en, xx, label, grp))	
+	lis <- with(pruned, as.paleoPhylo(nm, pn, st, en, xx, label, grp))
 	cb <-createBifurcate(lis) #Create structures that will let extinct lineages be identified unambiguously
-	
 	cb$en[cb$en < date] <- 0 #Pad out all terminal edges to the present day
 	pruned.ape <-buildApe(cb) #Produce corresponding phylo object
-	write.tree(pruned.ape, "tmp.txt") #Write and re-read tree to make it a canonical phylo object
-	pruned.ape <- read.tree("tmp.txt")
 	
 	#Identify lineages extinct before or at cutoff, and prune them (if there are any) from the tree
 	if (let.die){
-		extinct.by.cutoff <- c(cb$nm[cb$en > date], cb$nm[cb$en == date & !is.element(cb$nm, df$pn)])
+		extinct.by.cutoff <- c(cb$nm[cb$en > date], cb$nm[cb$en == date & !is.element(cb$nm, dF$pn)])
 	} else {
 		extinct.by.cutoff <- cb$nm[cb$en > date]
 	}
@@ -51,10 +43,9 @@ function(pP, date, let.speciate=FALSE, let.die=FALSE){
 
 	#Now go back to paleoPhylo to trim terminal edges to make tree ultrametric and ending at cutoff
 	app <- ape2paleoPhylo(pruned.extant.ape, retainNodeLabels=TRUE, nC=0)
-	app$en[app$en < date] <- date #Make tree ultrametric
+	app$en[app$en < date] <- date
+	  #Make tree ultrametric
 	pruned.extant.ape2 <-buildApe(app)
-	write.tree(pruned.extant.ape2, "tmp.txt") #Write and re-read tree to make it a canonical phylo object
-	pruned.extant.ape2 <- read.tree("tmp.txt")
 		
 	#Set up and fill return structure
 	to.return <- list(app, pruned.extant.ape2)
