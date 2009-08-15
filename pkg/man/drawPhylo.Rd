@@ -7,7 +7,7 @@
 drawPhylo(pP, 
 	uSR = NULL,
 	addTimeLine = "none", tmScl, whatTime,
-	l2r=FALSE, nmLim=2, cexText = 0.5, srtText=0, cexTime = 0.5, cexLab=0.5,
+	l2r=FALSE, nmLim=2, cexText = 0.5, srtText=0, cexTime = NULL, cexLab=0.5,
 	lwdLin = 2, hlty=NULL, barLen=0, whSpc=0.05, dumpLast=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -25,7 +25,7 @@ drawPhylo(pP,
  \item{nmLim}{A number of million years that serves as the limit for when the name of the period/epoch/stage/etc... should be printed in the 'classic' time axis.  Defaults to 2.}
   \item{cexText}{Change the text size of time labels.  See \code{\link{par}}. Can be a vector for different text sizes for each time classification (see example 2a below).}
   \item{srtText}{Change the text direction of time labels.  See \code{\link{par}}. Can be a vector for different rotations for each time classification. It probably makes sense to stick to either 0 (parallel to phylogeny) or 90 (perpendicular to phylogeny).}
-  \item{cexTime}{Change the text size of time numbers.  See \code{\link{par}}.}
+  \item{cexTime}{Change the text size of time numbers.  Defaults to the size of \code{cexText} used for the narrowest time intervals unless otherwise stated. See \code{\link{par}}.}
   \item{cexLab}{Change the text size of species lineage names.  See \code{\link{par}}.}
   \item{lwdLin}{Change the line thickness.  See \code{\link{par}}.}
   \item{hlty}{Change the horizontal line type if not otherwise specified using \code{\link{stratUnc}}.  Takes values for lty in \code{\link{par}}.}

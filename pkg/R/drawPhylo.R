@@ -1,4 +1,4 @@
-drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2r = FALSE, nmLim = 2, cexText = 0.5, srtText=0, cexTime = 0.5, cexLab = 0.5, lwdLin = 2, hlty = NULL, barLen=0, whSpc=0.05, dumpLast=FALSE) 
+drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2r = FALSE, nmLim = 2, cexText = 0.5, srtText=0, cexTime = NULL, cexLab = 0.5, lwdLin = 2, hlty = NULL, barLen=0, whSpc=0.05, dumpLast=FALSE) 
   {
   if (class(pP) != "paleoPhylo") stop(" object is not of class 'paleoPhylo'")
     {
@@ -10,9 +10,19 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
   	uSR <- stratUnc(uSR, pP, lwdLin = lwdLin)
   	if(l2r) xx <- -range(unlist(uSR$dates)) else xx <- range(pP$xx)
   	if(l2r) yy <- range(pP$xx) else yy <- -range(unlist(uSR$dates))
-  	xLm <- extendrange(xx, f=whSpc)
-  	yLm <- extendrange(yy, f=whSpc)
-
+  	if(l2r)
+  	  {
+  	  xLm <- extendrange(xx, f=whSpc)
+  	  xLm <- c(-max(pP$st),xLm[2])
+  	  yLm <- yy
+  	  }
+  	if(!l2r)
+  	  {
+  	  yLm <- extendrange(yy, f=whSpc)
+  	  yLm <- c(-max(pP$st),yLm[2])
+  	  xLm <- xx
+  	  }
+  	  
 	#*#*#the time scale used
 	if ((length(grep("t",addTimeLine))>0 | length(grep("c",addTimeLine))>0))
 	  {
@@ -25,12 +35,10 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
 	  prntName <- c(1, 0+(abs(diff(tmScl$MA))>nmLim))
 	  }
 	  
-	#*#*#the plot!
-#plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
-   
-     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+    #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
     #*#*#draw time options
-     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+    #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+	if(is.null(cexTime)) cexTime <- cexText[length(cexText)]
 	if(length(grep("c",addTimeLine))>0)
 	{
 	  ##an arbitrary equation to divide space between timescale and phylogeny
