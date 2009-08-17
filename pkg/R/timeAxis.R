@@ -1,11 +1,12 @@
 timeAxis <-
-function (tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexText = 0.5, srtText=0, cexTime = 0.5, cexLab = 0.5, whSpc=0.1, lwdLin=1, dumpLast=FALSE) 
+function (tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexText = 0.5, srtText=0, cexTime = NULL, cexLab = 0.5, whSpc=0.01, lwdLin=1, dumpLast=FALSE) 
   {
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   #*#*#some initial conditions and initialize the plot
   if(l2r) xLm <- extendrange(-tmScl$MA, f=whSpc) else xLm <- range(0,1)
   if(l2r) yLm <- range(0,1) else yLm <- extendrange(-tmScl$MA, f=whSpc)
   prntName <- c(1, 0+(abs(diff(tmScl$MA))>nmLim))
+  if(is.null(cexTime)) cexTime <- cexText[length(cexText)]
    
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   #*#*#draw time options, CLASSIC

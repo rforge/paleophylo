@@ -182,7 +182,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
 	  
 	par(srt = 90 * (l2r == FALSE))
 	x0s <- y0s <- x1s <- cls <- hlts <- hlds <- c()
-	prnts <- as.character(unique(pP$pn[is.na(pP$pn) == FALSE]))
+	prnts <- as.character(unique(pP$pn[!is.na(pP$pn)]))
 	
 	#*#*#get the formats for links between lineages
 	for (i in 1:length(prnts))

@@ -1,5 +1,7 @@
 stratUnc <- function (uSR = NULL, pP, lwdLin = 2, clCd=1:length(pP$nm), ltyLin=1)
   {
+  if (class(pP) != "paleoPhylo") stop(" object is not of class 'paleoPhylo'")
+
   styles <- list(certain = c(lwdLin, "black", 1), lazarus = c(lwdLin, "grey60", 1), 
       extension = c(lwdLin, "black", 2), CI = c(lwdLin * 0.4, "black", 1), point=c(lwdLin * 4, "black", 1))
 
