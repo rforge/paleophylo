@@ -19,16 +19,20 @@ LazyLoad: \tab yes\cr
 }
 }
 \author{
-Thomas H.G. Ezard.  It would be really nice if you'd be kind enough to cite the manuscript! 
+Thomas H.G. Ezard and Andy Purvis.
 
 Maintainer: Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}
 }
 
-\references{Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
+\references{
+It would be really nice if you'd be kind enough to cite the manuscript! 
+
+Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.
+}
 
 \keyword{ package }
 \seealso{
-	\code{\link[ape:ape-package]{ape}}, \code{\link{pearson93}}, \code{\link{buildApe}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}, \code{\link{stratUnc}}
+\code{\link[ape:ape-package]{ape}}, \code{\link{pearson93}}, \code{\link{buildApe}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}, \code{\link{stratUnc}},  \code{\link{rates.within.bins}},  \code{\link{prune.to.date}} 
 }
 \examples{
 ##plot a lineage phylogeny of planktonic foraminifera

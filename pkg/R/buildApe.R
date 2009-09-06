@@ -55,6 +55,7 @@
 		mft <- list(edge = edge, tip.label = tL, Nnode = length(unique(clade$IDcode)), 
 				  node.label = nL, edge.length=clade$duration)
 		class(mft) <- "phylo"	
+		mft <- reorder(mft)		  
 		return(mft)
 		}
 	}
