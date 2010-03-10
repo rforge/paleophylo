@@ -24,16 +24,15 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
   	  }
   	  
 	#*#*#the time scale used
-        if ((length(grep("t", addTimeLine)) > 0 | length(grep("c", 
-            addTimeLine)) > 0)) {
-            rngSt <- which(tmScl$MA <= range(unlist(uSR$dates))[1])
-            startPoint <- rngSt[length(rngSt)]
-            endPoint <- which(tmScl$MA >= range(unlist(uSR$dates))[2])[1]
-            tmScl <- tmScl[startPoint:endPoint, ]
-            if (max(pP$st) < 0) 
-                tmScl$MA <- 0 - tmScl$MA
-            prntName <- c(1, 0 + (abs(diff(tmScl$MA)) > nmLim))
-        }
+   if ((length(grep("t", addTimeLine)) > 0 | length(grep("c", addTimeLine)) > 0)) 
+     {
+     	rngSt <- which(tmScl$MA <= range(unlist(uSR$dates))[1])
+     	startPoint <- rngSt[length(rngSt)]
+     	endPoint <- which(tmScl$MA >= range(unlist(uSR$dates))[2])[1]
+     	tmScl <- tmScl[startPoint:endPoint, ]
+     	if (max(pP$st) < 0) tmScl$MA <- 0 - tmScl$MA
+     	prntName <- c(1, 0 + (abs(diff(tmScl$MA)) > nmLim))
+     }
 	  
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
     #*#*#draw time options
@@ -79,13 +78,15 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                 par(srt = 90 - (l2r * 90) + srtText[i])
                 if (l2r == FALSE) {
                   rect(xv[i], -st, xv[i + 1], -en)
-                  text((xv[i] + xv[i + 1])/2, y = -c((st + en)/2), lb, col = vis, cex = cexText[i], adj = c(0.5, 0.5))
-                  segments(xv[i], -st, xv[i + 1], -st, lwd = 2.5)#lwdLin)
+                  text((xv[i] + xv[i + 1])/2, y = -c((st + en)/2), lb,
+                     col = vis, cex = cexText[i], adj = c(0.5, 0.5))
+                  segments(xv[i], -st, xv[i + 1], -st, lwdLin)
                 }
                 if (l2r)
                   {
                   rect(-st, xv[i], -en, xv[i + 1])
-                  text(-c((st + en)/2), y = (xv[i] + xv[i + 1])/2, lb, col = vis, cex = cexText[i], adj = c(0.5, 0.5))
+                  text(-c((st + en)/2), y = (xv[i] + xv[i + 1])/2, lb,
+                     col = vis, cex = cexText[i], adj = c(0.5, 0.5))
                   segments(-st, xv[i], -st, xv[i + 1], lwd = lwdLin)
                 }
             }
@@ -198,45 +199,37 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                 x0s <- c(x0s, pP$xx[which(pP$nm == prnts[i])])
                 x1s <- c(x1s, pP$xx[offsprng[j]])
                 y0s <- c(y0s, pP$st[offsprng[j]])
-                hclO <- uSR$styles[[uSR$types[[which(pP$nm == 
-                  prnts[i])]][1]]][2]
+                hclO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][2]
                 cls <- c(cls, hclO)
-                hltO <- uSR$styles[[uSR$types[[which(pP$nm == 
-                  prnts[i])]][1]]][3]
+                hltO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][3]
                 hlts <- c(hlts, hltO)
-                hldO <- uSR$styles[[uSR$types[[which(pP$nm == 
-                  prnts[i])]][1]]][1]
+                hldO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][1]
                 hlds <- c(hlds, hldO)
             }
         }
         clCd <- sapply(1:length(pP$nm), function(i) uSR$styles[[min(uSR$types[[i]])]][2])
-        if (!is.null(hlty)) 
-            hlts <- rep(hlty, length(pP$nm))
+        if (!is.null(hlty)) hlts <- rep(hlty, length(pP$nm))
         #*#*#link up lineages by joining ancestors and add tip and node labels
-        if (l2r == FALSE) {
+        if (!l2r) {
             segments(x0s, -y0s, x1s, -y0s, col = cls, lwd = as.numeric(hlds), 
                 lty = as.numeric(hlts))
             text(x = pP$xx, y = -pP$en, pP$label, adj = 0, font = 3, 
                 cex = cexLab, col = clCd)
         }
-        if (l2r == TRUE) {
-            segments(-y0s, x0s, -y0s, x1s, col = cls, lwd = as.numeric(hlds), 
-                lty = as.numeric(hlts))
-            text(x = -pP$en, y = pP$xx, pP$label, adj = 0 + (min(pP$st < 
-                0)), font = 3, cex = cexLab, col = clCd)
-        }
-        	  #*#*#add point occurences if applicable
-        	  if (!usrFlg) {
-            rdPtXX <- which(sapply(1:length(uSR$dates), function(i) which(diff(uSR$dates[[i]]) == 
-                0)) > 0)
-            rdPt <- unlist(sapply(1:length(uSR$dates), function(j) uSR$dates[[j]][which(diff(uSR$dates[[j]]) == 
-                0)]))
-            ifelse(l2r == TRUE, xx <- -rdPt, xx <- pP$xx[rdPtXX])
-            ifelse(l2r == TRUE, yy <- pP$xx[rdPtXX], yy <- -rdPt)
-            if (length(xx) != 0) 
-                arrows(xx, yy, xx, yy, length = 0, lwd = uSR$styles$point[1])
-        }
-        if (length(grep("c", addTimeLine)) > 0) 
-            close.screen(all = TRUE)
+        if (l2r) 
+          {
+          	segments(-y0s, x0s, -y0s, x1s, col = cls, lwd = as.numeric(hlds), lty = as.numeric(hlts))
+          	text(x = -pP$en, y = pP$xx, pP$label, adj = 0 + (min(pP$st < 0)), font = 3, cex = cexLab, col = clCd)
+           }
+        	#*#*#add point occurences if applicable
+        	if (!usrFlg)
+          	{
+           rdPtXX <- which(sapply(1:length(uSR$dates), function(i) which(diff(uSR$dates[[i]]) == 0)) > 0)
+           rdPt <- unlist(sapply(1:length(uSR$dates), function(j) uSR$dates[[j]][which(diff(uSR$dates[[j]]) == 0)]))
+           ifelse(l2r, xx <- -rdPt, xx <- pP$xx[rdPtXX])
+           ifelse(l2r, yy <- pP$xx[rdPtXX], yy <- -rdPt)
+           if (length(xx) != 0) arrows(xx, yy, xx, yy, length = 0, lwd = uSR$styles$point[1])
+           }
+        if (length(grep("c", addTimeLine)) > 0) close.screen(all = TRUE)
     }
 }

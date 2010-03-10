@@ -63,7 +63,8 @@ pP <- as.paleoPhylo(eg1$nm,eg1$pn,eg1$st,eg1$en,label=eg1$label)
 
 par(mfrow=c(1,2))
 ##example 1; no uncertainty
-drawPhylo(pP,cexLab=1.5, addTimeLine="s", cexText=1.5,hlty=3)
+drawPhylo(pP, 
+  cexLab=1.5, addTimeLine="n", cexText=1.5, hlty=3, l2r=TRUE)
 
 ##example 2; hypothetical uncertainty
 ##this is figure 2 in Ezard & Purvis (2009).
@@ -72,15 +73,8 @@ unc <- data.frame(id=c("id1","id1","id3","id4","id4","id2","id2"),
 	en=c(2,0,1.1,0.9,0,1.1,1.7),
 	type=c(2,2,3,4,4,2,5))
 uSR <- stratUnc(unc,pP)
-drawPhylo(pP,uSR,cexLab=1.5, addTimeLine="ar", cexText=1.5,hlty=3, l2r=TRUE)
+drawPhylo(pP, uSR, 
+  cexLab=1.5, addTimeLine="n", cexText=1.5, hlty=3, l2r=TRUE)
 
-
-##example 3; add the classic time axis to the uncertainty plot
-##note the need to change nmLim to see anything!
-dev.off()
-data(gradstein04)
-drawPhylo(pP, uSR, l2r=TRUE, tmScl=gradstein04, whatTime=c("epoch","stage"), addTimeLine="c",
-	 cexText=1.5, cexTime=1, cexLab=1.5,
-	 hlty=3, whSpc=0.1, nmLim=0.02)
 }
 

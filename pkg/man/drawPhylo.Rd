@@ -64,7 +64,8 @@ drawPhylo (p93cb, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","z
 	dumpLast=TRUE, cexText=c(1, 0.5), nmLim=0.3, srtText=c(0,-90))
 	
 #example 4: with species arranged on the x-axis according ...
-## .... to some random trait data from a unifrom distribution.
+## .... to some random trait data from a uniform distribution.
+## .... THIS DELIBERATELY LOOKS A TOTAL MESS
 ##don't include latin names by leaving the "label" argument free.
 p93rnd <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End,
 	 xx=runif(length(Code),-1,1)))

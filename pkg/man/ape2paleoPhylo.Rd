@@ -53,8 +53,13 @@ drawPhylo(brdOrd, tmScl=gradstein04, whatTime=c("period","epoch","stage"),
 ##how do I shorten those names to, say, three letters long?
 ##generates a new column in gradstein04 containing the shorthand
 gradstein04$shStg <- substr(gradstein04$stage,1,3)
+##do others similarly by hand...
+gradstein04$epch <- gradstein04$epoch
+gradstein04$epch[1:3] <- c("R", "Hol.", "Pt.")
+gradstein04$prd <- as.character(gradstein04$period)
+gradstein04$prd[1:3] <- rep("Q", 3)
 str(gradstein04)
-drawPhylo(brdOrd, tmScl=gradstein04, whatTime=c("period","epoch","shStg"),
+drawPhylo(brdOrd, tmScl=gradstein04, whatTime=c("prd","epch","shStg"),
 	addTimeLine="c", l2r=TRUE, nmLim=1, cexTime=0.7, cexText=1)
 
 }
