@@ -44,9 +44,5 @@ data(pearson93)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 p93
 
-xx.p93 <- runif(length(p93$nm),-1,1)
-##generate random data to represent some individual trait of interest
-p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, xx.p93))
-p93
 }
 

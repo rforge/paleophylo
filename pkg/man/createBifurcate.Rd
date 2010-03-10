@@ -39,7 +39,7 @@ apeTree
 
 ##using ape, do some simple illustratory stuff
 ##plot a fully bifurcating phylogeny using plot.phylo
-plot(reorder(apeTree))
+plot(apeTree)
 ##write apeTree using the Newick (aka New Hampshire) format.
 write.tree(apeTree)
 
