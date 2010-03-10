@@ -13,7 +13,7 @@ paleoPhylo contains a suite of functions to analyze how speciation, extinction &
 Package: \tab paleoPhylo\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
-Date: \tab 2009-08-12\cr
+Date: \tab 2010-03-10\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -31,9 +31,7 @@ Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiolog
 }
 
 \keyword{ package }
-\seealso{
-\code{\link[ape:ape-package]{ape}}, \code{\link{pearson93}}, \code{\link{buildApe}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}, \code{\link{stratUnc}},  \code{\link{rates.within.bins}},  \code{\link{prune.to.date}} 
-}
+\seealso{Click on the index link below to see the diverse range of things that \code{paleoPhylo} does.}
 \examples{
 ##plot a lineage phylogeny of planktonic foraminifera
 data(pearson93)
