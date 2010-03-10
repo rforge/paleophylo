@@ -8,7 +8,7 @@ drawPhylo(pP,
 	uSR = NULL,
 	addTimeLine = "none", tmScl, whatTime,
 	l2r=FALSE, nmLim=2, cexText = 0.5, srtText=0, cexTime = NULL, cexLab=0.5,
-	lwdLin = 2, hlty=NULL, barLen=0, whSpc=0.05, dumpLast=FALSE)
+	lwdLin = 2, hlty=NULL, barLen=0, whSpc=0.05, dumpLast=FALSE, sz=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -32,7 +32,7 @@ drawPhylo(pP,
  \item{barLen}{The length of the horizontal bars if confidence intervals are being drawn using \code{\link{stratUnc}}.}
  \item{whSpc}{Controls the amount of white space around the phlyogram.  Increasing values of \code{whSpc} will yield more white space, which may be useful when formatting smaller phylograms or if the tip labels are particularly long. It works using the \code{f} in \code{\link{extendrange}}.  Note that \code{mar()} in \code{\link{extendrange}} is not supported.}
   \item{dumpLast}{If \code{addTimeLine=="classic" or "tube"} then should the oldest time box be drawn? Removing it might be desired if, eg., an ancestor is shown from an earlier time period but only just which would mean "messy" unclosed time boxes.}
-
+ \item{sz}{Controls the proportion of the plot given over to a 'classic' time axis. }
 }
 \details{
 In essence, all this does is generate a blank window and put some lines on top.  As such, its use is not restricted to 'paleoPhylo' objects.  It can be used in conjunction with fully bifurcating trees (\code{\link{ape2paleoPhylo}} can convert an object of class 'phylo' to class 'paleoPhylo' using  \code{\link{as.paleoPhylo}}) to add time axes in multiple forms to plots, and in conjunction with the pdf graphics device (see \code{\link{pdf}}) to output high-quality figures in pdf format (other graphics formats are available; see links from the pdf page).

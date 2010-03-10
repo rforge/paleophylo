@@ -1,12 +1,14 @@
 \name{berggren95}
 \alias{berggren95}
-\alias{brggrnprsn05}
+\alias{bp05}
 \docType{data}
 \title{W.A. Berggren's 1995 geologic timescale}
-\description{W.A. Berggren's 1995 geologic timescale for the Cenozoic, giving tropical to subtropical planktonic foraminiferal zonation. Additionally, the Berggren and Pearson revision for the Paleogene in the same format.}
+\description{W.A. Berggren's 1995 geologic timescale for the Cenozoic, giving tropical to subtropical planktonic foraminiferal zonation.
+
+Additionally, the Berggren and Pearson revision \code{bp05} for the Paleogene in the same format with the 1995 timescale for more recent times.}
 \usage{
 data(berggren95)
-data(brggrnprsn05)
+data(bp05)
 }
 \format{
  A data frame containing the following columns: 
@@ -14,6 +16,7 @@ data(brggrnprsn05)
     \item{\code{epoch}}{Epoch name.}
     \item{\code{zone}}{Tropical to subtropical planktonic foraminiferal zone code.}
     \item{\code{MA}}{Estimated boundary age for the associated interval.}
+    \item{\code{epch}}{A handy shortened (in an \code{\link{nchar}} sense) form of epoch (which I use often).}
  }
 }
 
@@ -29,8 +32,8 @@ Berggren, W.A. & Pearson, P.N., 2005. A revised tropical to subtropical Paleogen
 data(berggren95)
 str(berggren95)
 
-data(brggrnprsn05)
-str(brggrnprsn05)
+data(bp05)
+str(bp05)
 
 }
 \keyword{datasets}

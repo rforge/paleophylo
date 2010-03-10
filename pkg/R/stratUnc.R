@@ -1,9 +1,16 @@
-stratUnc <- function (uSR = NULL, pP, lwdLin = 2, clCd=1:length(pP$nm), ltyLin=1)
+stratUnc <- function (uSR = NULL, pP, lwdLin = 2, clCd=1:length(unique(style)), ltyLin=1, style=NULL)
   {
   if (class(pP) != "paleoPhylo") stop(" object is not of class 'paleoPhylo'")
 
-  styles <- list(certain = c(lwdLin, "black", 1), lazarus = c(lwdLin, "grey60", 1), 
-      extension = c(lwdLin, "black", 2), CI = c(lwdLin * 0.4, "black", 1), point=c(lwdLin * 4, "black", 1))
+  if(is.null(style))
+    {styles <- list(certain = c(lwdLin, "black", 1), lazarus = c(lwdLin, "grey60", 1), 
+      extension = c(lwdLin, "black", 2), CI = c(lwdLin * 0.4, "black", 1), point=c(lwdLin * 4, "black", 1))}
+  if(!is.null(style))
+    {
+    nu <- length(unique(style))
+    styles <- vector("list", nu)
+    for(k in 1:nu) styles[[k]] <- c(lwdLin, clCd[k], ltyLin)
+    }
 
   ##define some quantities to reduce the amount of characters required later on.
   nLin <- length(pP$nm)
@@ -14,7 +21,7 @@ stratUnc <- function (uSR = NULL, pP, lwdLin = 2, clCd=1:length(pP$nm), ltyLin=1
   dts <- vector("list", nLin)
   for (i in 1:nLin) {dts[[i]] <- c(pP$st[i], pP$en[i]) }
   usr <- list(id = as.list(pP$nm), dates = dts, types = as.list(rep(1, nLin)), styles = styles)
-       
+
   if((sum(is.na(pP$grp))==0) && is.null(uSR))
     {
     for (i in 1:nLin) {usr$types[[i]] <- as.numeric(pP$grp)[i]} 
@@ -50,7 +57,7 @@ stratUnc <- function (uSR = NULL, pP, lwdLin = 2, clCd=1:length(pP$nm), ltyLin=1
       {
       flag <- FALSE
       focID <- which(usr$id==uSR$id[k])
-      oldDates <- usr$dates[[focID]]
+      oldDates <- as.numeric(usr$dates[[focID]])
       splitLoc <- which(oldDates<=uSR$st[k] & oldDates>=uSR$en[k])[1]
       if (is.na(splitLoc)) {splitLoc <- which(oldDates<=uSR$st[k])  ;  flag<-TRUE}
       newDates <- rev(sort(c(oldDates[-splitLoc],uSR$st[k],uSR$en[k])))
@@ -66,10 +73,10 @@ stratUnc <- function (uSR = NULL, pP, lwdLin = 2, clCd=1:length(pP$nm), ltyLin=1
         }
       if((oldDates[1]==uSR$st[k] & oldDates[2]==uSR$en[k] & length(oldDates)==2)==FALSE)
         {
-        usr$types[[focID]] <- newTypes
-        usr$dates[[focID]] <- newDates
+        usr$types[[focID]] <- as.numeric(newTypes)
+        usr$dates[[focID]] <- as.numeric(newDates)
         }
-      if((oldDates[1]==uSR$st[k] & oldDates[2]==uSR$en[k] & length(oldDates)==2)==TRUE)  {usr$types[[focID]] <- uSR$type[k]}
+      if((oldDates[1]==uSR$st[k] & oldDates[2]==uSR$en[k] & length(oldDates)==2)==TRUE)  {usr$types[[focID]] <- as.numeric(uSR$type[k])}
       }
     }
   return(usr)

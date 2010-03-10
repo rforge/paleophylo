@@ -5,7 +5,7 @@
 \description{
 Incorporate different types of stratigraphic and mathematical uncertainty in paleoPhylo plots.  By default, these are envisaged as excellent resolution, range extensions, (dis)appearances of a lineage within part of its overall range, single point occurrences and confidence intervals around first and last appearance dates.  Full flexibility is possible however.}
 \usage{
-stratUnc(uSR=NULL, pP, lwdLin=2, clCd=1:length(pP$nm), ltyLin=1)
+stratUnc(uSR=NULL, pP, lwdLin=2, clCd=1:length(unique(style)), ltyLin=1, style=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -14,6 +14,7 @@ stratUnc(uSR=NULL, pP, lwdLin=2, clCd=1:length(pP$nm), ltyLin=1)
 \item{lwdLin}{defaults to 2; base line thickness (is recycled).}
 \item{clCd}{Defaults to black; base color (is recycled).}
 \item{ltyLin}{defaults to 1; base line type (is recycled).}
+\item{style}{A vector of default style types.}
 }
 \details{
 If a non-null data-frame is passed to \code{stratUnc}, this function checks its suitability.  Specifically, are all types and dates congruent and are all types and styles congruent?  The data-frame should contain the unique ID code for the individuals along with start and end dates for the uncertainty.  
