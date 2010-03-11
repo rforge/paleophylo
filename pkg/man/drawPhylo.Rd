@@ -24,7 +24,7 @@ drawPhylo(pP,
   \item{l2r}{Should the time axis run from left to right or top to bottom?  Defaults to FALSE, i.e. top to bottom.}
  \item{nmLim}{A number of million years that serves as the limit for when the name of the period/epoch/stage/etc... should be printed in the 'classic' time axis.  Defaults to 2.}
   \item{cexText}{Change the text size of time labels.  See \code{\link{par}}. Can be a vector for different text sizes for each time classification (see example 2a below).}
-  \item{srtText}{Change the text direction of time labels.  See \code{\link{par}}. Can be a vector for different rotations for each time classification. It probably makes sense to stick to either 0 (parallel to phylogeny) or 90 (perpendicular to phylogeny).}
+  \item{srtText}{Change the text direction of time labels in the classic time axis.  See \code{\link{par}}.}
   \item{cexTime}{Change the text size of time numbers.  Defaults to the size of \code{cexText} used for the narrowest time intervals unless otherwise stated. See \code{\link{par}}.}
   \item{cexLab}{Change the text size of species lineage names.  See \code{\link{par}}.}
   \item{lwdLin}{Change the line thickness.  See \code{\link{par}}.}
@@ -55,13 +55,15 @@ p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 drawPhylo (p93)
 
 ##example 2: with a "classic" time axis.
-drawPhylo (p93, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","zone"),
-	l2r=TRUE, dumpLast=TRUE, cexText=c(1, 0.5), srtText=c(0,90), nmLim=0.3)
+drawPhylo (p93,
+  tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","zone"),
+  l2r=TRUE, cexText=c(1, 0.5), dumpLast=TRUE,  nmLim=0.3)
 	
 ##example 3: a fully bifucating version with different text sizes for time
 p93cb <- createBifurcate(p93)
-drawPhylo (p93cb, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch","zone"),
-	dumpLast=TRUE, cexText=c(1, 0.5), nmLim=0.3, srtText=c(0,-90))
+drawPhylo (p93cb, 
+  tmScl=berggren95, addTimeLine="cl", whatTime=c("epoch","zone"),
+  dumpLast=TRUE, cexText=c(1, 0.5), nmLim=0.3, srtText=0)
 	
 #example 4: with species arranged on the x-axis according ...
 ## .... to some random trait data from a uniform distribution.

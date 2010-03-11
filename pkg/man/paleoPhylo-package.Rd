@@ -13,7 +13,7 @@ paleoPhylo contains a suite of functions to analyze how speciation, extinction &
 Package: \tab paleoPhylo\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
-Date: \tab 2010-03-10\cr
+Date: \tab 2010-03-11\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }

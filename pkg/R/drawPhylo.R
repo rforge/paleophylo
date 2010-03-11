@@ -6,12 +6,12 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
     #*#*#some initial conditions and initialize the plot
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
     #*#*#stratigraphic uncertainty
-  	usrFlg <- is.null(uSR)
-  	uSR <- stratUnc(uSR, pP, lwdLin = lwdLin)
-  	if(l2r) xx <- -range(unlist(uSR$dates)) else xx <- range(pP$xx)
-  	if(l2r) yy <- range(pP$xx) else yy <- -range(unlist(uSR$dates))
-  	if(l2r)
-  	  {
+    usrFlg <- is.null(uSR)
+  	 uSR <- stratUnc(uSR, pP, lwdLin = lwdLin)
+  	 if(l2r) xx <- -range(unlist(uSR$dates)) else xx <- range(pP$xx)
+  	 if(l2r) yy <- range(pP$xx) else yy <- -range(unlist(uSR$dates))
+  	 if(l2r)
+  	   {
   	  xLm <- extendrange(xx, f=whSpc)
   	  xLm <- c(-max(pP$st),xLm[2])
   	  yLm <- yy
@@ -37,6 +37,8 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
     #*#*#draw time options
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+    op <- par(no.readonly=TRUE)
+    par(mar=rep(0.2, 4), srt=srtText + 90*(!l2r))
 	if(is.null(cexTime)) cexTime <- cexText[length(cexText)]
 	if(length(grep("c",addTimeLine))>0)
 	{
@@ -46,7 +48,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
             if (l2r) fig.mat <- matrix(c(0, 0, 1, 1, 0, sz, sz, 1), nrow = 2) else fig.mat <- matrix(c(0, sz, sz, 1, 0, 0, 1, 1), nrow = 2)
             split.screen(fig.mat)
             screen(1)
-            par(mar = rep(0.2, 4))
+            #par(mar = rep(0.2, 4))
             plot(xx, yy, type = "n", xlab = "", ylab = "", xlim = xLm, ylim = yLm, axes = FALSE)
             xv <- seq(0.05, 0.9, length.out = (length(whatTime) + 1))
             for (i in 1:length(whatTime))
@@ -75,7 +77,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                 if (length(srtText) < length(whatTime)) 
                   srtText <- rep(srtText, length(whatTime)/length(srtText))
                 vis <- (abs(st - en) > nmLim)
-                par(srt = 90 - (l2r * 90) + srtText[i])
+                #par(srt = 90 - (l2r * 90) + srtText[i])
                 if (l2r == FALSE) {
                   rect(xv[i], -st, xv[i + 1], -en)
                   text((xv[i] + xv[i + 1])/2, y = -c((st + en)/2), lb,
@@ -92,14 +94,14 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
             }
             tmAxs <- unique(c(st, en))
             vis <- c(1, 0 + (abs(diff(0 - tmAxs)) > nmLim))
-            par(srt = 90 - (l2r * 90) + srtText[length(srtText)])
+            #par(srt = 90 - (l2r * 90) + srtText[length(srtText)])
             if (l2r) 
                 text(-tmAxs, 0.99, abs(tmAxs), cex = cexTime, 
                   col = vis)
             else text(0.99, -tmAxs, abs(tmAxs), cex = cexTime, 
                 col = vis)
             screen(2, FALSE)
-            par(mar = rep(0.2, 4))
+            #par(mar = rep(0.2, 4))
             plot(xx, yy, type = "n", xlab = "", ylab = "", xlim = xLm, 
                 ylim = yLm, axes = FALSE)
             thk <- rep(1, length(tmAxs))
@@ -117,7 +119,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
 
     if(length(grep("ar",addTimeLine))>0)
       {
-      par(mar = rep(0.2, 4))
+      #par(mar = rep(0.2, 4))
       plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
       if(l2r==TRUE)  arrows(xx[2],(yLm[1]+yy[1])/2,xx[1],(yLm[1]+yy[1])/2,lwd=lwdLin)
       if(l2r==FALSE) arrows((xLm[1]+xx[1])/2,yy[2],(xLm[1]+xx[1])/2,yy[1],lwd=lwdLin)
@@ -127,7 +129,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
     if(length(grep("t",addTimeLine))>0)
       {
       if (length(whatTime) != 2) stop("if addTimeLine=='tube' then whatTime currently must have 2 levels.")
-      par(mar = rep(0.2, 4))
+      #par(mar = rep(0.2, 4))
       plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
       
       col1 <- which(colnames(tmScl) ==  whatTime[1])
@@ -143,7 +145,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
       nms1 <- sapply(1:length(en), function(i) strsplit(names(en),"  ")[[i]][1])
       nms2 <- sapply(1:length(en), function(i) strsplit(names(en),"  ")[[i]][2])
       
-      par(srt=0 + 270*l2r)
+      #par(srt=0 + 270*l2r)
       if (l2r == FALSE)
         {
         text(0.49, y =-(st + en)/2, nms1, col=rev(cls), cex=cexText, adj=c(1, 0.5))
@@ -161,7 +163,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
     }
     
     if(length(grep("n",addTimeLine))>0){
-    	    par(mar = rep(0.2, 4))
+    	#    par(mar = rep(0.2, 4))
     	plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
     }
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
@@ -188,7 +190,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                 }
             }
         }
-        par(srt = 90 * (l2r == FALSE))
+        par(srt = 90 * (!l2r))
         x0s <- y0s <- x1s <- cls <- hlts <- hlds <- c()
         prnts <- as.character(unique(pP$pn[!is.na(pP$pn)]))
 	
@@ -231,5 +233,6 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
            if (length(xx) != 0) arrows(xx, yy, xx, yy, length = 0, lwd = uSR$styles$point[1])
            }
         if (length(grep("c", addTimeLine)) > 0) close.screen(all = TRUE)
+        par(op)
     }
 }
