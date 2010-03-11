@@ -48,7 +48,6 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
             if (l2r) fig.mat <- matrix(c(0, 0, 1, 1, 0, sz, sz, 1), nrow = 2) else fig.mat <- matrix(c(0, sz, sz, 1, 0, 0, 1, 1), nrow = 2)
             split.screen(fig.mat)
             screen(1)
-            #par(mar = rep(0.2, 4))
             plot(xx, yy, type = "n", xlab = "", ylab = "", xlim = xLm, ylim = yLm, axes = FALSE)
             xv <- seq(0.05, 0.9, length.out = (length(whatTime) + 1))
             for (i in 1:length(whatTime))
@@ -77,7 +76,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                 if (length(srtText) < length(whatTime)) 
                   srtText <- rep(srtText, length(whatTime)/length(srtText))
                 vis <- (abs(st - en) > nmLim)
-                #par(srt = 90 - (l2r * 90) + srtText[i])
+                
                 if (l2r == FALSE) {
                   rect(xv[i], -st, xv[i + 1], -en)
                   text((xv[i] + xv[i + 1])/2, y = -c((st + en)/2), lb,
@@ -94,16 +93,11 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
             }
             tmAxs <- unique(c(st, en))
             vis <- c(1, 0 + (abs(diff(0 - tmAxs)) > nmLim))
-            #par(srt = 90 - (l2r * 90) + srtText[length(srtText)])
-            if (l2r) 
-                text(-tmAxs, 0.99, abs(tmAxs), cex = cexTime, 
-                  col = vis)
-            else text(0.99, -tmAxs, abs(tmAxs), cex = cexTime, 
-                col = vis)
+            
+            if (l2r) text(-tmAxs, 0.99, abs(tmAxs), cex = cexTime, col = vis) else text(0.99, -tmAxs, abs(tmAxs), cex = cexTime, col = vis)
+                
             screen(2, FALSE)
-            #par(mar = rep(0.2, 4))
-            plot(xx, yy, type = "n", xlab = "", ylab = "", xlim = xLm, 
-                ylim = yLm, axes = FALSE)
+            plot(xx, yy, type = "n", xlab = "", ylab = "", xlim = xLm, ylim = yLm, axes = FALSE)
             thk <- rep(1, length(tmAxs))
             ##if more than one time box is to be drawn, split based on previous two
             if (length(whatTime) > 1) {
@@ -119,7 +113,6 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
 
     if(length(grep("ar",addTimeLine))>0)
       {
-      #par(mar = rep(0.2, 4))
       plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
       if(l2r==TRUE)  arrows(xx[2],(yLm[1]+yy[1])/2,xx[1],(yLm[1]+yy[1])/2,lwd=lwdLin)
       if(l2r==FALSE) arrows((xLm[1]+xx[1])/2,yy[2],(xLm[1]+xx[1])/2,yy[1],lwd=lwdLin)
@@ -129,7 +122,6 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
     if(length(grep("t",addTimeLine))>0)
       {
       if (length(whatTime) != 2) stop("if addTimeLine=='tube' then whatTime currently must have 2 levels.")
-      #par(mar = rep(0.2, 4))
       plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
       
       col1 <- which(colnames(tmScl) ==  whatTime[1])
@@ -141,17 +133,16 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
       en <- boundaries[2:length(boundaries)]
       
       cls <- c("white", "gray75")
-      if(l2r==TRUE) rect(-st, 0, -en, 1, col=cls, border=cls) else rect(0, -st, 1, -en, col=cls, border=cls)
+      if(l2r) rect(-st, 0, -en, 1, col=cls, border=cls) else rect(0, -st, 1, -en, col=cls, border=cls)
       nms1 <- sapply(1:length(en), function(i) strsplit(names(en),"  ")[[i]][1])
       nms2 <- sapply(1:length(en), function(i) strsplit(names(en),"  ")[[i]][2])
       
-      #par(srt=0 + 270*l2r)
-      if (l2r == FALSE)
+      if (!l2r)
         {
         text(0.49, y =-(st + en)/2, nms1, col=rev(cls), cex=cexText, adj=c(1, 0.5))
         text(0.51, y =-(st + en)/2, nms2, col=rev(cls), cex=cexText, adj=c(0, 0.5))
         }
-      if (l2r == TRUE)
+      if (l2r)
         {
         text(-(st + en)/2, y=0.51, nms1, col=rev(cls), cex=cexText, adj=c(1, 0.5))
         text(-(st + en)/2, y=0.49, nms2, col=rev(cls), cex=cexText, adj=c(0, 0.5))
@@ -162,10 +153,8 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
       #axis(1, at=tmLab, label=abs(tmLab), outer=TRUE, line=-whSpc*100, col="white",  col.ticks="white", cex=cexTime, las=0+(!l2r))
     }
     
-    if(length(grep("n",addTimeLine))>0){
-    	#    par(mar = rep(0.2, 4))
-    	plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
-    }
+    if(length(grep("n",addTimeLine))>0) plot(xx, yy, type='n', xlab="", ylab="",xlim=xLm, ylim=yLm, axes=FALSE)
+    
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
     #*#*#draw the phylogeny itself
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
