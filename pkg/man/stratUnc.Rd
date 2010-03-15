@@ -54,6 +54,7 @@ Wang, S. C., and C. R. Marshall. 2004. Improved confidence intervals for estimat
 \seealso{\code{\link{createBifurcate}}, \code{\link{drawPhylo}}}
 
 \examples{
+op <- par(no.readonly=TRUE)
 eg1 <- data.frame(nm=paste("id",1:8,sep=""),
 	pn=c("id6","id7","id7","id5","id8",NA,"id8","id6"),
 	st=c(3.1,2,2,1,3,3.2,3,3.1),
@@ -76,5 +77,6 @@ uSR <- stratUnc(unc,pP)
 drawPhylo(pP, uSR, 
   cexLab=1.5, addTimeLine="n", cexText=1.5, hlty=3, l2r=TRUE)
 
+par(op)
 }
 

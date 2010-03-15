@@ -35,6 +35,7 @@ An object of class 'paleoPhylo', which is a list containing the vectors defined 
 \seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawPhylo}}}
 
 \examples{
+op <- par(no.readonly=TRUE)
 ##load bird order data from ape
 data(bird.orders)
 bird.orders
@@ -62,5 +63,6 @@ str(gradstein04)
 drawPhylo(brdOrd, tmScl=gradstein04, whatTime=c("prd","epch","shStg"),
 	addTimeLine="c", l2r=TRUE, nmLim=1, cexTime=0.7, cexText=1)
 
+par(op)
 }
 

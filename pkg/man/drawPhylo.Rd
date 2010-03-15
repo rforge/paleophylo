@@ -49,6 +49,7 @@ The function opens a graphics window and plots the lineage phylogeny (see \code{
 \examples{
 data(pearson93)
 data(berggren95)
+op <- par(no.readonly=TRUE)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 
 ##example 1: without a time axis.
@@ -75,7 +76,7 @@ drawPhylo (p93rnd, tmScl=berggren95, addTimeLine="classic", whatTime=c("epoch"),
 	l2r=TRUE, cexTime=0.8, dumpLast=TRUE, cexText=1, nmLim=0.3)
 	
 ##THERE ARE MORE EXAMPLES IN  ape2paleoPhylo
-
+par(op)
 
 }
 

@@ -23,7 +23,8 @@ timeAxis(tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexTe
  \item{nmLim}{A number of million years that serves as the limit for when the name of the period/epoch/stage/etc... should be printed in the 'classic' time axis.  Defaults to 2.}
   \item{cexText}{Change the text size of time labels.  See \code{\link{par}}. Can be a vector for different text sizes for each time classification (see example 2a below).}
   \item{srtText}{Change the text direction of time labels.  See \code{\link{par}}. Can be a vector for different rotations for each time classification. It probably makes sense to stick to either 0 (parallel to phylogeny) or 90 (perpendicular to phylogeny).}
-  \item{cexTime}{Change the text size of time numbers.  Defaults to the size of \code{cexText} used for the narrowest time intervals unless otherwise stated. See \code{\link{par}}.}  \item{cexLab}{Change the text size of species lineage names.  See \code{\link{par}}.}
+  \item{cexTime}{Change the text size of time numbers.  Defaults to the size of \code{cexText} used for the narrowest time intervals unless otherwise stated. See \code{\link{par}}.}
+  \item{cexLab}{Change the text size of species lineage names.  See \code{\link{par}}.}
 
  \item{whSpc}{Controls the amount of white space around the phlyogram.  Increasing values of \code{whSpc} will yield more white space, which may be useful when formatting smaller phylograms or if the tip labels are particularly long. It works using the \code{f} in \code{\link{extendrange}}.  Note that \code{mar()} in \code{\link{extendrange}} is not supported.}
   \item{lwdLin}{Change the line thickness.  See \code{\link{par}}.}
@@ -43,6 +44,7 @@ timeAxis(tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexTe
 \examples{
 ##draw a diversity curve for pearson93 phylogeny
 data(pearson93)
+op <- par(no.readonly=TRUE)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 
 data(berggren95)
@@ -67,6 +69,7 @@ mtext("Abundance",2, line=-1, outer=FALSE, cex=1.5)
 close.screen(2,all=TRUE)
 ##the 2 refers to the second panel, which is active and draws the (here) diversity curve
 
+par(op)
 }
 
 

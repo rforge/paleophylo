@@ -37,7 +37,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
     #*#*#draw time options
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
-    op <- par(no.readonly=TRUE)
+    #op <- par(no.readonly=TRUE)
     par(mar=rep(0.2, 4), srt=srtText + 90*(!l2r))
 	if(is.null(cexTime)) cexTime <- cexText[length(cexText)]
 	if(length(grep("c",addTimeLine))>0)
@@ -222,6 +222,6 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
            if (length(xx) != 0) arrows(xx, yy, xx, yy, length = 0, lwd = uSR$styles$point[1])
            }
         if (length(grep("c", addTimeLine)) > 0) close.screen(all = TRUE)
-        par(op)
+        #par(op)
     }
 }
