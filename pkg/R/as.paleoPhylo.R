@@ -2,7 +2,7 @@ as.paleoPhylo <- function (nm, pn, st, en, xx = NA, label = nm, grp=NA)
   {
   if(length(nm)!=length(unique(nm))) stop (paste("ID codes are not unique, specifically",nm[duplicated(nm)]))
   
-  dat<- data.frame(nm,pn,st,en,xx=NA,label,grp)[rev(order(st)),]
+  dat<- data.frame(nm,pn,st,en,xx=NA,label,grp)#[rev(order(st)),]
   pP <- list(nm = as.character(dat$nm), pn = as.character(dat$pn), 
   st = dat$st, en = dat$en, xx = dat$xx, label = as.character(dat$label), grp=dat$grp)
   class(pP) <- "paleoPhylo"
