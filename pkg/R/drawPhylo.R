@@ -77,11 +77,11 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                   srtText <- rep(srtText, length(whatTime)/length(srtText))
                 vis <- (abs(st - en) > nmLim)
                 
-                if (l2r == FALSE) {
+                if (!l2r) {
                   rect(xv[i], -st, xv[i + 1], -en)
                   text((xv[i] + xv[i + 1])/2, y = -c((st + en)/2), lb,
                      col = vis, cex = cexText[i], adj = c(0.5, 0.5))
-                  segments(xv[i], -st, xv[i + 1], -st, lwdLin)
+                  segments(xv[i], -st, xv[i + 1], -st, lwd = lwdLin)
                 }
                 if (l2r)
                   {
