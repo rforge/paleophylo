@@ -10,7 +10,7 @@ Works in the same way as the \code{addTimeLine} part of \code{\link{drawPhylo}},
 }
 \usage{
 timeAxis(tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexText = 0.5,
-  srtText = 0, cexTime = NULL, cexLab = 0.5, whSpc = 0.01, lwdLin = 1, dumpLast = FALSE)
+  srtText = 0, cexTime = NULL, cexLab = 0.5, whSpc = 0.01, lwdLin = 1, dumpLast = FALSE, sz=0.2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -25,11 +25,10 @@ timeAxis(tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexTe
   \item{srtText}{Change the text direction of time labels.  See \code{\link{par}}. Can be a vector for different rotations for each time classification. It probably makes sense to stick to either 0 (parallel to phylogeny) or 90 (perpendicular to phylogeny).}
   \item{cexTime}{Change the text size of time numbers.  Defaults to the size of \code{cexText} used for the narrowest time intervals unless otherwise stated. See \code{\link{par}}.}
   \item{cexLab}{Change the text size of species lineage names.  See \code{\link{par}}.}
-
  \item{whSpc}{Controls the amount of white space around the phlyogram.  Increasing values of \code{whSpc} will yield more white space, which may be useful when formatting smaller phylograms or if the tip labels are particularly long. It works using the \code{f} in \code{\link{extendrange}}.  Note that \code{mar()} in \code{\link{extendrange}} is not supported.}
   \item{lwdLin}{Change the line thickness.  See \code{\link{par}}.}
-
   \item{dumpLast}{If \code{addTimeLine=="classic" or "tube"} then should the oldest time box be drawn? Removing it might be desired if, eg., an ancestor is shown from an earlier time period but only just which would mean "messy" unclosed time boxes.}
+  \item{sz}{Controls the proportion of the plot given over to a 'classic' time axis. Defaults to 0.2.}
 
 }
 

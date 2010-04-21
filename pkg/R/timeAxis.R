@@ -1,5 +1,5 @@
 timeAxis <-
-function (tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexText = 0.5, srtText=0, cexTime = NULL, cexLab = 0.5, whSpc=0.01, lwdLin=1, dumpLast=FALSE) 
+function (tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexText = 0.5, srtText=0, cexTime = NULL, cexLab = 0.5, whSpc=0.01, lwdLin=1, dumpLast=FALSE, sz=0.2) 
   {
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   #*#*#some initial conditions and initialize the plot
@@ -13,7 +13,6 @@ function (tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexT
   if(length(grep("c",addTimeLine))>0)
 	{
 	##an arbitrary equation to divide space between timescale and phylogeny; fix at 1/3 for now
-	sz <- 1/3
 	  if(l2r) fig.mat <- matrix(c(0,0,1,1,0,sz,sz,1), nrow=2) else fig.mat <- matrix(c(0,sz,sz,1,0,0,1,1), nrow=2)
 	  split.screen(fig.mat)
 	  screen(1)
