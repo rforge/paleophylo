@@ -22,9 +22,7 @@ as.paleoPhylo(nm, pn, st, en, xx=NA, label=nm, grp=NA)
 \details{
 Provided to ease use for various data formats.  Other functions in the package work with this class to do the interesting and/or useful bits.  For example: convert to a fully bifurcating tree (see \code{\link{createBifurcate}}) of class 'phylo' (see \code{as.phylo} or \code{write.tree} in  the \code{ape} package) or plot lineage cladograms (see \code{getXloc} and \code{\link{drawPhylo}}).	
  
-\code{getXloc} iteratively *walks* through the lineage phylogeny from root to tip.  It allocates positions along the x-axis for each species lineage such that when plotted (see \code{\link{drawPhylo}}), they are evenly spaced.  If \code{xx} is not assigned, then \code{getXloc} is called.  Alternatively, any continuous morphological trait (a mixture of positive and negative values can be accomodated) can be used.
-
-A lineage phylogeny differs from a *normal* phylogeny in that speciation events can do not necessarily result in the termination of the ancestral lineage (see e.g., Pearson 1993).
+\code{getXloc} iteratively *walks* through the lineage phylogeny from root to tip.  It allocates positions along the x-axis for each species lineage such that when plotted (see \code{\link{drawPhylo}}), they are evenly spaced.  If \code{xx} is not assigned, then \code{getXloc} is called.  Alternatively, any continuous morphological trait (a mixture of positive and negative values can be accomodated) can be used. To ensure that equalities are resolved, the dates are rounded to 8 decimal places in \code{getXloc}.
 }
 
 \value{

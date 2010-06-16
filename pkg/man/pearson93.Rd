@@ -2,7 +2,7 @@
 \alias{pearson93}
 \docType{data}
 \title{An example lineage phylogeny.}
-\description{Pearson (1993) published a lineage phylogeny for the Paleogene planktonic framinifera, which grouped 800 morphospecies into six principal clades and 134 lineages.  This data frame contains one of these clades (Cancellate spinose) and is included primarily as example data.}
+\description{Pearson (1993) published a lineage phylogeny for the Paleogene planktonic framinifera, which grouped 800 morphospecies into six principal clades and 134 lineages.  This data frame contains one of these clades (Cancellate spinose) and is included primarily as example data. A lineage phylogeny differs from a *normal* phylogeny in that speciation events can do not necessarily result in the termination of the ancestral lineage.}
 \usage{data(pearson93)}
 \format{
   A data frame containing details on 33 species lineages.
