@@ -38,21 +38,24 @@ getXloc <- function (pP)
 
         if (length(pos) > 1)
           {
-          lowPos <- (sortPos[which(sortPos == parentPos) - 1] + sortPos[which(sortPos == parentPos)])/2
-          hghPos <- (sortPos[which(sortPos == parentPos) + 1] + sortPos[which(sortPos == parentPos)])/2
+          whr <- which(sortPos == parentPos)
+          lowPos <- (sortPos[whr - 1] + sortPos[whr])/2
+          hghPos <- (sortPos[whr + 1] + sortPos[whr])/2
+          if (parentPos == min(pos)) lowPos <- extendrange(pos)[1]
+          if (parentPos == max(pos)) hghPos <- extendrange(pos)[2]
           	
           if (evnt == 0) 
             {
             newPos <- lowPos
-            if (length(newPos) == 0 & parentPos == max(pos)) newPos <- extendrange(pos)[2]
-            if (length(newPos) == 0 & parentPos == min(pos)) newPos <- extendrange(pos)[1]
+            #if (length(newPos) == 0 & parentPos == max(pos)) newPos <- extendrange(pos)[2]
+            #if (length(newPos) == 0 & parentPos == min(pos)) newPos <- extendrange(pos)[1]
             }
           if (evnt == 1)
             {
             newPos1 <- lowPos
-            if (parentPos == min(pos)) newPos1 <- extendrange(pos)[1]
+            #if (parentPos == min(pos)) newPos1 <- extendrange(pos)[1]
             newPos2 <- hghPos
-            if (parentPos == max(pos)) newPos2 <- extendrange(pos)[2]
+            #if (parentPos == max(pos)) newPos2 <- extendrange(pos)[2]
             newPos <- c(newPos1, newPos2)
             if (length(focInd) > 2)
               {
