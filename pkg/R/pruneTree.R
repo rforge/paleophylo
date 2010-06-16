@@ -1,5 +1,6 @@
 pruneTree <- function(pP, focLin, keepTips=TRUE, keepFocLin=FALSE, trimFocLin=NULL)
   {
+  #pP <- p93; focLin <- "94" ; keepTips=TRUE; keepFocLin=FALSE; trimFocLin=NULL
   if (class(pP) != "paleoPhylo") stop(" object is not of class 'paleoPhylo'")
   
   nn <- length(pP$nm)
