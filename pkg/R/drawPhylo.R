@@ -190,7 +190,8 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                 x0s <- c(x0s, pP$xx[which(pP$nm == prnts[i])])
                 x1s <- c(x1s, pP$xx[offsprng[j]])
                 y0s <- c(y0s, pP$st[offsprng[j]])
-                hclO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][2]
+                hclO <- uSR$styles[[uSR$types[[offsprng[j]]][1]]][2]
+                #hclO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][2]
                 cls <- c(cls, hclO)
                 hltO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][3]
                 hlts <- c(hlts, hltO)
