@@ -32,23 +32,26 @@ getXloc <- function (pP)
             stop(paste("There is a lack of congruence in the tree around",focInd,"\nHave a look at the ancestor",fcPrnt,"but also the sister species",fcSist[1],"and",fcSist[2],"\n"))
           }
            
-        parentPos <- pos[pntLoc]
+        parentPos <- as.numeric(pos[pntLoc])
         ids <- c(ids, focInd)
-        sortPos <- sort(pos)
+        sortPos <- as.numeric(sort(pos))
 
         if (length(pos) > 1)
           {
+          lowPos <- (sortPos[which(sortPos == parentPos) - 1] + sortPos[which(sortPos == parentPos)])/2
+          hghPos <- (sortPos[which(sortPos == parentPos) + 1] + sortPos[which(sortPos == parentPos)])/2
+          	
           if (evnt == 0) 
             {
-            newPos <- (sortPos[which(as.numeric(sortPos) == as.numeric(parentPos)) - 1] + sortPos[which(as.numeric(sortPos) == as.numeric(parentPos))])/2
+            newPos <- lowPos
             if (length(newPos) == 0 & parentPos == max(pos)) newPos <- extendrange(pos)[2]
             if (length(newPos) == 0 & parentPos == min(pos)) newPos <- extendrange(pos)[1]
             }
           if (evnt == 1)
             {
-            newPos1 <- (sortPos[which(as.numeric(sortPos) == as.numeric(parentPos)) - 1] + sortPos[which(as.numeric(sortPos) == as.numeric(parentPos))])/2
+            newPos1 <- lowPos
             if (parentPos == min(pos)) newPos1 <- extendrange(pos)[1]
-            newPos2 <- (sortPos[which(as.numeric(sortPos) == as.numeric(parentPos)) + 1] + sortPos[which(as.numeric(sortPos) == as.numeric(parentPos))])/2
+            newPos2 <- hghPos
             if (parentPos == max(pos)) newPos2 <- extendrange(pos)[2]
             newPos <- c(newPos1, newPos2)
             if (length(focInd) > 2)
