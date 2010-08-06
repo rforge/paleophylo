@@ -32,7 +32,6 @@ Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiolog
 
 \examples{
 data(pearson93)
-data(berggren95)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 
 par(mfrow=c(3,1))
@@ -43,7 +42,7 @@ p93$nm[which(p93$label=="S.triangularis")]
 
 pTt <- pruneTree(p93, "94") #keep the tips
 drawPhylo(pTt, l2r=TRUE)
-pTr <- pruneTree(p93, "94") #keep the rest
+pTr <- pruneTree(p93, "94", keepTips=FALSE) #keep the rest
 drawPhylo(pTr, l2r=TRUE)
 
 }

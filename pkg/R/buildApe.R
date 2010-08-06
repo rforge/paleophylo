@@ -42,7 +42,7 @@
 		clade$edge2 <- edge[,2]
 		
 		clade$descLab <- NA
-		for(i in 1:length(clade[,1])) {clade$descLab[i] <- (pP$label[pP$nm==clade$descName[i]])}
+		for(i in 1:length(clade[,1])) {clade$descLab[i] <- (pP$nm[pP$nm==clade$descName[i]])}
 		
 		ifelse(label==TRUE,tL <- data.frame(tL=as.character(clade$descLab[clade$tip==1]),ed=clade$edge2[clade$tip==1]), 				tL <- data.frame(tL=as.character(clade$descName[clade$tip==1]),ed=clade$edge2[clade$tip==1]))
 		tL <- as.character(tL[order(tL$ed),1])
