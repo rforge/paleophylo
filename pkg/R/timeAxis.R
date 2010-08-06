@@ -77,7 +77,7 @@ function (tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexT
       thk <- duplicated(sort(c(th1,th2))) + 1
       thk <- thk[-(which(thk==2)-1)]
       }
-    if (l2r) abline(v = -tmAxs, col="slategray4", lwd=thk) else abline(h=-tmAxs, col="slategray4", lwd=thk)
+    if (l2r) arrows(-tmAxs, 0.05, -tmAxs, yLm[2], col = "slategray4", lwd = thk, length=0) else arrows(0.05, -tmAxs, yLm[2], -tmAxs, col = "slategray4", lwd = thk, length=0)
   }
   
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
