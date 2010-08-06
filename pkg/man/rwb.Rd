@@ -47,10 +47,10 @@ rwb is a data.frame, containing the following columns:
 data(pearson93)
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
 
-p93RWB <- rwb(p93, bin.length=5)
-with(p93RWB, plot(-bin.start, lambda, col=4, lwd=2, type='l',
+p93RWB <- rwb(p93, bL=5)
+with(p93RWB, plot(-binStart, lambda, col=4, lwd=2, type='l',
   xlab="Start of bin (ma)", ylab="Rate", axes=FALSE))
-with(p93RWB, lines(-bin.start, mu, col=2, lwd=2))
+with(p93RWB, lines(-binStart, mu, col=2, lwd=2))
 axis(1, at=seq(-65,-25,5), label=abs(seq(-65,-25,5)))
 axis(2, at=seq(0,0.25,.05))
 
