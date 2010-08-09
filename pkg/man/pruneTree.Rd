@@ -37,9 +37,9 @@ An object of class \code{\link{as.paleoPhylo}}.
 
 \references{
 Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
-\author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
+\author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk} and Andy Purvis}
 
-\seealso{\code{\link{route2root}}, \code{\link{as.paleoPhylo}}, \code{\link{pearson93}}, \code{\link{berggren95}}, \code{\link{drawPhylo}}}
+\seealso{\code{\link{route2root}}, \code{\link{prune.to.date}},  \code{\link{as.paleoPhylo}}, \code{\link{pearson93}}, \code{\link{berggren95}}, \code{\link{drawPhylo}}}
 
 \examples{
 data(pearson93)
@@ -55,8 +55,8 @@ pTt <- pruneTree(p93, "94") #keep the tips
 drawPhylo(pTt, l2r=TRUE)
 pTr <- pruneTree(p93, "94", keepTips=FALSE) #keep the rest
 drawPhylo(pTr, l2r=TRUE)
-#pTrTt <- pruneTree(p93, "94", 56, keepTips=FALSE) #keep the rest
-#drawPhylo(pTr, l2r=TRUE)
+pTrTt <- pruneTree(p93, "94", 56) #keep the rest
+drawPhylo(pTrTt, l2r=TRUE)
 
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 #*#*example 2: around a focal date

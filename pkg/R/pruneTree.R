@@ -16,7 +16,7 @@ pruneTree <- function(pP, focLin=NULL, date=NULL,
 
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   #*#*#*if pruning around a focal lineage
-  if(!is.null(focLin) & is.null(date))
+  if(!is.null(focLin))
     {
     kT <- ifelse(keepTips, 1, 0)
     kp   <- function(n) length(intersect(focLin, p2r[[n]]))==kT
@@ -77,24 +77,23 @@ pruneTree <- function(pP, focLin=NULL, date=NULL,
           }  
         whrs <- whrs[whrs!=0]
         prT <- prT[whrs,]
-        if(letDie) prT$en[prT$en<date] <- date else extant <- prT$en[prT$en<=date] <- date
+        if(letDie) prT$en[prT$en<date] <- date else prT$en[prT$en<=date] <- date
         }
-     if(!pruneDead)
-        {
-        if(letDie) prT$en[prT$en<date] <- date else extant <- prT$en[prT$en<=date] <- date
-        }
-    # if(pruneDead & makeUltra)
-      #  warning("This is a silly idea - the tree should now be ultrametric\n so please write to me if it isn't.")
+     if(!pruneDead) if(letDie) prT$en[prT$en<date] <- date else prT$en[prT$en<=date] <- date
       }
-
+    }
     if(!is.null(focLin) & !is.null(date))
       {
-      stop("not yet implemented")
-      }
-
-    if(keepTips)
-        warning("prune2date currently coded only for the 'root-end' of the tree.")
-    }
+      if(!keepTips)
+        {stop("prune2date currently coded only for the 'root-end' of the tree when focal lineage specified.")}
+      if(keepTips)
+        {
+        prT$st[which(prT$nm==focLin)] <- date
+        keep <- prT$st<=date
+        prT <- prT[keep,]
+        }
+      } 
+    
 
 
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
@@ -103,5 +102,5 @@ pruneTree <- function(pP, focLin=NULL, date=NULL,
   if(collapseBranches) prTpP <- collapseBranches(prTpP)
   if(outPhylo) prTpa <- reorder(buildApe(createBifurcate(prTpP)))  else prTpa <- NULL
   
-  if(!outPhylo) return(prTpP) else return(list(paleoPhylo=prTpP, phylo=prTpa))
+  if(!outPhylo) return(prTpP) else return(list(paleoPhylo=prTpP, phylo=prTpa))	
   }

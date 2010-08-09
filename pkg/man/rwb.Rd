@@ -41,7 +41,7 @@ rwb is a data.frame, containing the following columns:
 \author{Thomas H.G. Ezard and Andy Purvis \email{thomas.ezard@imperial.ac.uk}}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{\code{\link{as.paleoPhylo}}, \code{\link{pearson93}}}
+\seealso{\code{\link{rates.within.bins}}, \code{\link{as.paleoPhylo}}, \code{\link{pearson93}}}
 
 \examples{
 data(pearson93)
