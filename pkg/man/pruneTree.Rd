@@ -4,7 +4,7 @@
 \alias{collapseBranches}
 
 \title{Prune a tree.}
-\description{Prunes a tree to retain only part of it, either the clipping, i.e. tips, or the bush, i.e. the roots. It is intended to work like drop.tip and subclade in \code{ape}.}
+\description{Prunes a tree to retain only part of it, either the clipping, i.e. tips, or the bush, i.e. the roots, to either a date or around a focal lineage. It is intended to work like drop.tip and subclade in \code{ape} and like \code{\link{prune.to.date}} if keepTips=FALSE.}
 
 \usage{
 pruneTree(pP, focLin=NULL, date=NULL,
@@ -21,14 +21,14 @@ route2root(pP, focLin)
 \item{date}{asas}
 \item{keepTips}{If TRUE (default), then keep the tips from \code{focLin}.}
 \item{keepFocLin}{If TRUE (default), then keep the focal lineage, i.e. \code{focLin}, in the pruned tree.}
-\item{letSpeciate}{Truncate the focal lineage to start at \code{trimFocLin} if \code{keepTips}==TRUE.}
-\item{letDie}{Truncate the focal lineage to start at \code{trimFocLin} if \code{keepTips}==TRUE.}
-\item{pruneDead}{Truncate the focal lineage to start at \code{trimFocLin} if \code{keepTips}==TRUE.}
+\item{letSpeciate}{If TRUE, speciations at exactly the cutoff date are taken to have happened}
+\item{letDie}{If TRUE, extinctions at exactly the cutoff date are taken to have happened}
+\item{pruneDead}{If TRUE, remove the extinct lineages.}
 \item{outPhylo}{Convert to an \code{ape} object in the output?}
 \item{collapseBranches}{If the pruned tree leaves successive distinct ancestors with persistent but no cladogenesis, then collapse these branches down to a single lineage?}
 }
 \details{
-yes, and also of route2root
+yes, and also of route2root (which calculates the path from a focal lineage back to the root and is used to work the species to retain) and (at the moment) collapseBranches.
 }
 
 \value{
