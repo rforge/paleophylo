@@ -1,6 +1,6 @@
 pruneTree <- function(pP, focLin=NULL, date=NULL,
   keepTips=TRUE, keepFocLin=TRUE,
-  letSpeciate=FALSE, letDie=FALSE, pruneDead=TRUE,
+  letSpeciate=FALSE, letDie=FALSE, pruneDead=FALSE,
   outPhylo=FALSE, collapseBranches=TRUE)
   {
   #pP <- p93; focLin <- "90" ; date <- 51; keepTips=FALSE; keepFocLin=TRUE
@@ -33,6 +33,36 @@ pruneTree <- function(pP, focLin=NULL, date=NULL,
       whr <- which(prT$st==max(prT$st))
       prT$pn[whr] <- NA 
       }
+
+     if(pruneDead)
+        {
+        if(letDie) extant <- which(prT$en<date) else extant <- which(prT$en<=date)
+        nExt             <- length(extant)
+        fromExtantTips   <- vector("list", nExt)  
+        for(n in 1:nExt)
+          {
+          whr <- which(pP$nm==prT$nm[extant[n]])
+          if(length(whr)>0)
+            {
+            fromExtantTips[[n]] <- p2r[[whr]]
+            }
+          }
+          
+        unqFromExtant    <- unique(unlist(fromExtantTips))
+        nn <- length(unqFromExtant)
+        whrs <- numeric(nn)  
+        for(n in 1:nn)
+          {
+          if(length(intersect(prT$nm, unqFromExtant[n]))>0)
+            {
+            whrs[n] <- which(prT$nm==unqFromExtant[n])
+            }
+          }  
+        whrs <- whrs[whrs!=0]
+        prT <- prT[whrs,]
+        if(letDie) prT$en[prT$en<date] <- date else prT$en[prT$en<=date] <- date
+        }
+
     }  
 
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
@@ -44,16 +74,16 @@ pruneTree <- function(pP, focLin=NULL, date=NULL,
       if(!is.null(focLin))
         {
         focSt <- prT$st[which(pP$nm==focLin)]
-         if(focSt<date)
+        if(focSt<date)
            stop(paste("the prune2date (", date, ") is before the start date (", focSt, 
               ") of focLin (", as.character(focLin), ")", sep=""))
         }
       if(letSpeciate) prT <- prT[prT$st>=date,] else prT <- prT[prT$st>date,]
           #remove species that started too late
-      if(letDie) extant <- which(prT$en<date) else extant <- which(prT$en<=date)
        
       if(pruneDead)
         {
+        if(letDie) extant <- which(prT$en<date) else extant <- which(prT$en<=date)
         nExt             <- length(extant)
         fromExtantTips   <- vector("list", nExt)  
         for(n in 1:nExt)

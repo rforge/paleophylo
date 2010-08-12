@@ -9,7 +9,7 @@
 \usage{
 pruneTree(pP, focLin=NULL, date=NULL,
   keepTips=TRUE, keepFocLin=TRUE,
-  letSpeciate=FALSE, letDie=FALSE, pruneDead=TRUE,
+  letSpeciate=FALSE, letDie=FALSE, pruneDead=FALSE,
   outPhylo=FALSE, collapseBranches=TRUE)
 route2root(pP, focLin)
 }
@@ -61,6 +61,7 @@ drawPhylo(pTrTt, l2r=TRUE)
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 #*#*example 2: around a focal date
 par(mfrow=c(2,4))
+#depending upon screen configuration, you may want to change the window size 
 eg1 <- pruneTree(p93, date=54.3, keepTips=FALSE)
 drawPhylo(eg1, l2r=TRUE, whSpc=0.2, cexLab=1)
 eg2 <- pruneTree(p93, date=54.3, keepTips=FALSE, pruneDead=FALSE)
