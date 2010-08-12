@@ -1,9 +1,8 @@
 getXloc <- function (pP) 
-{
-    if (class(pP) != "paleoPhylo") 
-        stop("object is not of class 'paleoPhylo'")
-    {
-        dat <- data.frame(nm = pP$nm, pn = pP$pn, st = pP$st, en = pP$en)
+  {
+  	if (class(pP) != "paleoPhylo") stop("object is not of class 'paleoPhylo'")
+     {
+     dat <- data.frame(nm = pP$nm, pn = pP$pn, st = pP$st, en = pP$en)
         dat[order(dat$st, decreasing=TRUE),]
         pos <- 0.5
         time <- minTime <- min(-pP$st)
@@ -46,46 +45,34 @@ getXloc <- function (pP)
                 parentPos <- pos[pntLoc]
                 ids <- c(ids, focInd)
                 sortPos <- sort(pos)
-                if (length(pos) > 1) {
+                if (length(pos) > 1)
+                  {
                   whr <- which(sortPos == parentPos)
                   lowPos <- (sortPos[whr - 1] + sortPos[whr])/2
                   hghPos <- (sortPos[whr + 1] + sortPos[whr])/2
-                  if (evnt == 0) {
+                  if (evnt == 0) 
+                    {
                     pta <- dex[which(pP$nm == parents[i])]
                     ida <- dex[which(pP$nm == focInd)]
-                    if (pta > ida & parentPos >= 0.5) {
-                      newPos <- lowPos
+                    
+                    if (pta > ida & parentPos >= 0.5) newPos <- lowPos else newPos <- hghPos
+                    if (pta > ida & parentPos < 0.5)  newPos <- hghPos else newPos <- lowPos
+                    
+                    if (length(newPos) == 0 & parentPos == max(pos)) newPos <- extendrange(pos)[2]
+                    if (length(newPos) == 0 & parentPos == min(pos)) newPos <- extendrange(pos)[1]
                     }
-                    else {
-                      newPos <- hghPos
-                    }
-                    if (pta > ida & parentPos < 0.5) {
-                      newPos <- hghPos
-                    }
-                    else {
-                      newPos <- lowPos
-                    }
-                    if (length(newPos) == 0 & parentPos == max(pos)) 
-                      newPos <- extendrange(pos)[2]
-                    if (length(newPos) == 0 & parentPos == min(pos)) 
-                      newPos <- extendrange(pos)[1]
-                  }
-                  if (evnt == 1) {
-                    if (parentPos == min(pos)) 
-                      lowPos <- extendrange(pos)[1]
-                    if (parentPos == max(pos)) 
-                      hghPos <- extendrange(pos)[2]
+                  if (evnt == 1)
+                    {
+                    if (parentPos == min(pos)) lowPos <- extendrange(pos)[1]
+                    if (parentPos == max(pos)) hghPos <- extendrange(pos)[2]
                     newPos <- c(lowPos, hghPos)
-                    if (length(focInd) > 2) {
-                      for (j in 3:length(focInd)) newPos <- c(newPos, 
-                        (newPos[j - 2] + parentPos)/2)
+                    if (length(focInd) > 2) 
+                      {for (j in 3:length(focInd)) newPos <- c(newPos, (newPos[j - 2] + parentPos)/2)}
                     }
-                  }
                   pos <- c(pos, newPos)
                 }
                 if (length(pos) == 1) 
-                  ifelse(evnt == 0, pos <- seq(0, 1, 1), pos <- c(0.5, 
-                    0, 1))
+                  ifelse(evnt == 0, pos <- seq(0, 1, 1), pos <- c(0.5, 0, 1))
                 lnsp <- length(sortPos)
                 lnfi <- length(focInd)
                 if (evnt == 1 & lnfi > 4 & lnsp == 1) 
@@ -95,8 +82,7 @@ getXloc <- function (pP)
                 if (evnt == 1 & lnfi == 4 & lnsp == 1) 
                   pos <- c(0.5, 0, 1, 0.25, 0.75)
                 if (length(pos) != length(ids)) 
-                  stop(paste("There is not a position for all individuals.\n The problem is something to with", 
-                    focInd))
+                  stop(paste("There is not a position for all individuals.\n The problem is something to with", focInd))
             }
         }
         locDat <- data.frame(ids, pos)

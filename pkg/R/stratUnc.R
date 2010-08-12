@@ -1,4 +1,4 @@
-stratUnc <- function (uSR = NULL, pP, lwdLin = 2, ltyLin=1, clCd=1:length(unique(pP$grp)), style=NULL)
+stratUnc <- function (uSR = NULL, pP, lwdLin = 1, ltyLin=1, clCd=1:length(unique(pP$grp)), style=NULL)
   {
   if (class(pP) != "paleoPhylo") stop(" object is not of class 'paleoPhylo'")
 

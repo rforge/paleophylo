@@ -5,13 +5,13 @@
 \description{
 Incorporate different types of stratigraphic and mathematical uncertainty in paleoPhylo plots.  By default, these are envisaged as excellent resolution, range extensions, (dis)appearances of a lineage within part of its overall range, single point occurrences and confidence intervals around first and last appearance dates.  Full flexibility is possible however.}
 \usage{
-stratUnc(uSR=NULL, pP, lwdLin=2, ltyLin=1, clCd=1:length(unique(pP$grp)), style=NULL)
+stratUnc(uSR=NULL, pP, lwdLin=1, ltyLin=1, clCd=1:length(unique(pP$grp)), style=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{uSR}{A list (see below).  Defaults to NULL.  If uSR is NULL, then a default list is created for pP which assumes that there is no stratigraphic uncertainty.}
 \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}). }
-\item{lwdLin}{defaults to 2; base line thickness (is recycled).}
+\item{lwdLin}{Base line thickness (is recycled).}
 \item{clCd}{Defaults to base colors per group (see \code{\link{as.paleoPhylo}}).}
 \item{ltyLin}{defaults to 1; base line type (is recycled).}
 \item{style}{A vector of default style types.}
