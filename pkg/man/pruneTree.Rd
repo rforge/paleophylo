@@ -10,7 +10,7 @@
 pruneTree(pP, focLin=NULL, date=NULL,
   keepTips=TRUE, keepFocLin=TRUE,
   letSpeciate=FALSE, letDie=FALSE, pruneDead=FALSE,
-  outPhylo=FALSE, collapseBranches=TRUE)
+  outPhylo=FALSE, collapseBranches=FALSE)
 route2root(pP, focLin)
 }
 
@@ -78,5 +78,16 @@ eg7 <- pruneTree(p93, date=54.3, keepTips=FALSE, letSpeciate=TRUE, letDie=TRUE, 
 drawPhylo(eg7, l2r=TRUE, whSpc=0.2, cexLab=1)
 eg8 <- pruneTree(p93, date=54.3, keepTips=FALSE, letSpeciate=TRUE, letDie=TRUE, pruneDead=FALSE)
 drawPhylo(eg8, l2r=TRUE, whSpc=0.2, cexLab=1)
+
+#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+#*#*example 2a: what collapseBranches does
+par(mfrow=c(2,1))
+#depending upon screen configuration, you may want to change the window size 
+eg5a <- pruneTree(p93, date=54.3, keepTips=FALSE,
+  letDie=TRUE, pruneDead=TRUE)
+drawPhylo(eg5a, l2r=TRUE, whSpc=0.2, cexLab=1)
+eg5b <- pruneTree(p93, date=54.3, keepTips=FALSE,
+  letDie=TRUE, pruneDead=TRUE, collapseBranches=TRUE)
+drawPhylo(eg5b, l2r=TRUE, whSpc=0.2, cexLab=1)
 }
 

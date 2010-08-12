@@ -1,7 +1,7 @@
 pruneTree <- function(pP, focLin=NULL, date=NULL,
   keepTips=TRUE, keepFocLin=TRUE,
   letSpeciate=FALSE, letDie=FALSE, pruneDead=FALSE,
-  outPhylo=FALSE, collapseBranches=TRUE)
+  outPhylo=FALSE, collapseBranches=FALSE)
   {
   #pP <- p93; focLin <- "90" ; date <- 51; keepTips=FALSE; keepFocLin=TRUE
   #pruneDead <- TRUE; letSpeciate <- TRUE; letDie <- TRUE;outPhylo=FALSE
