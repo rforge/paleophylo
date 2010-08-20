@@ -4,7 +4,7 @@
 
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Create a fully bifurcating object of class 'phylo'.}
-\description{createBifurcate and buildApe take a 'paleoPhylo' object and convert it to its fully bifurcating equivalent (i.e. all ancestors terminate if they speciate).  createBifurcate converts the lineage phylogeny into one that only features bifurcating speciations.  buildApe does the conversion to ape.}
+\description{createBifurcate and buildApe take a 'paleoPhylo' object and convert it to its fully bifurcating equivalent (i.e. all ancestors terminate if they speciate). \code{createBifurcate} converts the \code{\link{as.paleoPhylo}} object into one with only bifurcating speciations; \code{buildApe} does the conversion to ape.}
 \usage{
 createBifurcate(pP)
 buildApe(pP, label=TRUE)
@@ -19,7 +19,7 @@ buildApe(pP, label=TRUE)
 
 \code{createBifurcate} does not work for phylogenies with polytomies since the fully-birfurcating version would require resolution of said polytomy.
 
-\code{buildApe} converts this into an object of class 'phylo' for use in \code{ape} (e.g. \code{\link[ape]{read.tree}} or \code{\link[ape]{plot.phylo}}), i.e. assigning of node labels and branch lengths, edge matrix and root definitions. The root is usually the first row of the data frame and needs to be unique.
+\code{buildApe} converts this into an object of class 'phylo' for use in \code{ape} (e.g. \code{\link[ape]{read.tree}} or \code{\link[ape]{plot.phylo}}), i.e. assigning of node labels and branch lengths, edge matrix and root definitions. The root is usually the first row of the data frame and needs to be unique. Phylogenies containing more than 500,000 species will not \code{buildApe} properly.
 
 \code{createBifurcate} and \code{buildApe} are kept separate to enable less manipulation before plotting fully bifurcating trees with arguments in \code{\link{drawPhylo}}.  
 }

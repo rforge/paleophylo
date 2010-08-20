@@ -20,7 +20,7 @@
 		pP$cd <- 1:length(pP$nm)
 		stop <- noEvent <- FALSE
 		pn <- as.character(pP$nm[pP$st==max(pP$st)])
-		clade <- get.line(pn,pP,1000)
+		clade <- get.line(pn,pP,1000000)
 
 		while(stop==FALSE)
 			{
