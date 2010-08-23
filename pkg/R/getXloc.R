@@ -3,7 +3,7 @@ getXloc <- function (pP)
   	if (class(pP) != "paleoPhylo") stop("object is not of class 'paleoPhylo'")
      {
      dat <- data.frame(nm = pP$nm, pn = pP$pn, st = pP$st, en = pP$en)
-     dat <- dat[rev(order(dat$st)),])
+     dat <- dat[rev(order(dat$st)),]
      pos <- 0.5
      time <- minTime <- min(-pP$st)
      ids <- pP$nm[1]
