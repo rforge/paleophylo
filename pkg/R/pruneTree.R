@@ -13,7 +13,8 @@ pruneTree <- function(pP, focLin=NULL, focDate=NULL,
   p2r <- vector("list", nn)
   for(n in 1:nn) p2r[[n]] <- route2root(pP, pP$nm[n])$path
   prT  <- with(pP, data.frame(nm, pn, st, en, label, grp))
-
+  #
+  
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   #*#*#*if pruning around a focal lineage
   if(!is.null(focLin))
@@ -64,20 +65,17 @@ pruneTree <- function(pP, focLin=NULL, focDate=NULL,
         }
 
     }  
-
+prT <- prT[rev(order(prT$st)),]
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
-  #*#*#*if pruning around a focal focDate
+  #*#*#*if pruning around a focal date
   if(!is.null(focDate) & is.null(focLin))
     {
     if(!keepTips)
       {
-      if(!is.null(focLin))
-        {
-        focSt <- prT$st[which(pP$nm==focLin)]
-        if(focSt<focDate)
-           stop(paste("the prune2focDate (", focDate, ") is before the start focDate (", focSt, 
-              ") of focLin (", as.character(focLin), ")", sep=""))
-        }
+      focSt <- prT$st[which(pP$nm==focLin)]
+      #if(focSt<focDate)
+       #    stop(paste("the prune2date (", focDate, ") is before the start focDate (", focSt, ") of focLin (", as.character(focLin), ")", sep=""))
+
       if(letSpeciate) prT <- prT[prT$st>=focDate,] else prT <- prT[prT$st>focDate,]
           #remove species that started too late
        

@@ -1,6 +1,6 @@
 route2root <- function(pP, focLin) 
   {
-  if (class(pP) != "paleoPhylo") stop(" objefocLin is not of class 'paleoPhylo'")
+  if (class(pP) != "paleoPhylo") stop("pP is not of class 'paleoPhylo'")
   
   x <- which(pP$st==max(pP$st))
   rtDur <- pP$st[x]-pP$en[x]
