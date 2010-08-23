@@ -1,9 +1,9 @@
-pruneTree <- function(pP, focLin=NULL, date=NULL,
+pruneTree <- function(pP, focLin=NULL, focDate=NULL,
   keepTips=TRUE, keepFocLin=TRUE,
   letSpeciate=FALSE, letDie=FALSE, pruneDead=FALSE,
   outPhylo=FALSE, collapseBranches=FALSE)
   {
-  #pP <- p93; focLin <- "90" ; date <- 51; keepTips=FALSE; keepFocLin=TRUE
+  #pP <- p93; focLin <- "90" ; focDate <- 51; keepTips=FALSE; keepFocLin=TRUE
   #pruneDead <- TRUE; letSpeciate <- TRUE; letDie <- TRUE;outPhylo=FALSE
   #test <- pruneTree1(p93, "90", 51, keepTips=FALSE)$paleoPhylo
   #with(test, tapply(nm, pn, length))
@@ -36,7 +36,7 @@ pruneTree <- function(pP, focLin=NULL, date=NULL,
 
      if(pruneDead)
         {
-        if(letDie) extant <- which(prT$en<date) else extant <- which(prT$en<=date)
+        if(letDie) extant <- which(prT$en<focDate) else extant <- which(prT$en<=focDate)
         nExt             <- length(extant)
         fromExtantTips   <- vector("list", nExt)  
         for(n in 1:nExt)
@@ -60,30 +60,30 @@ pruneTree <- function(pP, focLin=NULL, date=NULL,
           }  
         whrs <- whrs[whrs!=0]
         prT <- prT[whrs,]
-        if(letDie) prT$en[prT$en<date] <- date else prT$en[prT$en<=date] <- date
+        if(letDie) prT$en[prT$en<focDate] <- focDate else prT$en[prT$en<=focDate] <- focDate
         }
 
     }  
 
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
-  #*#*#*if pruning around a focal date
-  if(!is.null(date) & is.null(focLin))
+  #*#*#*if pruning around a focal focDate
+  if(!is.null(focDate) & is.null(focLin))
     {
     if(!keepTips)
       {
       if(!is.null(focLin))
         {
         focSt <- prT$st[which(pP$nm==focLin)]
-        if(focSt<date)
-           stop(paste("the prune2date (", date, ") is before the start date (", focSt, 
+        if(focSt<focDate)
+           stop(paste("the prune2focDate (", focDate, ") is before the start focDate (", focSt, 
               ") of focLin (", as.character(focLin), ")", sep=""))
         }
-      if(letSpeciate) prT <- prT[prT$st>=date,] else prT <- prT[prT$st>date,]
+      if(letSpeciate) prT <- prT[prT$st>=focDate,] else prT <- prT[prT$st>focDate,]
           #remove species that started too late
        
       if(pruneDead)
         {
-        if(letDie) extant <- which(prT$en<date) else extant <- which(prT$en<=date)
+        if(letDie) extant <- which(prT$en<focDate) else extant <- which(prT$en<=focDate)
         nExt             <- length(extant)
         fromExtantTips   <- vector("list", nExt)  
         for(n in 1:nExt)
@@ -107,19 +107,19 @@ pruneTree <- function(pP, focLin=NULL, date=NULL,
           }  
         whrs <- whrs[whrs!=0]
         prT <- prT[whrs,]
-        if(letDie) prT$en[prT$en<date] <- date else prT$en[prT$en<=date] <- date
+        if(letDie) prT$en[prT$en<focDate] <- focDate else prT$en[prT$en<=focDate] <- focDate
         }
-     if(!pruneDead) if(letDie) prT$en[prT$en<date] <- date else prT$en[prT$en<=date] <- date
+     if(!pruneDead) if(letDie) prT$en[prT$en<focDate] <- focDate else prT$en[prT$en<=focDate] <- focDate
       }
     }
-    if(!is.null(focLin) & !is.null(date))
+    if(!is.null(focLin) & !is.null(focDate))
       {
       if(!keepTips)
-        {stop("prune2date currently coded only for the 'root-end' of the tree when focal lineage specified.")}
+        {stop("prune2focDate currently coded only for the 'root-end' of the tree when focal lineage specified.")}
       if(keepTips)
         {
-        prT$st[which(prT$nm==focLin)] <- date
-        keep <- prT$st<=date
+        prT$st[which(prT$nm==focLin)] <- focDate
+        keep <- prT$st<=focDate
         prT <- prT[keep,]
         }
       } 

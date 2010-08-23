@@ -7,7 +7,7 @@
 \description{Prunes a tree to retain only part of it, either the clipping, i.e. tips, or the bush, i.e. the roots, to either a date or around a focal lineage. It is intended to work like drop.tip and subclade in \code{ape} and like \code{\link{prune.to.date}} if keepTips=FALSE.}
 
 \usage{
-pruneTree(pP, focLin=NULL, date=NULL,
+pruneTree(pP, focLin=NULL, focDate=NULL,
   keepTips=TRUE, keepFocLin=TRUE,
   letSpeciate=FALSE, letDie=FALSE, pruneDead=FALSE,
   outPhylo=FALSE, collapseBranches=FALSE)
@@ -18,7 +18,7 @@ route2root(pP, focLin)
 \arguments{
 \item{pP}{An object of class 'paleoPhylo' (see \code{\link{as.paleoPhylo}}). }
 \item{focLin}{The focal lineage to be pruned or to obtain the \code{route2root} from.}
-\item{date}{asas}
+\item{focDate}{The focal date to be pruned or to.}
 \item{keepTips}{If TRUE (default), then keep the tips from \code{focLin}.}
 \item{keepFocLin}{If TRUE (default), then keep the focal lineage, i.e. \code{focLin}, in the pruned tree.}
 \item{letSpeciate}{If TRUE, speciations at exactly the cutoff date are taken to have happened}
@@ -62,31 +62,31 @@ drawPhylo(pTrTt, l2r=TRUE)
 #*#*example 2: around a focal date
 par(mfrow=c(2,4))
 #depending upon screen configuration, you may want to change the window size 
-eg1 <- pruneTree(p93, date=54.3, keepTips=FALSE)
+eg1 <- pruneTree(p93, focDate=54.3, keepTips=FALSE)
 drawPhylo(eg1, l2r=TRUE, whSpc=0.2, cexLab=1)
-eg2 <- pruneTree(p93, date=54.3, keepTips=FALSE, pruneDead=FALSE)
+eg2 <- pruneTree(p93, focDate=54.3, keepTips=FALSE, pruneDead=FALSE)
 drawPhylo(eg2, l2r=TRUE, whSpc=0.2, cexLab=1)
-eg3 <- pruneTree(p93, date=54.3, keepTips=FALSE, letSpeciate=TRUE, pruneDead=TRUE)
+eg3 <- pruneTree(p93, focDate=54.3, keepTips=FALSE, letSpeciate=TRUE, pruneDead=TRUE)
 drawPhylo(eg3, l2r=TRUE, whSpc=0.2, cexLab=1)
-eg4 <- pruneTree(p93, date=54.3, keepTips=FALSE, letSpeciate=FALSE, pruneDead=TRUE)
+eg4 <- pruneTree(p93, focDate=54.3, keepTips=FALSE, letSpeciate=FALSE, pruneDead=TRUE)
 drawPhylo(eg4, l2r=TRUE, whSpc=0.2, cexLab=1)
-eg5 <- pruneTree(p93, date=54.3, keepTips=FALSE, letDie=TRUE, pruneDead=TRUE)
+eg5 <- pruneTree(p93, focDate=54.3, keepTips=FALSE, letDie=TRUE, pruneDead=TRUE)
 drawPhylo(eg5, l2r=TRUE, whSpc=0.2, cexLab=1)
-eg6 <- pruneTree(p93, date=54.3, keepTips=FALSE, letDie=TRUE, pruneDead=FALSE)
+eg6 <- pruneTree(p93, focDate=54.3, keepTips=FALSE, letDie=TRUE, pruneDead=FALSE)
 drawPhylo(eg6, l2r=TRUE, whSpc=0.2, cexLab=1)
-eg7 <- pruneTree(p93, date=54.3, keepTips=FALSE, letSpeciate=TRUE, letDie=TRUE, pruneDead=TRUE)
+eg7 <- pruneTree(p93, focDate=54.3, keepTips=FALSE, letSpeciate=TRUE, letDie=TRUE, pruneDead=TRUE)
 drawPhylo(eg7, l2r=TRUE, whSpc=0.2, cexLab=1)
-eg8 <- pruneTree(p93, date=54.3, keepTips=FALSE, letSpeciate=TRUE, letDie=TRUE, pruneDead=FALSE)
+eg8 <- pruneTree(p93, focDate=54.3, keepTips=FALSE, letSpeciate=TRUE, letDie=TRUE, pruneDead=FALSE)
 drawPhylo(eg8, l2r=TRUE, whSpc=0.2, cexLab=1)
 
 #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
 #*#*example 2a: what collapseBranches does
 par(mfrow=c(2,1))
 #depending upon screen configuration, you may want to change the window size 
-eg5a <- pruneTree(p93, date=54.3, keepTips=FALSE,
+eg5a <- pruneTree(p93, focDate=54.3, keepTips=FALSE,
   letDie=TRUE, pruneDead=TRUE)
 drawPhylo(eg5a, l2r=TRUE, whSpc=0.2, cexLab=1)
-eg5b <- pruneTree(p93, date=54.3, keepTips=FALSE,
+eg5b <- pruneTree(p93, focDate=54.3, keepTips=FALSE,
   letDie=TRUE, pruneDead=TRUE, collapseBranches=TRUE)
 drawPhylo(eg5b, l2r=TRUE, whSpc=0.2, cexLab=1)
 }
