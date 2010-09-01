@@ -7,8 +7,7 @@
 Calculate per-lineage origination and extinction rates within a set of bins
 }
 \description{
-Takes any object of class \code{paleoPhylo} and computes per-lineage origination and extinction rates within the set of bins specified by the user.  Lineages persisting to the specified end are not considered to have gone extinct. Events taking place exactly on bin boundaries are taken to occur in the later bin.
-}
+Takes any object of class \code{paleoPhylo} and computes per-lineage origination and extinction rates within the set of bins specified by the user.  Lineages persisting to the specified end are not considered to have gone extinct. Events taking place exactly on bin boundaries are taken to occur in the later bin.}
 \usage{
 rwb(pP, bL=1, st=max(pP$st), en=min(pP$en))
 }
