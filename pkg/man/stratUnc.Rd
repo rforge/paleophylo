@@ -60,7 +60,7 @@ eg1 <- data.frame(nm=paste("id",1:8,sep=""),
 	st=c(3.1,2,2,1,3,3.2,3,3.1),
 	en=c(0,1.1,0.8,0,0,3.1,2,3),
 	label=c("E","B","A","C","D","","",""))
-pP <- as.paleoPhylo(eg1$nm,eg1$pn,eg1$st,eg1$en,label=eg1$label)
+pP <- with(eg1, as.paleoPhylo(nm, pn, st, en,label=label))
 
 par(mfrow=c(1,2))
 ##example 1; no uncertainty
