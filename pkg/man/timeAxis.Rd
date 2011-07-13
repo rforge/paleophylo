@@ -36,7 +36,7 @@ timeAxis(tmScl, whatTime, addTimeLine = "classic", l2r = FALSE, nmLim = 2, cexTe
 
 \references{Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
 
-\author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
+\author{Thomas H.G. Ezard \email{t.ezard@surrey.ac.uk}}
 \seealso{\code{\link{drawPhylo}}, \code{\link{split.screen}}\code{\link{pearson93}}}
 
 

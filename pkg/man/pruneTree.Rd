@@ -37,7 +37,7 @@ An object of class \code{\link{as.paleoPhylo}}.
 
 \references{
 Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
-\author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk} and Andy Purvis}
+\author{Thomas H.G. Ezard \email{t.ezard@surrey.ac.uk} and Andy Purvis}
 
 \seealso{\code{\link{route2root}}, \code{\link{prune.to.date}},  \code{\link{as.paleoPhylo}}, \code{\link{pearson93}}, \code{\link{berggren95}}, \code{\link{drawPhylo}}}
 

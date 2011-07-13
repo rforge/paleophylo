@@ -29,7 +29,7 @@ Objects of class \code{phylo} are defined using edge matrices (see \code{\link[a
 An object of class 'paleoPhylo', which is a list containing the vectors defined in \code{\link{as.paleoPhylo}}.
 }
 
-\author{Thomas H.G. Ezard \email{thomas.ezard@imperial.ac.uk}}
+\author{Thomas H.G. Ezard \email{t.ezard@surrey.ac.uk}}
 \references{Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
 
 \seealso{\code{\link{as.paleoPhylo}}, \code{\link{drawPhylo}}}
