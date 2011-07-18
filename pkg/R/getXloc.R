@@ -75,10 +75,13 @@ getXloc <- function (pP)
          if (evnt == 1 & lnfi == 4 & lnsp == 1) pos <- c(0.5, 0, 1, 0.25, 0.75)
          if (length(pos) != length(ids)) 
             stop(paste("There is not a position for all individuals.\n The problem is something to with", focInd))
+         pos <- as.numeric(as.factor(pos))/length(pos)
          }
        }
      locDat <- data.frame(ids, pos)
-     locDat$xx <- as.numeric(as.factor(locDat$pos))/length(locDat$pos)
+     locDat$xx <- pos #as.numeric(as.factor(locDat$pos))/length(locDat$pos)
+     #print(length(locDat$xx))
+     #print(length(unique(locDat$xx)))
      if (length(locDat$xx) != length(unique(locDat$xx))) stop("non-unique locations")
      cmbDat <- merge(dat, locDat, by.x = c("nm"), by.y = c("ids"))
      }

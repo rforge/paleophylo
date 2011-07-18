@@ -7,20 +7,28 @@ as.paleoPhylo <- function (nm, pn, st, en, xx = NA, label = nm, grp=NA)
     pn[st==max(st)] <- NA
     }
 
-  
-  dat<- data.frame(nm,pn,st,en,xx=NA,label,grp)
+  getX <- length(xx)==1 & is.na(xx[1])
+  dat<- data.frame(nm,pn,st,en,xx,label,grp)
   dat <- dat[rev(order(dat$st, dat$en)),]
   pP <- list(nm = as.character(dat$nm), pn = as.character(dat$pn), 
-  st = dat$st, en = dat$en, xx = dat$xx, label = as.character(dat$label), grp=dat$grp)
-
+    st = dat$st, en = dat$en,
+    xx = dat$xx, label = as.character(dat$label), grp=dat$grp)
   class(pP) <- "paleoPhylo"
+ 
+  #if I need to find the x locations
+  if(getX) 
+    {
+    xxloc <- getXloc(pP)[, c(1, 6)]
+    wxloc <- merge(dat, xxloc, by=c("nm"))	#with xlocs in
+    dat <- wxloc
+    dat <- with(wxloc, data.frame(nm, pn, st, en, xx=xx.y, label, grp))
+    dat <- dat[rev(order(dat$st, dat$en)),]
+    pP <- list(nm = as.character(dat$nm), pn = as.character(dat$pn), 
+      st = dat$st, en = dat$en,
+      xx = dat$xx, label = as.character(dat$label), grp=dat$grp)
+    class(pP) <- "paleoPhylo"
+   }
   
-  xxloc <- getXloc(pP)[, c(1, 6)]
-  dummy <- data.frame(nm = pP$nm)
-  
-  ifelse(is.na(xx),
-    pP$xx <- merge(dummy, xxloc, by.x = "nm", by.y = "nm", sort = FALSE)[, 2],
-    pP$xx <- (xx - min(xx))/max(xx - min(xx)))
   return(pP)
   }
     
