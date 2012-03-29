@@ -22,6 +22,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
   	  yLm <- c(-max(pP$st),yLm[2])
   	  xLm <- xx
   	  }
+
   	  
 	#*#*#the time scale used
    if ((length(grep("t", addTimeLine)) > 0 | length(grep("c", addTimeLine)) > 0)) 
@@ -49,7 +50,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
             split.screen(fig.mat)
             screen(1)
             plot(xx, yy, type = "n", xlab = "", ylab = "", xlim = xLm, ylim = yLm, axes = FALSE)
-            xv <- seq(0.05, 0.9, length.out = (length(whatTime) + 1))
+            xv <- seq(0.05, 0.7, length.out = (length(whatTime) + 1))
             for (i in 1:length(whatTime))
                 {
                 ii <- which(colnames(tmScl) == whatTime[i])
@@ -94,7 +95,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
             tmAxs <- unique(c(st, en))
             vis <- c(1, 0 + (abs(diff(0 - tmAxs)) > nmLim))
             
-            if (l2r) text(-tmAxs, 0.99, abs(tmAxs), cex = cexTime, col = vis) else text(0.99, -tmAxs, abs(tmAxs), cex = cexTime, col = vis)
+            if (l2r) text(-tmAxs, 1, abs(tmAxs), cex = cexTime, col = vis) else text(1, -tmAxs, abs(tmAxs), cex = cexTime, col = vis, adj=1)
                 
             screen(2, FALSE)
             plot(xx, yy, type = "n", xlab = "", ylab = "", xlim = xLm, ylim = yLm, axes = FALSE)
@@ -111,6 +112,9 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
             if (l2r) abline(v = -tmAxs, col = "slategray4", lwd = thk) else abline(h = -tmAxs, col = "slategray4", lwd = thk)
         }
 
+    #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+    #*#*# straightforward arrow
+    
     if(length(grep("ar",addTimeLine))>0)
       {
       plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
@@ -119,9 +123,12 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
       mtext("Time", 2-l2r, line=-1, cex=cexText)
       }
       
+    #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
+    #*#*# funny tube background bit
     if(length(grep("t",addTimeLine))>0)
       {
-      if (length(whatTime) != 2) stop("if addTimeLine=='tube' then whatTime currently must have 2 levels.")
+      lwt <- length(whatTime) 
+      if (lwt>2) stop("if addTimeLine=='tube' then whatTime currently must have 2 or fewer levels.")
       plot(xx,yy,type='n',xlab="",ylab="",xlim=xLm,ylim=yLm,axes=FALSE)
       
       col1 <- which(colnames(tmScl) ==  whatTime[1])
@@ -137,22 +144,28 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
       nms1 <- sapply(1:length(en), function(i) strsplit(names(en),"  ")[[i]][1])
       nms2 <- sapply(1:length(en), function(i) strsplit(names(en),"  ")[[i]][2])
       
-      if (!l2r)
+      if(lwt==2)
         {
-        text(0.49, y =-(st + en)/2, nms1, col=rev(cls), cex=cexText, adj=c(1, 0.5))
-        text(0.51, y =-(st + en)/2, nms2, col=rev(cls), cex=cexText, adj=c(0, 0.5))
+        if (!l2r)
+          {
+          text(0.49, y =-(st + en)/2, nms1, col=rev(cls), cex=cexText, adj=c(1, 0.5))
+          text(0.51, y =-(st + en)/2, nms2, col=rev(cls), cex=cexText, adj=c(0, 0.5))
+          }
+        if (l2r)
+          {
+          text(-(st + en)/2, y=0.51, nms1, col=rev(cls), cex=cexText, adj=c(1, 0.5))
+          text(-(st + en)/2, y=0.49, nms2, col=rev(cls), cex=cexText, adj=c(0, 0.5))
+          }
         }
-      if (l2r)
-        {
-        text(-(st + en)/2, y=0.51, nms1, col=rev(cls), cex=cexText, adj=c(1, 0.5))
-        text(-(st + en)/2, y=0.49, nms2, col=rev(cls), cex=cexText, adj=c(0, 0.5))
-        }
+      if(lwt==1 & !l2r) {text(0.5, y =-(st + en)/2, nms1, col=rev(cls), cex=cexText)}
+      if(lwt==1 & l2r) {text(-(st + en)/2, y=0.5, nms1, col=rev(cls), cex=cexText)}
+      
       tmLab <- -tmScl$MA[prntName == 1]
       if(dumpLast) tmLab <- tmLab[-length(tmLab)]
       mtext(abs(tmLab), side =2-l2r, at=tmLab, cex=cexTime, line=-2, las=0+(!l2r))
       #axis(1, at=tmLab, label=abs(tmLab), outer=TRUE, line=-whSpc*100, col="white",  col.ticks="white", cex=cexTime, las=0+(!l2r))
     }
-    
+       
     if(length(grep("n",addTimeLine))>0) plot(xx, yy, type='n', xlab="", ylab="",xlim=xLm, ylim=yLm, axes=FALSE)
     
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
