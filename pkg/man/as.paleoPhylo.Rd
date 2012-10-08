@@ -32,7 +32,7 @@ An object of class 'paleoPhylo', which is a list containing the five vectors def
 Pearson, P. N. 1993 A lineage phylogeny for the Paleogene planktonic foraminifera. Micropaleontology 39, 193-222.
 }
 
-\author{Thomas H.G. Ezard \email{t.ezard@surrey.ac.uk}}
+\author{Thomas H.G. Ezard \email{t.ezard@soton.ac.uk}}
 
 \seealso{\code{\link{pearson93}}, \code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{ape2paleoPhylo}}}
 
@@ -40,7 +40,7 @@ Pearson, P. N. 1993 A lineage phylogeny for the Paleogene planktonic foraminifer
 data(pearson93)
 ##not-defining xx leads to evenly-spaced positions along the x-axis in drawPhylo
 p93 <- with(pearson93, as.paleoPhylo(Code, Parent, Start, End, label=Name))
-p93
+str(p93)
 
 }
 

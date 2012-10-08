@@ -65,7 +65,8 @@ pruneTree <- function(pP, focLin=NULL, focDate=NULL,
         }
 
     }  
-prT <- prT[rev(order(prT$st)),]
+  prT <- prT[rev(order(prT$st)),]
+
   #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
   #*#*#*if pruning around a focal date
   if(!is.null(focDate) & is.null(focLin))
@@ -82,8 +83,8 @@ prT <- prT[rev(order(prT$st)),]
       if(pruneDead)
         {
         if(letDie) extant <- which(prT$en<focDate) else extant <- which(prT$en<=focDate)
-        nExt             <- length(extant)
-        fromExtantTips   <- vector("list", nExt)  
+        nExt              <- length(extant)
+        fromExtantTips    <- vector("list", nExt)  
         for(n in 1:nExt)
           {
           whr <- which(pP$nm==prT$nm[extant[n]])

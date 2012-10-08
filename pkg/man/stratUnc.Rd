@@ -49,7 +49,7 @@ Wang, S. C., and C. R. Marshall. 2004. Improved confidence intervals for estimat
 
 
 }
-\author{Thomas H.G. Ezard \email{t.ezard@surrey.ac.uk}}
+\author{Thomas H.G. Ezard \email{t.ezard@soton.ac.uk}}
 
 \seealso{\code{\link{createBifurcate}}, \code{\link{drawPhylo}}, \code{\link{as.paleoPhylo}}}
 

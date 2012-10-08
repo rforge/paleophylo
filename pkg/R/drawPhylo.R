@@ -79,14 +79,14 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                 vis <- (abs(st - en) > nmLim)
                 
                 if (!l2r) {
-                  rect(xv[i], -st, xv[i + 1], -en)
+                  rect(xv[i], -st, xv[i + 1], -en, lwd=lwdLin)
                   text((xv[i] + xv[i + 1])/2, y = -c((st + en)/2), lb,
                      col = vis, cex = cexText[i], adj = c(0.5, 0.5))
                   segments(xv[i], -st, xv[i + 1], -st, lwd = lwdLin)
                 }
                 if (l2r)
                   {
-                  rect(-st, xv[i], -en, xv[i + 1])
+                  rect(-st, xv[i], -en, xv[i + 1], lwd=lwdLin)
                   text(-c((st + en)/2), y = (xv[i] + xv[i + 1])/2, lb,
                      col = vis, cex = cexText[i], adj = c(0.5, 0.5))
                   segments(-st, xv[i], -st, xv[i + 1], lwd = lwdLin)
@@ -109,7 +109,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
                 thk <- duplicated(sort(c(th1, th2))) + 1
                 thk <- thk[-(which(thk == 2) - 1)]
             }
-            if (l2r) abline(v = -tmAxs, col = "slategray4", lwd = thk) else abline(h = -tmAxs, col = "slategray4", lwd = thk)
+            if (l2r) abline(v = -tmAxs, col = "slategray4", lwd = lwdLin) else abline(h = -tmAxs, col = "slategray4", lwd = lwdLin)
         }
 
     #*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*
@@ -200,11 +200,12 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
       for (i in 1:length(prnts)) {
             offsprng <- which(pP$pn == prnts[i])
             for (j in 1:length(offsprng)) {
+            #make this part more computationally efficient
                 x0s <- c(x0s, pP$xx[which(pP$nm == prnts[i])])
                 x1s <- c(x1s, pP$xx[offsprng[j]])
                 y0s <- c(y0s, pP$st[offsprng[j]])
-                hclO <- uSR$styles[[uSR$types[[offsprng[j]]][1]]][2]
-                #hclO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][2]
+                #hclO <- uSR$styles[[uSR$types[[offsprng[j]]][1]]][2]
+                hclO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][2]
                 cls <- c(cls, hclO)
                 hltO <- uSR$styles[[uSR$types[[which(pP$nm == prnts[i])]][1]]][3]
                 hlts <- c(hlts, hltO)

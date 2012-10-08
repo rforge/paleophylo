@@ -21,7 +21,7 @@ LazyLoad: \tab yes\cr
 \author{
 Thomas H.G. Ezard and Andy Purvis.
 
-Maintainer: Thomas H.G. Ezard \email{t.ezard@surrey.ac.uk}
+Maintainer: Thomas H.G. Ezard \email{t.ezard@soton.ac.uk}
 }
 
 \references{

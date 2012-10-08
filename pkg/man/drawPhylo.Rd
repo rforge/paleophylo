@@ -44,7 +44,7 @@ Currently, any user read-in time scale MUST have a column called "MA", which con
 \value{
 The function opens a graphics window and plots the lineage phylogeny (see \code{\link{as.paleoPhylo}} for details).  It does not return a list, since all the information is contained within input data.}
 \references{Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
-\author{Thomas H.G. Ezard \email{t.ezard@surrey.ac.uk}}
+\author{Thomas H.G. Ezard \email{t.ezard@soton.ac.uk}}
 \seealso{\code{\link{as.paleoPhylo}}, \code{\link{gradstein04}}, \code{\link{pearson93}}, \code{\link{berggren95}}, \code{\link{stratUnc}}}
 \examples{
 data(pearson93)

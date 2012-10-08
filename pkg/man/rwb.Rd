@@ -37,7 +37,7 @@ rwb is a data.frame, containing the following columns:
 
 \references{Ezard, T.H.G. & Purvis, A. (2009). paleoPhylo: free software to draw paleobiological phylogenies. Paleobiology 35, 460-464. doi: 10.1666/0094-8373-35.3.460.}
 
-\author{Thomas H.G. Ezard and Andy Purvis \email{t.ezard@surrey.ac.uk}}
+\author{Thomas H.G. Ezard and Andy Purvis \email{t.ezard@soton.ac.uk}}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{\code{\link{rates.within.bins}}, \code{\link{as.paleoPhylo}}, \code{\link{pearson93}}}

@@ -30,7 +30,7 @@ An list containing:
 Pearson, P. (1992). Survivorship analysis of fossil taxa when real-time extinction rates vary: the paleogene planktonic foraminifera. Paleobiology 18 (2), 115-131. 
 }
 
-\author{Thomas H.G. Ezard \email{t.ezard@surrey.ac.uk}}
+\author{Thomas H.G. Ezard \email{t.ezard@soton.ac.uk}}
 
 \seealso{\code{\link{pearson93}}, \code{\link{as.paleoPhylo}}}
 
