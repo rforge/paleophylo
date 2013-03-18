@@ -7,7 +7,7 @@ route2root <- function(pP, focLin)
   rt <- pP$nm[x]
   
   allAnc <- immAnc <- focLin
-  tm2rt  <- aL$en[aL$nm==focLin]
+  tm2rt  <- pP$en[pP$nm==focLin]
   
   while(immAnc != rt)
     {
