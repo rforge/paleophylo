@@ -236,7 +236,7 @@ drawPhylo <- function (pP, uSR = NULL, addTimeLine = "none", tmScl, whatTime, l2
            ifelse(l2r, yy <- pP$xx[rdPtXX], yy <- -rdPt)
            if (length(xx) != 0) arrows(xx, yy, xx, yy, length = 0, lwd = uSR$styles$point[1])
            }
-        if (length(grep("c", addTimeLine)) > 0) close.screen(all = TRUE)
+        if (length(grep("c", addTimeLine)) > 0) close.screen(all.screens = TRUE)
         #par(op)
     }
 }
