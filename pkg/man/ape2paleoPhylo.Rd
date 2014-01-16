@@ -6,7 +6,7 @@
 Takes the information contained within objects of class \code{phylo} and converts using \code{\link{as.paleoPhylo}}.
 }
 \usage{
-ape2paleoPhylo(phy,retainNodeLabels=TRUE,nC=0)
+ape2paleoPhylo(phy,retainNodeLabels=TRUE,nC=0, getloc=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 
@@ -14,7 +14,8 @@ ape2paleoPhylo(phy,retainNodeLabels=TRUE,nC=0)
   \item{phy}{An object of class phylo.}
   \item{retainNodeLabels}{If FALSE, then \code{\link{nchar}} is used to replace node labels with blank names.  Defaults to TRUE.}
   \item{nC}{The boundary of number of characters in tip.labels to retain. Defaults to 0, which means that whole tip labels are retained. Setting \code{nC} to 3 would mean that any label longer than 3 characters would be retained, whilst anything shorter than that would be stripped back to blank. This is useful because \code{node.labels} are also useful in paleobiological phylogenies, yet in objects of class \code{phylo} are not always and therefore have less informative names; stripping them to blank makes the plot look tidier, emphasizing interesting bits.}
-}
+  \item{getloc}{Should the \code{paleoPhylo} object calculate the locations of branches for a non-overlapping phylogeny figure? Defaults to TRUE, but setting as FALSE speeds up conversion for big phylogenies if you don't need the figure.}
+  }
   
 \details{
 The principal current use is to enable plotting with \code{\link{drawPhylo}} and its array of axis formats.

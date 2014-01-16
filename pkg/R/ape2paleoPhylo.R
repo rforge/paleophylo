@@ -1,4 +1,4 @@
-ape2paleoPhylo <- function(phy,retainNodeLabels=TRUE,nC=0)
+ape2paleoPhylo <- function(phy,retainNodeLabels=TRUE, nC=0, getloc=TRUE)
 	{
 	if(class(phy)!="phylo") stop("object is not of class 'phylo'")
 		{
@@ -21,7 +21,8 @@ ape2paleoPhylo <- function(phy,retainNodeLabels=TRUE,nC=0)
 				}
 			st <- en - phy$edge.length
 			root <- as.character(length(phy$tip.label)+1)
-			pP <- as.paleoPhylo(c(root,nm),c(NA,pn),abs(c(-.0001,st)-max(en)),abs(c(0,en)-max(en)),label=c(NA,cd))
+			if(getloc) pP <- as.paleoPhylo(c(root,nm),c(NA,pn),abs(c(-.0001,st)-max(en)),abs(c(0,en)-max(en)),label=c(NA,cd))
+			if(!getloc) pP <- as.paleoPhylo(c(root,nm),c(NA,pn),abs(c(-.0001,st)-max(en)),abs(c(0,en)-max(en)),xx=runif(length(c(root,nm))), label=c(NA,cd))
 			return(pP)
 			}
 		}	
